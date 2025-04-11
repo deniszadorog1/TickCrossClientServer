@@ -1,0 +1,14 @@
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\TickCrossLib.dll.config
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\TickCrossLib.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\TickCrossLib.pdb
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\EntityFramework.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\EntityFramework.SqlServer.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Newtonsoft.Json.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\EntityFramework.xml
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\EntityFramework.SqlServer.xml
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Newtonsoft.Json.xml
+B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.csproj.AssemblyReference.cache
+B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.csproj.CoreCompileInputs.cache
+B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCros.7DB2BFB0.Up2Date
+B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.pdb

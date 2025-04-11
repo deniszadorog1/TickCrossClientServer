@@ -54,9 +54,14 @@ namespace TickCrossLib.Models
             StepperIndex = StepperIndex == _firstPlayerIndex ? _secondPlayerIndex : _firstPlayerIndex;
         }
 
-        public void SetSignInField(int xIndex, int yIndex)
+        public void SetSignInField(int xCord, int yCord)
         {
-            
+            GameField.SetSignInCell(xCord, yCord, GetStepperSign());
+        }
+
+        public char GetStepperSign()
+        {
+            return Players[StepperIndex] == FirstPlayer ? _firstPlayerSign : _secondPlayerSign;
         }
 
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TickCrossServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+159903de6e1c13e4f68ff746df4eee7ab5308caa")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d761a5da69734dc0112debaae9d9e52e46ff55f4")]
 [assembly: System.Reflection.AssemblyProductAttribute("TickCrossServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TickCrossServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using TickCrossClient.Pages;
+
 namespace TickCrossClient
 {
     /// <summary>
@@ -19,6 +21,23 @@ namespace TickCrossClient
         public MainWindow()
         {
             InitializeComponent();
+
+            MainFrame.Content = new Login(MainFrame);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if(MainFrame.Content is Registartion)
+            {
+                MainFrame.Content = new Login(MainFrame);
+                e.Cancel = true;
+
+            }
         }
     }
 }
