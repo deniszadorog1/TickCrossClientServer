@@ -1,0 +1,58 @@
+﻿<Page x:Class="TickCrossClient.Pages.UserOptions"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TickCrossClient.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="200"
+      Title="UserOptions"
+      
+      VerticalAlignment="Center" HorizontalAlignment="Center"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      >
+
+    <Grid>
+        <Border Name ="FirstPlayerBorder" Width="185" Height="330" Background="White" CornerRadius="6"
+         HorizontalAlignment="Left" Margin="5">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+             RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Options" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="5"/>
+
+                <TextBlock Text="New login" Margin="10 0 0 0" FontWeight="Bold"/>
+                <TextBox 
+                  x:Name="LoginTextBox"
+                  materialDesign:HintAssist.Hint="Login" Width="165" Height="30" VerticalContentAlignment="Center"
+                    MaxLength="12"
+                  HorizontalAlignment="Left" Margin="10"/>
+
+                <TextBlock Text="New Password" Margin="10 0 0 0" FontWeight="Bold"/>
+                <TextBox 
+                  x:Name="PasswordTextBox" MaxLength="12"
+                  materialDesign:HintAssist.Hint="Password" Width="165" Height="30" VerticalContentAlignment="Center"
+                  HorizontalAlignment="Left" Margin="10"/>
+
+                <Button x:Name="ApplyBut"  Margin="10 10 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Apply" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black" 
+                         Click="ApplyBut_Click"/>
+
+                <Button x:Name="BackBut"  Margin="10 10 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Back" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                         Click="BackBut_Click"/>
+            </StackPanel>
+
+        </Border>
+    </Grid>
+</Page>

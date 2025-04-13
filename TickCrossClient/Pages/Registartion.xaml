@@ -1,4 +1,4 @@
-﻿<Page x:Class="TickCrossClient.Pages.Registartion"
+﻿<Page x:Class="TickCrossClient.Pages.Registration"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -58,16 +58,26 @@
                         HorizontalAlignment="Left"/>
                 </Grid>
 
-                <Button x:Name="RegisterBut"  Margin="10 30 10 0 "
+                <Button x:Name="RegisterBut"  Margin="10 15 10 0 "
                          Style="{StaticResource MaterialDesignRaisedLightButton}"
                       Content="Registration" 
                       BorderBrush="Transparent"
                       Foreground="White"
-                      Background="Black"/>
+                      Background="Black"
+                        Click="RegisterBut_Click"/>
 
-                <Image  x:Name="Gif" Margin="0 5 0 0" Width="150"
+                <Button x:Name="BackBut"  Margin="10 5 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                      Content="Back" 
+                      BorderBrush="Transparent"
+                      Foreground="White"
+                      Background="Black"
+                        Click="BackBut_Click"/>
+
+
+                <!-- <Image  x:Name="Gif" Margin="0 5 0 0" Width="150"
                      gif:ImageBehavior.RepeatBehavior="Forever" HorizontalAlignment="Center"
-                     gif:ImageBehavior.AnimatedSource="/Visuals/man.gif"/>
+                     gif:ImageBehavior.AnimatedSource="/Visuals/monkey.gif"/> -->
 
             </StackPanel>
 

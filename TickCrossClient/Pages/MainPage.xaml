@@ -5,10 +5,97 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TickCrossClient.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="MainPage">
+      d:DesignHeight="450" d:DesignWidth="500" MaxHeight="450" MaxWidth="500"
+      Title="MainPage"
+     
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      >
 
     <Grid>
-        
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="0"/>
+
+        <Image Grid.Column="1" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="0" />
+
+
+        <Border Grid.Column="0" Width="190" Height="340" Background="White"
+                CornerRadius="6" HorizontalAlignment="Left" Margin="20 0 0 0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+                    RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="Menu" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="10"/>
+
+                <Button x:Name="StartGameBut"  Margin="10 10 10 0 "
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Start Game" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                         Click="StartGameBut_Click"/>
+
+                <Button x:Name="FriendOptionsBut"  Margin="10 15 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Friend options" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black" 
+                         Click="FriendOptionsBut_Click"/>
+                
+                <Button x:Name="OptionsBut"  Margin="10 15 10 0 "
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Options" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                        Click="OptionsBut_Click"/>
+
+                <Button x:Name="ExitBut"  Margin="10 15 10 0 "
+                           Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Content="Exit" 
+                        BorderBrush="Transparent"
+                        Foreground="White"
+                        Background="Black"
+                        Click="ExitBut_Click"/>
+
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" Width="190" Height="340" Background="White"
+         CornerRadius="6" HorizontalAlignment="Left" Margin="20 0 0 0">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+             RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Text="Logged user" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="10"/>
+
+                <TextBlock Name ="LoginText" Text="Loggin: " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10"/>
+
+                <TextBlock Name ="WonsText" Text="Wins : " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10"/>
+
+                <TextBlock Name ="LosesText" Text="Loses: " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10"/>
+
+                <TextBlock Name ="TotalGamesText" Text="TotalGames: " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10"/>
+
+            </StackPanel>
+            
+        </Border>
+
+
     </Grid>
 </Page>

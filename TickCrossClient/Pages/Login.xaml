@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:TickCrossClient.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
+     
       Title="Login"
       
       xmlns:gif="http://wpfanimatedgif.codeplex.com"
@@ -66,7 +67,8 @@
                          Content="Login" 
                          BorderBrush="Transparent"
                          Foreground="White"
-                         Background="Black"/>
+                         Background="Black"
+                        PreviewMouseDown="LoginBut_Click"/>
                 
                 <Button x:Name="RegistrationBut"  Margin="10 5 10 0"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -76,9 +78,9 @@
                          Background="Black" 
                         Click="RegistrationBut_Click"/>
 
-                <Image  x:Name="Gif" Margin="0 5 0 0" Width="150"
+               <!-- <Image  x:Name="Gif" Margin="0 5 0 0" Width="150"
                      gif:ImageBehavior.RepeatBehavior="Forever" HorizontalAlignment="Center"
-                     gif:ImageBehavior.AnimatedSource="/Visuals/monkey.gif"/> 
+                     gif:ImageBehavior.AnimatedSource="/Visuals/monkey.gif"/> -->
 
             </StackPanel>
 

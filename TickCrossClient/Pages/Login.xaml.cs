@@ -29,7 +29,16 @@ namespace TickCrossClient.Pages
 
         private void RegistrationBut_Click(object sender, RoutedEventArgs e)
         {
-            _frame.Content = new Registartion();
+            _frame.Content = new Registration(_frame);
+        }
+
+        private void LoginBut_Click(object sender, RoutedEventArgs e)
+        {
+
+            Services.ApiService.SetEnv();
+
+
+            _frame.Content = new MainPage(_frame);
         }
     }
 }

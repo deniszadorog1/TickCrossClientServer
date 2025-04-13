@@ -20,6 +20,7 @@ namespace TickCrossLib.Models
         private char _firstPlayerSign = 'x';
         private char _secondPlayerSign = 'o';
 
+        private List<(int, int)> _movesHistory = new List<(int, int)>();
 
         private Game(User first, User second, int stepperIndex, char firstSign, char secondSign)
         {
@@ -64,5 +65,9 @@ namespace TickCrossLib.Models
             return Players[StepperIndex] == FirstPlayer ? _firstPlayerSign : _secondPlayerSign;
         }
 
+        public void AddMoveInHistory(int x, int y)
+        {
+            _movesHistory.Add((x, y));
+        }
     }
 }

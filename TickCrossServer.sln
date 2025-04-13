@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickCrossServer", "TickCrossServer\TickCrossServer.csproj", "{4220A90C-B46F-49C0-9EA1-B7BBA979F610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TickCrossServer", "TickCrossServer\TickCrossServer.csproj", "{4220A90C-B46F-49C0-9EA1-B7BBA979F610}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickCrossClient", "TickCrossClient\TickCrossClient.csproj", "{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TickCrossClient", "TickCrossClient\TickCrossClient.csproj", "{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickCrossLib", "TickCrossLib\TickCrossLib.csproj", "{F39CA77E-9FDC-4113-A604-70ECBA012386}"
 EndProject

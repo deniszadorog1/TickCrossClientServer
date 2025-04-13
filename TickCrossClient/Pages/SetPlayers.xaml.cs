@@ -20,9 +20,24 @@ namespace TickCrossClient.Pages
     /// </summary>
     public partial class SetPlayers : Page
     {
-        public SetPlayers()
+        private Frame _frame;
+        public SetPlayers(Frame frame)
         {
+            _frame = frame;
             InitializeComponent();
+        }
+
+        private void StartGameBut_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
+
+            _frame.Content = new GamePage();
+
+        }
+
+        private void BackBut_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
         }
     }
 }

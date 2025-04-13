@@ -31,6 +31,7 @@ namespace TickCrossServer
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }

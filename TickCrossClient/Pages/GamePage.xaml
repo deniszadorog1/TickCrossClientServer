@@ -5,10 +5,127 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TickCrossClient.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="350" d:DesignWidth="600"
       Title="GamePage">
 
+    <Page.Resources>
+        <Style x:Key="CellSign" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="72"/>
+        </Style>
+    </Page.Resources>
+
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="175"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="175"/>
+        </Grid.ColumnDefinitions>
         
+        <Border Name ="FirstPlayerBorder" Width="150" Height="330" Background="White" CornerRadius="6"
+                HorizontalAlignment="Left" Margin="10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+                    RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Name ="FirstLoginText" Text="Fir Player Login"
+                           FontSize="16" HorizontalAlignment="Center"
+                           Margin="5" FontWeight="Bold"/>
+
+                <TextBlock Name ="FirstPlayerTurnText" Text="Your Turn" Foreground="Green"
+                           FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="250"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="0 0 2 2">
+                    <TextBlock Name="ZeroZeroCell" Style="{StaticResource CellSign}"  Text="⨉"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 2 2">
+                    <TextBlock Name="ZeroOneCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+                <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="0 0 0 2">
+                    <TextBlock Name="ZeroTwoCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="0 0 2 2">
+                    <TextBlock Name="OneZeroCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 2 2">
+                    <TextBlock Name="OneOneCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+                <Border Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="0 0 0 2">
+                    <TextBlock Name="OneTwoCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+
+                <Border Grid.Row="2" Grid.Column="0" BorderBrush="Black" BorderThickness="0 0 2 0">
+                    <TextBlock Name="TwoZeroCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="0 0 2 0">
+                    <TextBlock Name="TwoOneCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+                <Border Grid.Row="2" Grid.Column="2" BorderBrush="Black" BorderThickness="0 0 0 0">
+                    <TextBlock Name="TwoTwoCell" Style="{StaticResource CellSign}" Text="⨉"/>
+                </Border>
+            </Grid>
+            
+        </Grid>
+        
+        
+        <Border Grid.Column="2" Name ="SecondPlayerBorder" Width="150" Height="330" 
+                Background="White" CornerRadius="6"
+                HorizontalAlignment="Left" Margin="10">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+                    RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Name ="SecondLoginText" Text="Sec Player Login"
+                           FontSize="16" HorizontalAlignment="Center"
+                           Margin="5" FontWeight="Bold"/>
+
+                <TextBlock Name ="SecondPlayerTurnText" Text="Your Turn" Foreground="Green"
+                           FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+            </StackPanel>
+        </Border>
+
+
+
+        <Image Grid.Column="0" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="-1" />
+
+        <Image Grid.Column="1" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="-1" />
+
+        <Image Grid.Column="2" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="-1" />
+
     </Grid>
 </Page>

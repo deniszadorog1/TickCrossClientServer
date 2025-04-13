@@ -1,0 +1,78 @@
+﻿<Page x:Class="TickCrossClient.Pages.FriendPages.FriendsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TickCrossClient.Pages.FriendPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FriendsPage"
+      
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      VerticalAlignment="Center" HorizontalAlignment="Center">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Column="0" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="0"/>
+
+        <Image Grid.Column="1" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
+               Stretch="Fill" Panel.ZIndex="0" />
+
+
+        <Border Grid.Column="0" 
+            Width="300" Height="400" Background="White" CornerRadius="6">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+                           RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Name ="RemoveFriendsBlock" Text="Friends to Remove"
+                           HorizontalAlignment="Center" Margin="10" FontSize="24" FontWeight="Bold"/>
+
+                <ListBox Name ="FriendsToRemoveList"  Height="250" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+
+
+                <Button x:Name="RemoveBut"  Margin="10 10 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Remove friend" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                         Click="RemoveBut_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Column="1" 
+            Width="300" Height="400" Background="White" CornerRadius="6">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Direction="-90" 
+                           RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
+            </Border.Effect>
+
+            <StackPanel>
+                <TextBlock Name ="AddFriendsBlock" Text="Friends to add"
+                           HorizontalAlignment="Center" Margin="10" FontSize="24" FontWeight="Bold"/>
+
+                <ListBox Name ="FriendsToAddList"  Height="250" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+
+                <Button x:Name="AddBut"  Margin="10 10 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Add friend" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                        Click="AddBut_Click"/>
+            </StackPanel>
+        </Border>
+
+
+
+
+    </Grid>
+</Page>

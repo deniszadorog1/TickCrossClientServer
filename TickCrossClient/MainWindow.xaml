@@ -5,9 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TickCrossClient"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" 
         Title="MainWindow" Height="450" Width="800" Closing="Window_Closing">
     <Grid>
+        
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" 
+               MouseDown="MainFrame_PreviewMouseDown" Background="Red"
+               />
+        
+        
+        <Frame x:Name="SecondaryFrame" NavigationUIVisibility="Hidden" Background="Green"  Visibility="Visible" 
+               MouseDown="SecondaryFrame_PreviewMouseDown"
+               Panel.ZIndex="-1"/>
 
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+
+
+
     </Grid>
 </Window>
