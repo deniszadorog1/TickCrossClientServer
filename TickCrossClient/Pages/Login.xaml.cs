@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TickCrossClient.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -34,11 +35,12 @@ namespace TickCrossClient.Pages
 
         private void LoginBut_Click(object sender, RoutedEventArgs e)
         {
+            TickCrossLib.Models.User? loggedUser = ApiService.GetLoggedUser(LoginBox.Text, PasswordBox.Password).Result;
+            if (loggedUser is null) return;
 
-            Services.ApiService.SetEnv();
+            ((MainWindow)Window.GetWindow(_frame)).SetLoggedUser(loggedUser);
 
-
-            _frame.Content = new MainPage(_frame);
+            _frame.Content = new MainPage(_frame, (TickCrossLib.Models.User)loggedUser);
         }
     }
 }

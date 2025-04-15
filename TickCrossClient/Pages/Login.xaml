@@ -36,29 +36,31 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="User Name" 
-                    Grid.Row="0"
-                    Margin="0,15"
-                    HorizontalAlignment="Left"/>
+                        Grid.Row="0"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"/>
 
                     <TextBox  Grid.Column="1"
-                   Grid.Row="1"
-                   Padding="0,5"
-                   Width="255"
-                   BorderThickness="0,0,0,2"
-                   HorizontalAlignment="Left"
-                   Text=""/>
+                           Name ="LoginBox"
+                           Grid.Row="1"
+                           Padding="0,5"
+                           Width="255"
+                           BorderThickness="0,0,0,2"
+                           HorizontalAlignment="Left"
+                           Text=""/>
 
                     <TextBlock Text="Password" 
-                    Grid.Row="2"
-                    Margin="0,15"
-                    HorizontalAlignment="Left"/>
+                        Grid.Row="2"
+                        Margin="0,15"
+                        HorizontalAlignment="Left"/>
 
                     <PasswordBox Grid.Row="3"
-                   Password=""
-                   Padding="0,5"                           
-                   Width="255"
-                   BorderThickness="0,0,0,2"
-                   HorizontalAlignment="Left"/>
+                       Name ="PasswordBox"
+                       Password=""
+                       Padding="0,5"                           
+                       Width="255"
+                       BorderThickness="0,0,0,2"
+                       HorizontalAlignment="Left"/>
 
                 </Grid>
 
@@ -78,9 +80,9 @@
                          Background="Black" 
                         Click="RegistrationBut_Click"/>
 
-               <!-- <Image  x:Name="Gif" Margin="0 5 0 0" Width="150"
+                <!-- <Image  x:Name="Gif" Margin="0 5 0 0" Width="150"
                      gif:ImageBehavior.RepeatBehavior="Forever" HorizontalAlignment="Center"
-                     gif:ImageBehavior.AnimatedSource="/Visuals/monkey.gif"/> -->
+                     gif:ImageBehavior.AnimatedSource="/Visuals/monkey.gif"/>  -->
 
             </StackPanel>
 

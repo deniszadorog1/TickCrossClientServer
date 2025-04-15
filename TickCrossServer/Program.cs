@@ -27,7 +27,6 @@ namespace TickCrossServer
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();

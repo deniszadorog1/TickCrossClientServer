@@ -8,20 +8,22 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using TickCrossLib.EntityModels;
+using System.Data;
+using TickCrossLib.EntityModel;
+using System.IO;
 
 namespace TickCrossLib.Services
 {
-    internal static class DBService
+    public static class DBService
     {
         public static List<Models.User> GetAllUsers()
         {
             List<Models.User> result = new List<Models.User>();
-            using(var system = new TickCross())
+            using (var system = new TickCross())
             {
-                foreach(var user in system.User)
+                foreach (var user in system.User)
                 {
-                    result.Add(new Models.User(user.Login, user.Password,user.Id));
+                    result.Add(new Models.User(user.Login, user.Password, user.Id));
                 }
             }
             return result;
@@ -29,12 +31,17 @@ namespace TickCrossLib.Services
 
         public static Models.User GetUserByLogin(string login)
         {
-            return  GetAllUsers().FirstOrDefault(x => x.GetLogin() == login);
+            return GetAllUsers().FirstOrDefault(x => x.GetLogin() == login);
+        }
+
+        public static Models.User GetLoggedUser(string login, string password)
+        {
+            return GetAllUsers().FirstOrDefault(x => x.Login == login && x.Password == password);
         }
 
         public static void AddNewUser(string login, string password)
         {
-            using(var system = new TickCross())
+            using (var system = new TickCross())
             {
                 User user = new User();
                 user.Login = login;
@@ -48,13 +55,13 @@ namespace TickCrossLib.Services
 
         public static void AddFriend(Models.User player, Models.User friend)
         {
-            using(var system = new TickCross())
+            using (var system = new TickCross())
             {
-/*                UserFriend addFriend = new UserFriend();
-                addFriend.FriendId = friend.Id;
-                addFriend.UserId = player.Id;
+                /*                UserFriend addFriend = new UserFriend();
+                                addFriend.FriendId = friend.Id;
+                                addFriend.UserId = player.Id;
 
-                system.UserFriend.Add(addFriend);*/
+                                system.UserFriend.Add(addFriend);*/
 
                 system.UserFriend.Add(GetUserFriendToAdd(player.Id, friend.Id));
                 system.UserFriend.Add(GetUserFriendToAdd(friend.Id, player.Id));
@@ -87,10 +94,11 @@ namespace TickCrossLib.Services
 
         public static bool IsUserLoginIsExist(string login)
         {
-            using(var system = new TickCross())
+            using (var system = new TickCross())
             {
                 return system.User.Any(x => x.Login == login);
             }
+
         }
 
         public static void ChangeUserParams(string oldLogin, string newLogin, string newPassword)
@@ -109,7 +117,7 @@ namespace TickCrossLib.Services
 
         public static User GetDBUserByLogin(string login)
         {
-            using(var system = new TickCross())
+            using (var system = new TickCross())
             {
                 return system.User.FirstOrDefault(x => x.Login == login);
             }

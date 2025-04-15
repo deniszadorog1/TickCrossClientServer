@@ -10,11 +10,11 @@
     <Grid>
         
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" 
-               MouseDown="MainFrame_PreviewMouseDown" Background="Red"
+               MouseDown="MainFrame_PreviewMouseDown" Background="Transparent"
                />
         
         
-        <Frame x:Name="SecondaryFrame" NavigationUIVisibility="Hidden" Background="Green"  Visibility="Visible" 
+        <Frame x:Name="SecondaryFrame" NavigationUIVisibility="Hidden" Background="Transparent"  Visibility="Visible" 
                MouseDown="SecondaryFrame_PreviewMouseDown"
                Panel.ZIndex="-1"/>
 

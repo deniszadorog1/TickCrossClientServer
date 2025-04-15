@@ -12,11 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TickCrossClient.Services;
+
+using System.Data.SqlClient;
 
 namespace TickCrossClient.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для Registartion.xaml
+    /// Логика взаимодействия для Registration.xaml
     /// </summary>
     public partial class Registration : Page
     {
@@ -27,14 +30,29 @@ namespace TickCrossClient.Pages
             InitializeComponent();
         }
 
-        private void BackBut_Click(object sender, RoutedEventArgs e)
+        private async void RegisterBut_Click(object sender, RoutedEventArgs e)
         {
+            bool isExist = await ApiService.IsUserLoginExist(LoginBox.Text);
+            if (isExist)
+            {
+                MessageBox.Show("User with such login is exist!");
+                return;
+            }
+
+            bool isAdded =  await ApiService.AddNewUser(LoginBox.Text, PassBox.Password);
+            if (!isAdded) return;
+
+            MessageBox.Show("Added new user");
+
+            LoginBox.Text = string.Empty;
+            PassBox.Password = string.Empty;
+
             _frame.Content = new Login(_frame);
         }
 
-        private void RegisterBut_Click(object sender, RoutedEventArgs e)
+        private void BackBut_Click(object sender, RoutedEventArgs e)
         {
-
+            _frame.Content = new Login(_frame);
         }
     }
 }

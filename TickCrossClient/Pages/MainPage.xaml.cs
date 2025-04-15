@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Identity.Client;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,23 @@ namespace TickCrossClient.Pages
     public partial class MainPage : Page
     {
         private Frame _frame;
-        public MainPage(Frame frame)
+        private TickCrossLib.Models.User _user;
+        public MainPage(Frame frame, TickCrossLib.Models.User user)
         {
             _frame = frame;
+            _user = user;
+
             InitializeComponent();
             //_frame.Background = Brushes.Transparent;
+        }
+
+        public void SetUserParams()
+        {
+            LoginText.Text = _user.Login;
+            WonsText.Text = _user.Wins.ToString();
+                
+            LosesText.Text = _user.Loses.ToString();
+            TotalGamesText.Text = _user.TotalGames.ToString();            
         }
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)

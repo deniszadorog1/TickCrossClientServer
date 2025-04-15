@@ -21,11 +21,17 @@ namespace TickCrossClient
     /// </summary>
     public partial class MainWindow : Window
     {
+        private TickCrossLib.Models.User _loggedUser;
         public MainWindow()
         {
             InitializeComponent();
 
             MainFrame.Content = new Login(MainFrame);
+        }
+
+        public void SetLoggedUser(TickCrossLib.Models.User user)
+        {
+            _loggedUser = user;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -40,7 +46,7 @@ namespace TickCrossClient
             }      
             else if(MainFrame.Content is GamePage || MainFrame.Content is FriendsPage)
             {
-                MainFrame.Content = new MainPage(MainFrame);
+                MainFrame.Content = new MainPage(MainFrame, _loggedUser);
                 e.Cancel = true;
             }
             

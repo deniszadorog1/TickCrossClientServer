@@ -50,7 +50,7 @@
                          Foreground="White"
                          Background="Black" 
                          Click="FriendOptionsBut_Click"/>
-                
+
                 <Button x:Name="OptionsBut"  Margin="10 15 10 0 "
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                          Content="Options" 
@@ -80,20 +80,40 @@
             <StackPanel>
                 <TextBlock Text="Logged user" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="10"/>
 
-                <TextBlock Name ="LoginText" Text="Loggin: " HorizontalAlignment="Left" 
-                           FontSize="14"  Margin="10"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Loggin: " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10 0  0 0"/>
 
-                <TextBlock Name ="WonsText" Text="Wins : " HorizontalAlignment="Left" 
-                           FontSize="14"  Margin="10"/>
+                    <TextBlock Name ="LoginText" VerticalAlignment="Center" Text ="user login" FontSize="14"/>
+                </StackPanel>
 
-                <TextBlock Name ="LosesText" Text="Loses: " HorizontalAlignment="Left" 
-                           FontSize="14"  Margin="10"/>
 
-                <TextBlock Name ="TotalGamesText" Text="TotalGames: " HorizontalAlignment="Left" 
-                           FontSize="14"  Margin="10"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Wins : " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10 0 0 0"/>
 
+                    <TextBlock Name ="WonsText" VerticalAlignment="Center" Text ="wons amount" FontSize="14"/>
+
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Loses: " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10 0 0 0"/>
+
+                    <TextBlock Name ="LosesText" VerticalAlignment="Center" Text ="loses amount" FontSize="14"/>
+                </StackPanel>
+
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="TotalGames: " HorizontalAlignment="Left" 
+                           FontSize="14"  Margin="10 0 0 0"/>
+
+                    <TextBlock Name ="TotalGamesText" VerticalAlignment="Center" Text ="games amount" FontSize="14"/>
+                </StackPanel>
+                
             </StackPanel>
-            
+
         </Border>
 
 

@@ -45,7 +45,7 @@
     <Page Update="Pages\MainPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Registartion.xaml">
+    <Page Update="Pages\Registration.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\SetPlayers.xaml">
