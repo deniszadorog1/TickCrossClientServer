@@ -19,7 +19,7 @@ namespace TickCrossServer.Controllers
 
         public class TempDTO
         {
-            public string SimpleReq { get; set; }
+            public string? SimpleReq { get; set; }
         }
 
         // POST api/<RegistrationController_cs>
@@ -32,8 +32,8 @@ namespace TickCrossServer.Controllers
 
         public class UserRegistrationModel
         {
-            public string Login { get; set; }
-            public string Password { get; set; }
+            public string? Login { get; set; }
+            public string? Password { get; set; }
         }
 
 

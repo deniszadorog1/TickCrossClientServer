@@ -62,6 +62,7 @@ namespace TickCrossClient
             MainFrame.IsEnabled = true;
         }
 
+
         private void MainFrame_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (MainFrame.IsEnabled) return;

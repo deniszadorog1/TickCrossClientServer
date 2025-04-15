@@ -11,18 +11,18 @@ namespace TickCrossLib.Models
 {
     public class Game
     {
-        private User FirstPlayer { get; set; }
-        private User SecondPlayer { get; set; }
+        public User FirstPlayer { get; set; }
+        public User SecondPlayer { get; set; }
         private Field GameField { get; set; }
 
-        private int StepperIndex { get; set; }
+        public int StepperIndex { get; set; }
 
         private char _firstPlayerSign = 'x';
         private char _secondPlayerSign = 'o';
 
         private List<(int, int)> _movesHistory = new List<(int, int)>();
 
-        private Game(User first, User second, int stepperIndex, char firstSign, char secondSign)
+        public Game(User first, User second, int stepperIndex, char firstSign, char secondSign)
         {
             FirstPlayer = first;
             SecondPlayer = second;
@@ -34,7 +34,6 @@ namespace TickCrossLib.Models
 
             SetPlayersInArray();
         }
-
 
         private const int amountOfPlayers = 2;
         private User[] Players = new User[amountOfPlayers];
@@ -69,5 +68,7 @@ namespace TickCrossLib.Models
         {
             _movesHistory.Add((x, y));
         }
+
+
     }
 }

@@ -15,8 +15,7 @@ namespace TickCrossServer.Controllers
         [HttpPost("GetLoggedUser")]
         public IActionResult GetLoggedUser([FromBody] DTOUser userParams)
         {
-            return Ok("User received: " + userParams.UserLogin);
-
+            //return Ok("User received: " + userParams.UserLogin);
 
             var user = DBService.GetLoggedUser(userParams.UserLogin, userParams.UserPassword);
 
@@ -30,8 +29,8 @@ namespace TickCrossServer.Controllers
 
         public class DTOUser
         {
-            public string UserLogin { get; set; }
-            public string UserPassword { get; set; }
+            public string? UserLogin { get; set; }
+            public string? UserPassword { get; set; }
         }
     }
 }

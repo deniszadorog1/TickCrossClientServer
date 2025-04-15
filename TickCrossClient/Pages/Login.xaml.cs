@@ -36,8 +36,11 @@ namespace TickCrossClient.Pages
         private void LoginBut_Click(object sender, RoutedEventArgs e)
         {
             TickCrossLib.Models.User? loggedUser = ApiService.GetLoggedUser(LoginBox.Text, PasswordBox.Password).Result;
-            if (loggedUser is null) return;
-
+            if (loggedUser.Id == -1)
+            {
+                MessageBox.Show("Something went wrong!");
+                return;
+            }
             ((MainWindow)Window.GetWindow(_frame)).SetLoggedUser(loggedUser);
 
             _frame.Content = new MainPage(_frame, (TickCrossLib.Models.User)loggedUser);

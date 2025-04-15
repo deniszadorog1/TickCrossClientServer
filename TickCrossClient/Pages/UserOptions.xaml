@@ -9,7 +9,7 @@
       Title="UserOptions"
       
       VerticalAlignment="Center" HorizontalAlignment="Center"
-         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       >
 
     <Grid>

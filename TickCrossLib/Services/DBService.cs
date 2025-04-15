@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using System.Data;
 using TickCrossLib.EntityModel;
 using System.IO;
+using System.Data.Entity.Infrastructure;
+using System.Security.Policy;
+using TickCrossLib.Models;
+using System.Windows.Forms;
 
 namespace TickCrossLib.Services
 {
@@ -29,6 +33,11 @@ namespace TickCrossLib.Services
             return result;
         }
 
+        public static List<Models.User> GetUserEnemies(string login)
+        {
+            return GetAllUsers().Where(x => x.Login != login).ToList();
+        }
+
         public static Models.User GetUserByLogin(string login)
         {
             return GetAllUsers().FirstOrDefault(x => x.GetLogin() == login);
@@ -43,7 +52,7 @@ namespace TickCrossLib.Services
         {
             using (var system = new TickCross())
             {
-                User user = new User();
+                EntityModel.User user = new EntityModel.User();
                 user.Login = login;
                 user.Password = password;
 
@@ -53,15 +62,12 @@ namespace TickCrossLib.Services
             }
         }
 
-        public static void AddFriend(Models.User player, Models.User friend)
+        public static void AddFriend(string playerLogin, string friendLogin)
         {
             using (var system = new TickCross())
             {
-                /*                UserFriend addFriend = new UserFriend();
-                                addFriend.FriendId = friend.Id;
-                                addFriend.UserId = player.Id;
-
-                                system.UserFriend.Add(addFriend);*/
+                Models.User player = GetUserByLogin(playerLogin);
+                Models.User friend = GetUserByLogin(friendLogin);
 
                 system.UserFriend.Add(GetUserFriendToAdd(player.Id, friend.Id));
                 system.UserFriend.Add(GetUserFriendToAdd(friend.Id, player.Id));
@@ -80,17 +86,76 @@ namespace TickCrossLib.Services
             return userFriend;
         }
 
-        public static void RemoveFriend(Models.User player, Models.User friend)
+        public static bool RemoveFriend(string playerLogin, string friendLogin)
         {
             using (var system = new TickCross())
             {
-                //Remove from player friends
-                system.UserFriend.Remove(system.UserFriend.Where(x => x.UserId == player.Id && x.FriendId == friend.Id).FirstOrDefault());
+                Models.User player = GetUserByLogin(playerLogin);
+                Models.User friend = GetUserByLogin(friendLogin);
 
-                //Remove from friend friends
-                system.UserFriend.Remove(system.UserFriend.Where(x => x.UserId == friend.Id && x.FriendId == player.Id).FirstOrDefault());
+                var playerFriend = system.UserFriend
+                    .FirstOrDefault(x => x.UserId == player.Id && x.FriendId == friend.Id);
+
+                var friendPlayer = system.UserFriend
+                    .FirstOrDefault(x => x.UserId == friend.Id && x.FriendId == player.Id);
+
+                bool anyRemoved = false;
+
+                if (playerFriend != null)
+                {
+                    system.UserFriend.Remove(playerFriend);
+                    anyRemoved = true;
+                }
+
+                if (friendPlayer != null)
+                {
+                    system.UserFriend.Remove(friendPlayer);
+                    anyRemoved = true;
+                }
+
+                if (anyRemoved)
+                {
+                    return system.SaveChanges() > 0;
+                }
+
+                return false;
             }
         }
+
+        public static List<Models.User> GetAllUserFriends(string login)
+        {
+            List<Models.User> result = new List<Models.User>();
+            using (var system = new TickCross())
+            {
+                foreach (var friend in system.UserFriend)
+                {
+                    if (friend.User.Login == login)
+                    {
+                        result.Add(GetUserModelByLogin(friend.User1.Login));
+                    }
+                }
+            }
+            return result;
+        }
+
+        public static List<Models.User> GetUsersThatNotFriend(string login)
+        {
+            List<Models.User> friends = GetAllUserFriends(login);
+            List<Models.User> result = new List<Models.User>();
+
+            using (var system = new TickCross())
+            {
+                foreach (var user in system.User)
+                {
+                    if (!friends.Where(x => x.Login == user.Login).Any())
+                    {
+                        result.Add(GetUserModelByLogin(user.Login));
+                    }
+                }
+            }
+            return result;
+        }
+
 
         public static bool IsUserLoginIsExist(string login)
         {
@@ -101,26 +166,52 @@ namespace TickCrossLib.Services
 
         }
 
-        public static void ChangeUserParams(string oldLogin, string newLogin, string newPassword)
+        public static bool ChangeUserParams(string oldLogin, string newLogin, string newPassword)
         {
             using (var system = new TickCross())
             {
-                User user = GetDBUserByLogin(oldLogin);
-                if (user is null) return;
+                var user = system.User.FirstOrDefault(u => u.Login == oldLogin);
+                if (user is null) return false;
 
                 if (!string.IsNullOrEmpty(newLogin)) user.Login = newLogin;
                 if (!string.IsNullOrEmpty(newPassword)) user.Password = newPassword;
 
-                system.SaveChanges();
+                return system.SaveChanges() > 0;
             }
         }
 
-        public static User GetDBUserByLogin(string login)
+        public static EntityModel.User GetDBUserByLogin(string login)
         {
             using (var system = new TickCross())
             {
                 return system.User.FirstOrDefault(x => x.Login == login);
             }
+        }
+
+        public static Models.User GetUserModelByLogin(string login)
+        {
+            EntityModel.User user = GetDBUserByLogin(login);
+
+            return new Models.User()
+            {
+                Id = user.Id,
+                Login = user.Login,
+                Password = user.Password
+            };
+        }
+
+        public static List<char> GetAllSigns()
+        {
+            List<char> result = new List<char>();
+            using (var system = new TickCross())
+            {
+                foreach (var type in system.SignType)
+                {
+                    result.Add(type.Type.ToString().First());
+                }
+            }
+
+            return result;
         }
 
     }

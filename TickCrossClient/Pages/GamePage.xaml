@@ -12,7 +12,12 @@
         <Style x:Key="CellSign" TargetType="TextBlock">
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="72"/>
+            <Setter Property="FontSize" Value="58"/>
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </Page.Resources>
 
@@ -22,7 +27,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="175"/>
         </Grid.ColumnDefinitions>
-        
+
         <Border Name ="FirstPlayerBorder" Width="150" Height="330" Background="White" CornerRadius="6"
                 HorizontalAlignment="Left" Margin="10">
             <Border.Effect>
@@ -93,10 +98,10 @@
                     <TextBlock Name="TwoTwoCell" Style="{StaticResource CellSign}" Text="⨉"/>
                 </Border>
             </Grid>
-            
+
         </Grid>
-        
-        
+
+
         <Border Grid.Column="2" Name ="SecondPlayerBorder" Width="150" Height="330" 
                 Background="White" CornerRadius="6"
                 HorizontalAlignment="Left" Margin="10">

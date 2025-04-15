@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TickCrossClient.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -21,17 +22,28 @@ namespace TickCrossClient.Pages
     public partial class UserOptions : Page
     {
         private Frame _frame;
-        public UserOptions(Frame frame)
+        private TickCrossLib.Models.User _user;
+        public UserOptions(Frame frame, TickCrossLib.Models.User user)
         {
             _frame = frame;
+            _user = user;
+
             InitializeComponent();
         }
 
-        private void ApplyBut_Click(object sender, RoutedEventArgs e)
+        private async void ApplyBut_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
+            if (string.IsNullOrWhiteSpace(LoginTextBox.Text) ||
+               string.IsNullOrWhiteSpace(PasswordTextBox.Text)) return;
 
+
+            await ApiService.ChangeUserParams(_user, LoginTextBox.Text, PasswordTextBox.Text);
+            _user.Login = LoginTextBox.Text;
+            _user.Password = PasswordTextBox.Text;
+
+            if (((MainWindow)Window.GetWindow(_frame)).MainFrame.Content is MainPage main) main.SetUserParams();
+             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
+        }
         private void BackBut_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();

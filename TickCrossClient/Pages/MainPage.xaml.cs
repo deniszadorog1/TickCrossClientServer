@@ -32,6 +32,8 @@ namespace TickCrossClient.Pages
 
             InitializeComponent();
             //_frame.Background = Brushes.Transparent;
+
+            SetUserParams();
         }
 
         public void SetUserParams()
@@ -45,7 +47,7 @@ namespace TickCrossClient.Pages
 
         private void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Window.GetWindow(_frame)).SetPageForSecondFrame(new SetPlayers(_frame));
+            ((MainWindow)Window.GetWindow(_frame)).SetPageForSecondFrame(new SetPlayers(_frame, _user));
 /*
            Frame secFrame = ((MainWindow)Window.GetWindow(_frame)).SecondaryFrame;
 
@@ -70,12 +72,12 @@ namespace TickCrossClient.Pages
 
         private void OptionsBut_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Window.GetWindow(_frame)).SetPageForSecondFrame(new UserOptions(_frame));
+            ((MainWindow)Window.GetWindow(_frame)).SetPageForSecondFrame(new UserOptions(_frame, _user));
         }
 
         private void FriendOptionsBut_Click(object sender, RoutedEventArgs e)
         {
-            _frame.Content = new FriendPages.FriendsPage();
+            _frame.Content = new FriendPages.FriendsPage(_user);
         }
     }
 }

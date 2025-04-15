@@ -16,5 +16,5 @@ B:\GitHub\TickCrossClientServer\TickCrossClient\App.xaml
 229-66927744
 MainWindow.xaml;Pages\FriendPages\FriendsPage.xaml;Pages\GamePage.xaml;Pages\Login.xaml;Pages\MainPage.xaml;Pages\Registration.xaml;Pages\SetPlayers.xaml;Pages\UserOptions.xaml;
 
-False
+True
 
