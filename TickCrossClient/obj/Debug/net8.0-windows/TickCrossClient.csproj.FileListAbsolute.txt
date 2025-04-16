@@ -123,3 +123,5 @@ B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\runtime
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\App.config
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\EntityFramework.SqlServer.dll
+B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameReqs\GotGameRequest.g.cs
+B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameReqs\GotGameRequest.baml

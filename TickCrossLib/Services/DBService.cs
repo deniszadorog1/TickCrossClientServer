@@ -214,5 +214,24 @@ namespace TickCrossLib.Services
             return result;
         }
 
+        public static Models.User GetFirstUnwatchedUserRequest(string reciverLogin)
+        {
+            Models.User result = null;
+
+
+            return result;
+        }
+
+        public static (int?, int?) GetMoveToMake(int stepperiId)
+        {
+            (int?, int?) resCord = (null, null);
+
+
+            //Get cord from temp game(db) table
+
+
+            return resCord;
+        }
+
     }
 }

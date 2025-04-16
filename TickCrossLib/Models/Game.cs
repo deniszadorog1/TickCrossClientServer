@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
+using TickCrossLib.Enums;
 
 namespace TickCrossLib.Models
 {
@@ -32,7 +33,31 @@ namespace TickCrossLib.Models
             _firstPlayerSign = firstSign;
             _secondPlayerSign = secondSign;
 
+            GameField = new Field();
+
             SetPlayersInArray();
+        }
+
+
+        public void SetSign(int x, int y)
+        {
+            GameField.SetSignInCell(x, y, StepperIndex == 0 ? _firstPlayerSign : _secondPlayerSign);
+        }
+
+        public GameEnded GeGameResult()
+        {
+            return GameField.GetGameResult();
+        }
+
+        public char GetSign()
+        {
+            char sign = StepperIndex == 0 ? _firstPlayerSign : _secondPlayerSign;
+            return sign;
+        }
+
+        public void ChangeStepper()
+        {
+            StepperIndex = StepperIndex == 0 ? 1 : 0;
         }
 
         private const int amountOfPlayers = 2;

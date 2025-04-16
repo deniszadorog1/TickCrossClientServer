@@ -63,29 +63,29 @@ namespace TickCrossClient.Pages
             string enemyLogin = GetChosenEnemyLogin();
             if (enemyLogin == string.Empty) return;
 
-            User enemy = null;// = await ApiService.GetEnemyPlayer(enemyLogin);
+            User? enemy = await ApiService.GetEnemyPlayer(enemyLogin);
 
             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
 
-
             List<char>? signs = await ApiService.GetSigns();
-            if (signs is null || signs.Count == 0) throw new NullReferenceException("Somthing wrong with signs");
+            if (signs is null || signs.Count == 0) throw new NullReferenceException("Something wrong with signs");
 
-            char enemySign = GetEnemySign();
+            char? enemySign = GetEnemySign();
+            if (enemySign is null) return;
+            
             char userSign = enemySign == signs.First() ? signs.Last() : signs.First();
 
             int toStep = userSign == signs.First() ? 0 : 1;
 
+            Game game = new Game(_user, enemy, toStep, userSign, (char)enemySign);
 
-            Game game = new Game(_user, enemy, toStep, userSign, enemySign);
-
-            _frame.Content = new GamePage(game);
-
+            _frame.Content = new GamePage(game, _frame);
         }
 
-        public char GetEnemySign()
+        public char? GetEnemySign()
         {
-            return (char)EnemySignBox.SelectedValue;
+            if (EnemySignBox.SelectedItem is null) return null;
+            return ((ComboBoxItem)EnemySignBox.SelectedItem).Content.ToString().First();
         }
 
         public string GetChosenEnemyLogin()

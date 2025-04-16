@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,11 +21,14 @@ namespace TickCrossClient.Pages
     /// </summary>
     public partial class GamePage : Page
     {
+        
         TickCrossLib.Models.Game _game;
+        Frame _frame;
 
-        public GamePage(TickCrossLib.Models.Game game)
+        public GamePage(TickCrossLib.Models.Game game, Frame frame)
         {
             _game = game;
+            _frame = frame;
 
             InitializeComponent();
 
@@ -46,12 +50,35 @@ namespace TickCrossClient.Pages
             {
                 for(int j = 0; j < _gameBlocks.GetLength(1); j++)
                 {
+                    Point point = new Point(i, j);
                     _gameBlocks[i, j].PreviewMouseDown += (sender, e) =>
                     {
+                        if (_gameBlocks[(int)point.X, (int)point.Y].Text != string.Empty) return;
 
+                        _gameBlocks[(int)point.X, (int)point.Y].Text =
+                        _game.GetSign().ToString();
+
+                        _game.SetSign((int)point.X, (int)point.Y);
+
+
+                        TickCrossLib.Enums.GameEnded res = _game.GeGameResult();
+                        if(res != TickCrossLib.Enums.GameEnded.InProgress)
+                        {
+                            GameEnded(res);
+                            return;
+                        }
+
+                        _game.ChangeStepper();
+                        SetTurnVisibility();
                     };
                 }
             }
+        }
+
+        private void GameEnded(TickCrossLib.Enums.GameEnded res)
+        {
+            if (res == TickCrossLib.Enums.GameEnded.Won) MessageBox.Show("Game ended! Stepper is won");
+            else if (res == TickCrossLib.Enums.GameEnded.Draw) MessageBox.Show("Game ended! Its draw.");
         }
 
         public void ClearGameBlocks()

@@ -8,8 +8,8 @@ namespace TickCrossLib.Enums
 {
     public enum GameEnded
     {
-        CircleWin,
-        CrossWin,
-        Draw
+        Won,
+        Draw,
+        InProgress
     }
 }

@@ -191,12 +191,31 @@ namespace TickCrossClient.Services
                 ToAddLogin = login
             };
 
-            string json = JsonConvert.SerializeObject(data);
+/*            string json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             //To ask about remove
-            var response =  await _client.PostAsync($"api/Friends/RemoveFriend", content);
+            var response =  await _client.DeleteAsync($"api/Friends/RemoveFriend?userLogin={content}&toRemove={login}");
+*/
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveFriend"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            var response = await _client.SendAsync(request);
+
         }
+
+        //Game Request
+
+        public static async Task GetGameRequest(TickCrossLib.Models.User user)
+        {
+            
+        }
+
+
 
         //MAIN MENU
         public static async Task<List<TickCrossLib.Models.User>> GetAllUsers()

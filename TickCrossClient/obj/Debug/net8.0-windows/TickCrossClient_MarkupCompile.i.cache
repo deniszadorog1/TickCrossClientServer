@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 B:\GitHub\TickCrossClientServer\TickCrossClient\App.xaml
-8838991018
+9-473201307
 
-14507719687
+1595372494
 229-66927744
-MainWindow.xaml;Pages\FriendPages\FriendsPage.xaml;Pages\GamePage.xaml;Pages\Login.xaml;Pages\MainPage.xaml;Pages\Registration.xaml;Pages\SetPlayers.xaml;Pages\UserOptions.xaml;
+MainWindow.xaml;Pages\FriendPages\FriendsPage.xaml;Pages\GamePage.xaml;Pages\GameReqs\GotGameRequest.xaml;Pages\Login.xaml;Pages\MainPage.xaml;Pages\Registration.xaml;Pages\SetPlayers.xaml;Pages\UserOptions.xaml;
 
 True
 

@@ -32,7 +32,7 @@ namespace TickCrossServer.Controllers
         }
 
         // DELETE api/<FriendsController>/5
-        [HttpPost("RemoveFriend")]
+        [HttpDelete("RemoveFriend")]
         public IActionResult RemoveFriend([FromBody] DtoUser toRemove)
         {
             if (string.IsNullOrEmpty(toRemove.UserLogin) || string.IsNullOrEmpty(toRemove.ToAddLogin))
