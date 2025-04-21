@@ -32,6 +32,7 @@ C:\Users\denis\source\repos\TickCrossServer\TickCrossServer\obj\Debug\net8.0\Tic
 C:\Users\denis\source\repos\TickCrossServer\TickCrossServer\obj\Debug\net8.0\ref\TickCrossServer.dll
 B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\appsettings.Development.json
 B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\appsettings.json
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\libman.json
 B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\TickCrossServer.exe
 B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\App.config
 B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\TickCrossServer.deps.json
@@ -82,4 +83,3 @@ B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\refint\TickCros
 B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\TickCrossServer.pdb
 B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\TickCrossServer.genruntimeconfig.cache
 B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\ref\TickCrossServer.dll
-B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\libman.json

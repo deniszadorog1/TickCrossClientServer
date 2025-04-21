@@ -72,15 +72,21 @@ namespace TickCrossClient.Pages
 
             char? enemySign = GetEnemySign();
             if (enemySign is null) return;
-            
+
+            await ApiService.AddNewGameRequest(_user.Login, enemyLogin, (char)enemySign,
+                signs.First() == enemySign ? signs.Last() : signs.First(), TickCrossLib.Enums.RequestStatus.InProgress); //add signs
+
+/*
             char userSign = enemySign == signs.First() ? signs.Last() : signs.First();
 
             int toStep = userSign == signs.First() ? 0 : 1;
 
             Game game = new Game(_user, enemy, toStep, userSign, (char)enemySign);
 
-            _frame.Content = new GamePage(game, _frame);
+            _frame.Content = new GamePage(game, _frame, _user);*/
         }
+
+        
 
         public char? GetEnemySign()
         {

@@ -160,17 +160,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="EntityModel\Game.cs" />
-    <Compile Include="EntityModel\GameHistory.cs" />
-    <Compile Include="EntityModel\SignType.cs" />
-    <Compile Include="EntityModel\TickCross.cs" />
-    <Compile Include="EntityModel\User.cs" />
-    <Compile Include="EntityModel\UserFriend.cs" />
+    <Compile Include="EntityModels\Game.cs" />
+    <Compile Include="EntityModels\GameHistory.cs" />
+    <Compile Include="EntityModels\GameRequest.cs" />
+    <Compile Include="EntityModels\RequestStatus.cs" />
+    <Compile Include="EntityModels\SignType.cs" />
+    <Compile Include="EntityModels\TempGame.cs" />
+    <Compile Include="EntityModels\TempGameType.cs" />
+    <Compile Include="EntityModels\TickCross.cs" />
+    <Compile Include="EntityModels\User.cs" />
+    <Compile Include="EntityModels\UserFriend.cs" />
     <Compile Include="Enums\GameEnded.cs" />
+    <Compile Include="Enums\RequestStatus.cs" />
     <Compile Include="Enums\TickType.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\Field.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameRequest.cs" />
+    <Compile Include="Models\HelpModels\Cord.cs" />
     <Compile Include="Models\System.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

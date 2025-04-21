@@ -13,18 +13,19 @@ namespace TickCrossServer.Controllers
     {
         // GET: api/<LoginController>
         [HttpPost("GetLoggedUser")]
-        public IActionResult GetLoggedUser([FromBody] DTOUser userParams)
+        public TickCrossLib.Models.User? GetLoggedUser([FromBody] DTOUser userParams)
         {
+
             //return Ok("User received: " + userParams.UserLogin);
 
             var user = DBService.GetLoggedUser(userParams.UserLogin, userParams.UserPassword);
 
             //string? user = null;
-
+/*
             if (user is null)
-                return NotFound();
+                return NotFound();*/
 
-            return Ok(user);
+            return user;
         }
 
         public class DTOUser

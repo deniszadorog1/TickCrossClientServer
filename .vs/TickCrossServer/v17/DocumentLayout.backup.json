@@ -3,52 +3,123 @@
   "WorkspaceRootPath": "B:\\GitHub\\TickCrossClientServer\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\setplayers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\setplayers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\setplayers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\setplayers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\controllers\\gamereqcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\controllers\\gamereqcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\services\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\services\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\controllers\\friendscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\controllers\\friendscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\services\\apiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\controllers\\gamereqcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\controllers\\gamereqcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|b:\\github\\tickcrossclientserver\\tickcrosslib\\models\\helpmodels\\cord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\helpmodels\\cord.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\services\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\services\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\gamereqs\\gotgamerequest.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\gamereqs\\gotgamerequest.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|b:\\github\\tickcrossclientserver\\tickcrosslib\\entitymodels\\tickcross.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\entitymodels\\tickcross.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|TickCrossLib||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\setplayers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\setplayers.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\enums\\requeststatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\enums\\requeststatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\enums\\ticktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\enums\\ticktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\gamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\gamerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\gamereqs\\gotgamerequest.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\gamereqs\\gotgamerequest.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\gamepage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\enums\\gameended.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\enums\\gameended.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\setplayers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\setplayers.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\controllers\\friendscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\controllers\\friendscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\login.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\friendpages\\friendspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -67,20 +138,8 @@
       "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\controllers\\mainmenucontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\field.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\cell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\enums\\gameended.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\enums\\gameended.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\gamepage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -89,18 +148,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\useroptions.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\useroptions.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\login.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\entitymodel\\tickcross.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\entitymodel\\tickcross.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\useroptions.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -115,10 +162,6 @@
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|b:\\github\\tickcrossclientserver\\tickcrossclient\\pages\\registration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\pages\\registration.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -129,17 +172,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|b:\\github\\tickcrossclientserver\\tickcrossserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{4220A90C-B46F-49C0-9EA1-B7BBA979F610}|TickCrossServer\\TickCrossServer.csproj|solutionrelative:tickcrossserver\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|TickCrossLib||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -170,10 +202,6 @@
       "RelativeMoniker": "D:0:0:{B13E4D64-67B8-42EB-BD3B-A48C3AC76D03}|TickCrossClient\\TickCrossClient.csproj|solutionrelative:tickcrossclient\\tickcrossclient.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\models\\system.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\models\\system.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -184,8 +212,7 @@
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\6b2dfb9d5e4949b718ee78fa9415cabf37518e9447a2764ba224d240518b710f\\ResourcePart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|B:\\GitHub\\TickCrossClientServer\\tickcrosslib\\enums\\ticktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|solutionrelative:tickcrosslib\\enums\\ticktype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F39CA77E-9FDC-4113-A604-70ECBA012386}|TickCrossLib\\TickCrossLib.csproj|b:\\github\\tickcrossclientserver\\tickcrosslib\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
     }
   ],
   "DocumentGroupContainers": [
@@ -195,19 +222,75 @@
       "DocumentGroups": [
         {
           "DockedWidth": 400,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "ApiService.cs",
               "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Services\\ApiService.cs",
               "RelativeDocumentMoniker": "TickCrossClient\\Services\\ApiService.cs",
               "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Services\\ApiService.cs",
               "RelativeToolTip": "TickCrossClient\\Services\\ApiService.cs",
-              "ViewState": "AgIAALcAAAAAAAAAAAAAANYAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAEBAAAAAAAAAAASwBsBAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-15T11:10:47.346Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\MainWindow.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAASwFwAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T18:39:01.969Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GamePage.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GamePage.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\GamePage.xaml.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAAASwMIAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T16:21:43.6Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "DBService.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Services\\DBService.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Services\\DBService.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Services\\DBService.cs",
+              "RelativeToolTip": "TickCrossLib\\Services\\DBService.cs",
+              "ViewState": "AgIAAGoBAAAAAAAAAADwv4gBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T19:18:00.113Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GotGameRequest.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAwwEcAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-18T23:49:17.193Z",
               "IsPinned": true,
               "EditorCaption": ""
             },
@@ -217,527 +300,96 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "GotGameRequest.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-16T20:14:43.692Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DBService.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Services\\DBService.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Services\\DBService.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Services\\DBService.cs",
-              "RelativeToolTip": "TickCrossLib\\Services\\DBService.cs",
-              "ViewState": "AgIAAL0AAAAAAAAAAAAAAOIAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T19:18:00.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SetPlayers.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\SetPlayers.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\SetPlayers.xaml.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAASwE4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-12T22:57:37.488Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "SetPlayers.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\SetPlayers.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\SetPlayers.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-10T23:01:29.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FriendsController.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\FriendsController.cs",
-              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\FriendsController.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\FriendsController.cs",
-              "RelativeToolTip": "TickCrossServer\\Controllers\\FriendsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T20:33:03.08Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "GameEnded.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\GameEnded.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Enums\\GameEnded.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\GameEnded.cs",
-              "RelativeToolTip": "TickCrossLib\\Enums\\GameEnded.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T18:52:59.117Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
               "Title": "Game.cs",
               "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Game.cs",
               "RelativeDocumentMoniker": "TickCrossLib\\Models\\Game.cs",
               "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Game.cs",
               "RelativeToolTip": "TickCrossLib\\Models\\Game.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAwwDAAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAADgv2EAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-09T19:18:50.032Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "FriendsPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-13T13:17:37.77Z",
+              "DocumentIndex": 11,
+              "Title": "SetPlayers.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\SetPlayers.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\SetPlayers.xaml.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAASwEsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T22:57:37.488Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Login.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Login.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\Login.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-10T22:10:49.604Z",
+              "DocumentIndex": 4,
+              "Title": "Cord.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\HelpModels\\Cord.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Models\\HelpModels\\Cord.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\HelpModels\\Cord.cs",
+              "RelativeToolTip": "TickCrossLib\\Models\\HelpModels\\Cord.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-21T01:17:51.89Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Program.cs",
-              "RelativeDocumentMoniker": "TickCrossServer\\Program.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Program.cs",
-              "RelativeToolTip": "TickCrossServer\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAjAAAAAAAAAA==",
+              "Title": "TickCross.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\EntityModels\\TickCross.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\EntityModels\\TickCross.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\EntityModels\\TickCross.cs",
+              "RelativeToolTip": "TickCrossLib\\EntityModels\\TickCross.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAACVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T00:08:59.677Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\MainWindow.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\MainWindow.xaml.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAwwD8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T18:39:01.969Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\App.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\App.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\App.xaml",
-              "RelativeToolTip": "TickCrossClient\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-10T22:47:51.41Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "FriendsPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAiwE8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T13:22:09.017Z",
+              "WhenOpened": "2025-04-20T21:52:36.193Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 14,
-              "Title": "RegistrationController.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\RegistrationController.cs",
-              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\RegistrationController.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\RegistrationController.cs",
-              "RelativeToolTip": "TickCrossServer\\Controllers\\RegistrationController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "GameRequest.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\GameRequest.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Models\\GameRequest.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\GameRequest.cs",
+              "RelativeToolTip": "TickCrossLib\\Models\\GameRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-15T23:41:26.573Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-17T23:06:35.529Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "GamePage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GamePage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\GamePage.xaml.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAASwCwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T16:21:43.6Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "MainMenuController.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\MainMenuController.cs",
-              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\MainMenuController.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\MainMenuController.cs",
-              "RelativeToolTip": "TickCrossServer\\Controllers\\MainMenuController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T23:10:53.632Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Cell.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Cell.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Models\\Cell.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Cell.cs",
-              "RelativeToolTip": "TickCrossLib\\Models\\Cell.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T23:44:21.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Field.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Field.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Models\\Field.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Field.cs",
-              "RelativeToolTip": "TickCrossLib\\Models\\Field.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAASwHkAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T23:44:09.037Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "GamePage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GamePage.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\GamePage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-10T23:01:45.46Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Login.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Login.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\Login.xaml.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAASwCgAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T22:11:45.375Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "MainPage.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\MainPage.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\MainPage.xaml.cs",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAewFAAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-11T19:46:09.342Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "UserOptions.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\UserOptions.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\UserOptions.xaml.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACsAAABwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T12:07:12.068Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "TickCross.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\EntityModel\\TickCross.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\EntityModel\\TickCross.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\EntityModel\\TickCross.cs",
-              "RelativeToolTip": "TickCrossLib\\EntityModel\\TickCross.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-14T01:48:28.024Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "UserOptions.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\UserOptions.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\UserOptions.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-12T23:44:13.181Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Registration.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Registration.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\Registration.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-13T20:41:12.806Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\MainPage.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml",
-              "RelativeToolTip": "TickCrossClient\\Pages\\MainPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-10T23:00:57.602Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "User.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\User.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Models\\User.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\User.cs",
-              "RelativeToolTip": "TickCrossLib\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T19:18:33.962Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "TickCrossServer.http",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.http",
-              "RelativeDocumentMoniker": "TickCrossServer\\TickCrossServer.http",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.http",
-              "RelativeToolTip": "TickCrossServer\\TickCrossServer.http",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
-              "WhenOpened": "2025-04-10T23:36:38.955Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Registration.xaml.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Registration.xaml.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml.cs",
-              "RelativeToolTip": "TickCrossClient\\Pages\\Registration.xaml.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAewCUAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-13T20:42:02.383Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\appsettings.json",
-              "RelativeDocumentMoniker": "TickCrossServer\\appsettings.json",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\appsettings.json",
-              "RelativeToolTip": "TickCrossServer\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-13T14:51:18.818Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "launchSettings.json",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Properties\\launchSettings.json",
-              "RelativeDocumentMoniker": "TickCrossServer\\Properties\\launchSettings.json",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Properties\\launchSettings.json",
-              "RelativeToolTip": "TickCrossServer\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-04-14T00:18:50.142Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "packages.config",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\packages.config",
-              "RelativeDocumentMoniker": "TickCrossLib\\packages.config",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\packages.config",
-              "RelativeToolTip": "TickCrossLib\\packages.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-04-14T01:28:58.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "TickCrossLib",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\TickCrossLib.csproj",
-              "RelativeDocumentMoniker": "TickCrossLib\\TickCrossLib.csproj",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\TickCrossLib.csproj",
-              "RelativeToolTip": "TickCrossLib\\TickCrossLib.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-14T01:26:03.895Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 9,
               "Title": "App.config",
               "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\App.config",
               "RelativeDocumentMoniker": "TickCrossLib\\App.config",
               "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\App.config",
               "RelativeToolTip": "TickCrossLib\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAbAQAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2025-04-14T01:01:12.632Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "TickCrossClient\\MainWindow.xaml",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml",
-              "RelativeToolTip": "TickCrossClient\\MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-04-09T18:39:02.809Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "AssemblyInfo.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\AssemblyInfo.cs",
-              "RelativeDocumentMoniker": "TickCrossClient\\AssemblyInfo.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\AssemblyInfo.cs",
-              "RelativeToolTip": "TickCrossClient\\AssemblyInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T21:44:21.552Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "TickCrossServer",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.csproj",
-              "RelativeDocumentMoniker": "TickCrossServer\\TickCrossServer.csproj",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.csproj",
-              "RelativeToolTip": "TickCrossServer\\TickCrossServer.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-13T14:51:31.505Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": ".env",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
-              "RelativeDocumentMoniker": "TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
-              "RelativeToolTip": "TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
+              "DocumentIndex": 10,
+              "Title": "TickCrossLib",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\TickCrossLib.csproj",
+              "RelativeDocumentMoniker": "TickCrossLib\\TickCrossLib.csproj",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\TickCrossLib.csproj",
+              "RelativeToolTip": "TickCrossLib\\TickCrossLib.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-04-13T15:48:50.874Z"
+              "WhenOpened": "2025-04-14T01:26:03.895Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "TickCrossClient",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\TickCrossClient.csproj",
-              "RelativeDocumentMoniker": "TickCrossClient\\TickCrossClient.csproj",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\TickCrossClient.csproj",
-              "RelativeToolTip": "TickCrossClient\\TickCrossClient.csproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-04-13T15:46:16.873Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "man.gif",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Visuals\\man.gif",
-              "RelativeDocumentMoniker": "TickCrossClient\\Visuals\\man.gif",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Visuals\\man.gif",
-              "RelativeToolTip": "TickCrossClient\\Visuals\\man.gif",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2025-04-13T20:43:38.011Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Class1.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Class1.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Class1.cs",
-              "RelativeToolTip": "TickCrossLib\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T19:10:48.075Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "System.cs",
-              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\System.cs",
-              "RelativeDocumentMoniker": "TickCrossLib\\Models\\System.cs",
-              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\System.cs",
-              "RelativeToolTip": "TickCrossLib\\Models\\System.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-09T19:18:21.726Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "NavigationService.cs",
-              "DocumentMoniker": "C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\7c39dede8d7ebdfdbdef9df41f0b1ca336835c2b40460aff1aa804187805538a\\NavigationService.cs",
-              "ToolTip": "C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\7c39dede8d7ebdfdbdef9df41f0b1ca336835c2b40460aff1aa804187805538a\\NavigationService.cs",
-              "ViewState": "AgIAACcEAAAAAAAAAAAhwEAEAAADAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-10T22:05:48.274Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 13,
               "Title": "TickType.cs",
               "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\TickType.cs",
               "RelativeDocumentMoniker": "TickCrossLib\\Enums\\TickType.cs",
@@ -749,7 +401,438 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "RequestStatus.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\RequestStatus.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Enums\\RequestStatus.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\RequestStatus.cs",
+              "RelativeToolTip": "TickCrossLib\\Enums\\RequestStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T21:03:04.747Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Login.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Login.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\Login.xaml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACsAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T22:11:45.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\appsettings.json",
+              "RelativeDocumentMoniker": "TickCrossServer\\appsettings.json",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\appsettings.json",
+              "RelativeToolTip": "TickCrossServer\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-13T14:51:18.818Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Class1.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Class1.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Class1.cs",
+              "RelativeToolTip": "TickCrossLib\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T19:10:48.075Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Field.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Field.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Models\\Field.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Field.cs",
+              "RelativeToolTip": "TickCrossLib\\Models\\Field.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAASwHkAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T23:44:09.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "User.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\User.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Models\\User.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\User.cs",
+              "RelativeToolTip": "TickCrossLib\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T19:18:33.962Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "GotGameRequest.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\GameReqs\\GotGameRequest.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-16T20:14:43.692Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "App.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\App.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\App.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\App.xaml",
+              "RelativeToolTip": "TickCrossClient\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-10T22:47:51.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\App.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\App.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\App.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T07:34:33.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\MainPage.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\MainPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T19:46:09.342Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "GameEnded.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\GameEnded.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Enums\\GameEnded.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Enums\\GameEnded.cs",
+              "RelativeToolTip": "TickCrossLib\\Enums\\GameEnded.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T18:52:59.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Login.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Login.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Login.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\Login.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-10T22:10:49.604Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "FriendsController.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\FriendsController.cs",
+              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\FriendsController.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\FriendsController.cs",
+              "RelativeToolTip": "TickCrossServer\\Controllers\\FriendsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T20:33:03.08Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "SetPlayers.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\SetPlayers.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\SetPlayers.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\SetPlayers.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-10T23:01:29.986Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "FriendsPage.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-13T13:17:37.77Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Program.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Program.cs",
+              "RelativeDocumentMoniker": "TickCrossServer\\Program.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Program.cs",
+              "RelativeToolTip": "TickCrossServer\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T00:08:59.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "FriendsPage.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\FriendPages\\FriendsPage.xaml.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAiwE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T13:22:09.017Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "RegistrationController.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\RegistrationController.cs",
+              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\RegistrationController.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\RegistrationController.cs",
+              "RelativeToolTip": "TickCrossServer\\Controllers\\RegistrationController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T23:41:26.573Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MainMenuController.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\MainMenuController.cs",
+              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\MainMenuController.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\MainMenuController.cs",
+              "RelativeToolTip": "TickCrossServer\\Controllers\\MainMenuController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-14T23:10:53.632Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Cell.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Cell.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Models\\Cell.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\Cell.cs",
+              "RelativeToolTip": "TickCrossLib\\Models\\Cell.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T23:44:21.183Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "GamePage.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\GamePage.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\GamePage.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\GamePage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-10T23:01:45.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "UserOptions.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\UserOptions.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\UserOptions.xaml.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAABBwCsAAABwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T12:07:12.068Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UserOptions.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\UserOptions.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\UserOptions.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\UserOptions.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-12T23:44:13.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Registration.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Registration.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\Registration.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-13T20:41:12.806Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\MainPage.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\MainPage.xaml",
+              "RelativeToolTip": "TickCrossClient\\Pages\\MainPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-10T23:00:57.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "TickCrossServer.http",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.http",
+              "RelativeDocumentMoniker": "TickCrossServer\\TickCrossServer.http",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.http",
+              "RelativeToolTip": "TickCrossServer\\TickCrossServer.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-04-10T23:36:38.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Registration.xaml.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\Pages\\Registration.xaml.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Pages\\Registration.xaml.cs",
+              "RelativeToolTip": "TickCrossClient\\Pages\\Registration.xaml.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAewCUAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-13T20:42:02.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "TickCrossServer\\Properties\\launchSettings.json",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Properties\\launchSettings.json",
+              "RelativeToolTip": "TickCrossServer\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-14T00:18:50.142Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "packages.config",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\packages.config",
+              "RelativeDocumentMoniker": "TickCrossLib\\packages.config",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\packages.config",
+              "RelativeToolTip": "TickCrossLib\\packages.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-04-14T01:28:58.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "TickCrossClient\\MainWindow.xaml",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\MainWindow.xaml",
+              "RelativeToolTip": "TickCrossClient\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-04-09T18:39:02.809Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "TickCrossClient\\AssemblyInfo.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\AssemblyInfo.cs",
+              "RelativeToolTip": "TickCrossClient\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T21:44:21.552Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "TickCrossServer",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.csproj",
+              "RelativeDocumentMoniker": "TickCrossServer\\TickCrossServer.csproj",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\TickCrossServer.csproj",
+              "RelativeToolTip": "TickCrossServer\\TickCrossServer.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-13T14:51:31.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 45,
+              "Title": ".env",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
+              "RelativeDocumentMoniker": "TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
+              "RelativeToolTip": "TickCrossClient\\bin\\Debug\\net8.0-windows\\.env",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-04-13T15:48:50.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "TickCrossClient",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\TickCrossClient.csproj",
+              "RelativeDocumentMoniker": "TickCrossClient\\TickCrossClient.csproj",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\TickCrossClient.csproj",
+              "RelativeToolTip": "TickCrossClient\\TickCrossClient.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-13T15:46:16.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "man.gif",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Visuals\\man.gif",
+              "RelativeDocumentMoniker": "TickCrossClient\\Visuals\\man.gif",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossClient\\Visuals\\man.gif",
+              "RelativeToolTip": "TickCrossClient\\Visuals\\man.gif",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2025-04-13T20:43:38.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "System.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\System.cs",
+              "RelativeDocumentMoniker": "TickCrossLib\\Models\\System.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossLib\\Models\\System.cs",
+              "RelativeToolTip": "TickCrossLib\\Models\\System.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T19:18:21.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "NavigationService.cs",
+              "DocumentMoniker": "C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\7c39dede8d7ebdfdbdef9df41f0b1ca336835c2b40460aff1aa804187805538a\\NavigationService.cs",
+              "ToolTip": "C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\7c39dede8d7ebdfdbdef9df41f0b1ca336835c2b40460aff1aa804187805538a\\NavigationService.cs",
+              "ViewState": "AgIAACcEAAAAAAAAAAAhwEAEAAADAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T22:05:48.274Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
               "Title": "ResourcePart.cs",
               "DocumentMoniker": "C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\6b2dfb9d5e4949b718ee78fa9415cabf37518e9447a2764ba224d240518b710f\\ResourcePart.cs",
               "ToolTip": "C:\\Users\\denis\\AppData\\Local\\Temp\\.vsdbgsrc\\6b2dfb9d5e4949b718ee78fa9415cabf37518e9447a2764ba224d240518b710f\\ResourcePart.cs",
@@ -758,23 +841,50 @@
               "WhenOpened": "2025-04-10T22:04:45.849Z"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "33c61982-df70-43d1-bfe3-e68a41a87d39",
+        "Display": 0,
+        "X": 467,
+        "Y": 114,
+        "Width": 464,
+        "Height": 923,
+        "WindowState": 0
+      },
+      "DocumentGroups": [
         {
-          "DockedWidth": 250,
+          "DockedWidth": 200,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GameReqController.cs",
               "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\GameReqController.cs",
               "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\GameReqController.cs",
               "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\GameReqController.cs",
               "RelativeToolTip": "TickCrossServer\\Controllers\\GameReqController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAUwGQAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-16T20:32:19.377Z",
+              "WhenOpened": "2025-04-19T12:30:04.9Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "TickCrossServer\\Controllers\\LoginController.cs",
+              "ToolTip": "B:\\GitHub\\TickCrossClientServer\\TickCrossServer\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "TickCrossServer\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T12:30:03.389Z"
             }
           ]
         }
