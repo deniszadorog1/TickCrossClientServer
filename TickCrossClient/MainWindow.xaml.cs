@@ -205,6 +205,18 @@ namespace TickCrossClient
         public void SetContentToMainFrame(Page page)
         {
             MainFrame.Content = page;
+
+            //Set user game params
+
+            if (page is MainPage newPage)
+            {
+                newPage.SetUserGameParams();
+
+                _req = null;
+                _timer.Start();
+            }
         }
+
+
     }
 }

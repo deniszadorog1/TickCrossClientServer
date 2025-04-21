@@ -616,6 +616,72 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "RemoveFriend",
+    "RelativePath": "api/GameReq/RemoveRequests",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "TickCrossServer.Controllers.GameReqController\u002BUserParam",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "RemoveFriend",
+    "RelativePath": "api/GameReq/RemoveTempGame",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "toRemove",
+        "Type": "TickCrossServer.Controllers.GameReqController\u002BTempGameId",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "SetGameResult",
+    "RelativePath": "api/GameReq/SetGameResult",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "gameRes",
+        "Type": "TickCrossServer.Controllers.GameReqController\u002BSetGameResParams",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
     "Method": "SetRequestStatus",
     "RelativePath": "api/GameReq/SetRequestStatus",
     "HttpMethod": "POST",
@@ -708,43 +774,21 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.MainMenuController",
-    "Method": "Post",
-    "RelativePath": "api/MainMenu",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "value",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "TickCrossServer.Controllers.MainMenuController",
-    "Method": "Get",
-    "RelativePath": "api/MainMenu/{id}",
+    "Method": "GetUserGamesAmount",
+    "RelativePath": "api/MainMenu/GetUserGamesAmount",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
+        "Name": "userId",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "System.Int32",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -756,64 +800,47 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.MainMenuController",
-    "Method": "Put",
-    "RelativePath": "api/MainMenu/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "value",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "TickCrossServer.Controllers.MainMenuController",
-    "Method": "Delete",
-    "RelativePath": "api/MainMenu/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "TickCrossServer.Controllers.MainMenuController",
-    "Method": "Get",
-    "RelativePath": "api/MainMenu/GetAllPlayers",
+    "Method": "GetUserLosesAmount",
+    "RelativePath": "api/MainMenu/GetUserLosesAmount",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.MainMenuController",
+    "Method": "GetUserWinsAmount",
+    "RelativePath": "api/MainMenu/GetUserWinsAmount",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
         "MediaTypes": [
           "text/plain",
           "application/json",

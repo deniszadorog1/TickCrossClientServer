@@ -85,6 +85,11 @@ namespace TickCrossLib.Models
             GameField.SetSignInCell(x, y, StepperIndex == 0 ? FirstPlayerSign : SecondPlayerSign);
         }
 
+        public void SetEnemySign(int x, int y, User logged)
+        {
+            GameField.SetSignInCell(x, y, Players.First().Id == logged.Id ? SecondPlayerSign: FirstPlayerSign);
+        }
+
         public GameEnded GeGameResult()
         {
             return GameField.GetGameResult();

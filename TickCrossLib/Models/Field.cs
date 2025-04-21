@@ -89,7 +89,7 @@ namespace TickCrossLib.Models
                 sign = _clearedValue;
                 for (int j = 0; j < Cells.GetLength(1); j++)
                 {
-                    if (i == 0 && j == 0) sign = Cells[j, i].Sign;
+                    if (j == 0) sign = Cells[j, i].Sign;
                     else if (sign == _clearedValue || sign is null || !IsCellIsEqualsSign(Cells[j, i], sign)) break;
                     if (j == Cells.GetLength(1) - 1) return true;
                 }

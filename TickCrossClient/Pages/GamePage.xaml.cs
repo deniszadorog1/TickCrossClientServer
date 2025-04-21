@@ -33,7 +33,7 @@ namespace TickCrossClient.Pages
         Frame _frame;
         private TickCrossLib.Models.User _user;
 
-        public GamePage(TickCrossLib.Models.Game game, Frame frame, 
+        public GamePage(TickCrossLib.Models.Game game, Frame frame,
             TickCrossLib.Models.User user)
         {
             _game = game;
@@ -82,14 +82,25 @@ namespace TickCrossClient.Pages
 
             _game.SetSign((int)point.X, (int)point.Y);
 
-/*            TickCrossLib.Enums.GameEnded res = _game.GeGameResult();
+            GameEnded res = _game.GeGameResult();
             if (res != TickCrossLib.Enums.GameEnded.InProgress)
             {
                 await ApiService.SetStatusForTempGame(res, _game.Id);
 
+                //Set end game result in db
+
+                int? winnerId = null;
+                if (res is TickCrossLib.Enums.GameEnded.Won)
+                {
+                    winnerId = _user.Id;
+                }
+                SetGameResultForPlayerStatistic(res, winnerId);
+                
+                _moveTimer.Stop();
                 GameEnded(res);
+                
                 return true;
-            }*/
+            }
 
             _game.ChangeStepper();
             SetTurnVisibility();
@@ -102,10 +113,16 @@ namespace TickCrossClient.Pages
             await ApiService.SetStepperForTempGame(_game.Id, _game.GetStepperId());
         }
 
-        private void GameEnded(TickCrossLib.Enums.GameEnded res)
+        private async void GameEnded(TickCrossLib.Enums.GameEnded res)
         {
             if (res == TickCrossLib.Enums.GameEnded.Won) MessageBox.Show("Game ended! Stepper is won");
             else if (res == TickCrossLib.Enums.GameEnded.Draw) MessageBox.Show("Game ended! Its draw.");
+
+            _moveTimer.Stop();
+            ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
+
+            //Remove requests for logged player
+            await ApiService.RemoveUserRequests(_user.Id);
         }
 
         public void ClearGameBlocks()
@@ -173,15 +190,47 @@ namespace TickCrossClient.Pages
             {
                 //
                 SetStepperVis();
-                
+
                 /*if(!SetGameStart().Result)
                 {
                     //One of the players logged out
                     //_moveTimer.Stop();
                 }*/
-                 SetEnemiesSign();
+                SetEnemiesSign();
             };
             _moveTimer.Start();
+        }
+
+        public async void CheckTempGameStatus()
+        {
+            string? status = await ApiService.GetTempGameStatus(_game.Id);
+            if (status is null) return;
+
+            GameEnded? stat = GetStatusByString(status);
+            if (stat is null) return;
+
+            if (stat != TickCrossLib.Enums.GameEnded.InProgress) _moveTimer.Stop();
+        }
+
+        public async void SetGameResultForPlayerStatistic(GameEnded status, int? winnerId)
+        {
+            switch (status)
+            {
+                case TickCrossLib.Enums.GameEnded.Won:
+                    {
+                        await ApiService.SetGameResult(_game.Id, winnerId, null);
+                        break;
+                    }
+                case TickCrossLib.Enums.GameEnded.Draw:
+                    {
+                        await ApiService.SetGameResult(_game.Id, null, true);
+                        break;
+                    }
+                    /*                case TickCrossLib.Enums.GameEnded.InProgress:
+                                        {
+                                            break;
+                                        }*/
+            };
         }
 
         public async void SetEnemiesSign()
@@ -194,17 +243,27 @@ namespace TickCrossClient.Pages
             _gameBlocks[(int)cord.Item1, (int)cord.Item2].Text =
             _game.GetEnemySign(_user).ToString();
 
-            _game.SetSign((int)cord.Item1, (int)cord.Item2);
+            _game.SetEnemySign((int)cord.Item1, (int)cord.Item2, _user);
 
-            /*            TickCrossLib.Enums.GameEnded res = _game.GeGameResult();
-                        if (res != TickCrossLib.Enums.GameEnded.InProgress)
-                        {
-                            await ApiService.SetStatusForTempGame(res, _game.Id);
 
-                            GameEnded(res);
-                            return true;
-                        }*/
+            //Make Game end conditions here 
+/*            string? res = await ApiService.GetTempGameStatus(_game.Id);
+            if (res is null) return;*/
 
+/*            GameEnded? status = GetStatusByString(res);
+
+            if (status is null) return;*/
+
+            GameEnded status = _game.GeGameResult();
+            if (status != TickCrossLib.Enums.GameEnded.InProgress)
+            {
+                await ApiService.SetStatusForTempGame(status, _game.Id);
+
+                GameEnded(status);
+
+                //Remove temp games;
+                await ApiService.RemoveTempGame(_game.Id);
+            }
         }
 
         public async void SetStepperVis()
@@ -247,25 +306,6 @@ namespace TickCrossClient.Pages
 
             ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
             //_moveTimer.Stop();
-        }
-
-        public void SetGameResultForPlayerStatistic(GameEnded status)
-        {
-            switch (status)
-            {
-                case TickCrossLib.Enums.GameEnded.Won:
-                    {
-                        break;
-                    }
-                case TickCrossLib.Enums.GameEnded.Draw:
-                    {
-                        break;
-                    }
-                case TickCrossLib.Enums.GameEnded.InProgress:
-                    {
-                        break;
-                    }
-            };
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TickCrossLib.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,35 +10,22 @@ namespace TickCrossServer.Controllers
     public class MainMenuController : ControllerBase
     {
         // GET: api/<MainMenuController>
-        [HttpGet("GetAllPlayers")]
-        public IEnumerable<string> Get()
+        [HttpGet("GetUserWinsAmount")]
+        public int GetUserWinsAmount(int userId)
         {
-            return new string[] { "value1", "value2" };
+            return DBService.GetWinsAmount(userId);
         }
 
-        // GET api/<MainMenuController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("GetUserLosesAmount")]
+        public int GetUserLosesAmount(int userId)
         {
-            return "value";
+            return DBService.GetLosesAmount(userId);
         }
 
-        // POST api/<MainMenuController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("GetUserGamesAmount")]
+        public int GetUserGamesAmount(int userId)
         {
-        }
-
-        // PUT api/<MainMenuController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<MainMenuController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return DBService.GetGamesAmount(userId);
         }
     }
 }

@@ -292,7 +292,7 @@ namespace TickCrossLib.Services
             EntityModels.Game game = GetGameById(gameId);
             if (signs is null || game is null) return (int)game.FirstPlayerId;
 
-            return GetSignById((int)game.FirstSignId) == signs.First() ? 
+            return GetSignById((int)game.FirstSignId) == signs.First() ?
                 (int)game.FirstPlayerId : (int)game.SecondPlayerId;
         }
 
@@ -367,12 +367,22 @@ namespace TickCrossLib.Services
             return null;
         }
 
-        public static void RemoveUserRequests(string login)
+        public static void RemoveUserRequests(int userId)
         {
             using (var model = new TickCross())
             {
-                model.GameRequest.RemoveRange(model.GameRequest.Where(x =>
-                GetDbUserById((int)x.SenderId).Login == login || GetDbUserById((int)x.ReciverId).Login == login));
+                List<EntityModels.GameRequest> toRemove = new List<EntityModels.GameRequest>();
+
+                foreach (var req in model.GameRequest)
+                {
+                    EntityModels.User first = GetDbUserById((int)req.SenderId);
+                    EntityModels.User second = GetDbUserById((int)req.ReciverId);
+
+                    if (first.Id == userId || second.Id == userId) toRemove.Add(req);
+                }
+
+                model.GameRequest.RemoveRange(toRemove);
+                model.SaveChanges();
             }
         }
 
@@ -534,7 +544,7 @@ namespace TickCrossLib.Services
 
         public static void SetStepperInTempGame(int gameId, int stepperId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 TempGame game = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
                 if (game is null) return;
@@ -546,12 +556,60 @@ namespace TickCrossLib.Services
 
         public static int? GetStepperIdInTempGame(int gameId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 TempGame game = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
                 if (game is null) return null;
 
                 return game.StepperId;
+            }
+        }
+
+        public static int GetWinsAmount(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.Game.Where(x => x.WinnerId == userId).Count();
+            }
+        }
+
+        public static int GetLosesAmount(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.Game.Where(x => x.WinnerId != userId &&
+                (x.FirstPlayerId == userId || x.SecondPlayerId == userId)).Count();
+            }
+        }
+
+        public static int GetGamesAmount(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.Game.Where(x => x.FirstPlayerId == userId || x.SecondPlayerId == userId).Count();
+            }
+        }
+
+        public static void SetGameResult(int gameId, int? winnerId, bool? isDraw)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.Game game = model.Game.Where(x => x.Id == gameId).FirstOrDefault();
+                if (game is null) return;
+
+                game.WinnerId = winnerId;
+                game.IsDraw = isDraw;
+
+                model.SaveChanges();
+            }
+        }
+
+        public static void RemoveTempGame(int gameId)
+        {
+            using (var model = new TickCross())
+            {
+                model.TempGame.RemoveRange(model.TempGame.Where(x => x.GameId == gameId));
+                model.SaveChanges();
             }
         }
     }

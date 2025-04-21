@@ -350,11 +350,6 @@ namespace TickCrossClient.Services
             var response = await _client.PostAsync("api/GameReq/AddGame", content);
         }
 
-        public static async Task SetGameResult(TickCrossLib.Enums.GameEnded gameStat)
-        {
-
-        }
-
         public static async Task SetRequestStatus(TickCrossLib.Models.GameRequest req,
             TickCrossLib.Enums.RequestStatus newStatus)
         {
@@ -404,13 +399,80 @@ namespace TickCrossClient.Services
             
         }
 
-        //MAIN MENU
-        public static async Task<List<TickCrossLib.Models.User>> GetAllUsers()
+        public static async Task SetGameResult(int gameId, int? winnerId, bool? isDraw)
         {
-            List<TickCrossLib.Models.User> result = new List<TickCrossLib.Models.User>();
+            var data = new
+            {
+                GameId = gameId,
+                WinnerId = winnerId,
+                IsDraw = isDraw
+            };
 
-            return result;
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync("api/GameReq/SetGameResult", content);
         }
+
+        public static async Task RemoveUserRequests(int userId)
+        {
+            var data = new
+            {
+                UserId = userId
+            };
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveRequests"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            var response = await _client.SendAsync(request);
+        }
+
+        public static async Task RemoveTempGame(int gameId)
+        {
+            var data = new
+            {
+                GameId = gameId
+            };
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveTempGame"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            var response = await _client.SendAsync(request);
+        }
+
+        //MAIN MENU
+        public static async Task<int> GetUserWinsAmount(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetUserWinsAmount?userId={userId}");
+            if (!response.IsSuccessStatusCode) return -1;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<int>(jsonResponse);
+        }
+
+        public static async Task<int> GetUserLosesAmount(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetUserLosesAmount?userId={userId}");
+            if (!response.IsSuccessStatusCode) return -1;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<int>(jsonResponse);
+        }
+
+        public static async Task<int> GetUserGamesAmount(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetUserGamesAmount?userId={userId}");
+            if (!response.IsSuccessStatusCode) return -1;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<int>(jsonResponse);
+        }
+
+
 
         public static void SetEnv()
         {

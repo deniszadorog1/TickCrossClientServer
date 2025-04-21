@@ -15,6 +15,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TickCrossClient.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -34,6 +35,8 @@ namespace TickCrossClient.Pages
             //_frame.Background = Brushes.Transparent;
 
             SetUserParams();
+            SetUserGameParams();
+
         }
 
         public void SetUserParams()
@@ -78,6 +81,14 @@ namespace TickCrossClient.Pages
         private void FriendOptionsBut_Click(object sender, RoutedEventArgs e)
         {
             _frame.Content = new FriendPages.FriendsPage(_user);
+        }
+
+        public async void SetUserGameParams()
+        {
+           //Set get count params
+           WonsText.Text =  (await ApiService.GetUserWinsAmount(_user.Id)).ToString();
+           LosesText.Text =  (await ApiService.GetUserLosesAmount(_user.Id)).ToString();
+           TotalGamesText.Text =  (await ApiService.GetUserGamesAmount(_user.Id)).ToString();
         }
     }
 }

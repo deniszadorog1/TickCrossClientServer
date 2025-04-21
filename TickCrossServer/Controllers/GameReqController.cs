@@ -98,10 +98,10 @@ namespace TickCrossServer.Controllers
         {
             (int?, int?) res = DBService.GetMoveCordToMake(gameId);
 
-            return new TickCrossLib.Models.HelpModels.Cord {X = res.Item1, Y = res.Item2 };
+            return new TickCrossLib.Models.HelpModels.Cord { X = res.Item1, Y = res.Item2 };
 
-/*            return (res.Item1 is null ? -1 : (int)res.Item1,
-                res.Item2 is null ? -1 : (int)res.Item2);*/
+            /*            return (res.Item1 is null ? -1 : (int)res.Item1,
+                            res.Item2 is null ? -1 : (int)res.Item2);*/
         }
 
         [HttpPost("SetTempGameStatus")]
@@ -125,7 +125,7 @@ namespace TickCrossServer.Controllers
             public Point Cord { get; set; }
             public int GameId { get; set; }
         }
-        public class Point  
+        public class Point
         {
             public int X { get; set; }
             public int Y { get; set; }
@@ -182,5 +182,37 @@ namespace TickCrossServer.Controllers
             return DBService.GetStepperIdInTempGame(gameId);
         }
 
+        [HttpPost("SetGameResult")]
+        public void SetGameResult([FromBody] SetGameResParams gameRes)
+        {
+            DBService.SetGameResult(gameRes.GameId, gameRes.WinnerId, gameRes.IsDraw);
+        }
+        public class SetGameResParams()
+        {
+            public int GameId { get; set; }
+            public int? WinnerId { get; set; }
+            public bool? IsDraw { get; set; }
+        }
+
+        [HttpDelete("RemoveRequests")]
+        public void RemoveFriend([FromBody] UserParam userId)
+        {
+            DBService.RemoveUserRequests(userId.UserId);
+        }
+        public class UserParam()
+        {
+            public int UserId { get; set; }
+        };
+
+        [HttpDelete("RemoveTempGame")]
+        public void RemoveFriend([FromBody] TempGameId toRemove)
+        {
+            DBService.RemoveTempGame(toRemove.GameId);
+        }
+
+        public class TempGameId()
+        {
+            public int GameId { get; set; }
+        }
     }
 }
