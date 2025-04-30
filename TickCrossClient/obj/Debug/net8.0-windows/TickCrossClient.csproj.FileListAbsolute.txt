@@ -34,14 +34,10 @@ B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Materia
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Bcl.AsyncInterfaces.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Bcl.Cryptography.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Data.SqlClient.dll
-B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Caching.Memory.dll
-B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.dll
-B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
-B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Identity.Client.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.Identity.Client.Extensions.Msal.dll
 B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.IdentityModel.Abstractions.dll
@@ -125,3 +121,4 @@ B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\refint\
 B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\TickCrossClient.pdb
 B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\TickCrossClient.genruntimeconfig.cache
 B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\ref\TickCrossClient.dll
+B:\GitHub\TickCrossClientServer\TickCrossClient\bin\Debug\net8.0-windows\Microsoft.AspNetCore.Authentication.JwtBearer.dll

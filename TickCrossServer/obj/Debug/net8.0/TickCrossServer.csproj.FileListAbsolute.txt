@@ -83,3 +83,13 @@ B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\refint\TickCros
 B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\TickCrossServer.pdb
 B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\TickCrossServer.genruntimeconfig.cache
 B:\GitHub\TickCrossClientServer\TickCrossServer\obj\Debug\net8.0\ref\TickCrossServer.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\DotNetEnv.dll
+B:\GitHub\TickCrossClientServer\TickCrossServer\bin\Debug\net8.0\Sprache.dll

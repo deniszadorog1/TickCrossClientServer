@@ -1,0 +1,58 @@
+{
+  "UserPageBasicListBoxSize": "250",
+  "UserPageBigListBoxSize": "300",
+
+  "FriendPageBasicButHeight": "32",
+  "FriendPageBasicButFontSize": "14",
+  "FriendPageBigButHeight": "44",
+  "FriendPageBigButFontSize": "18",
+  "FriendPageBasicListFont": "16",
+  "FriendPageBasicMainPageWidth": "300",
+  "FriendPageBasicMainPageHeight": "400",
+  "FriendPageBigMainPanelWidth": "400",
+  "FriendPageBigMainPanelHeight": "550",
+  "FriendPageFirstStepWidth": "1200",
+  "FriendPageFirstStepHeight": "700",
+  "FriendPageBlockNameBasicFontSize": "24",
+  "FriendPageBlockNameBigFontSize": "28",
+
+  "LoginPageBasicMainPageWidth": "300",
+  "LoginPageBasicMainPageHeight": "400",
+  "LoginPageBigMainPanelWidth": "400",
+  "LoginPageBigMainPanelHeight": "550",
+  "LoginPageFirstStepWidth": "1200",
+  "LoginPageFirstStepHeight": "700",
+  "LoginPageBasicFontSize": "12",
+  "LoginPageBigFontSize": "16",
+
+  "MainPageBigButsFontSize": "18",
+  "MainPageLittleBorderNameSize": "22",
+  "MainPageBigBorderNameSize": "26",
+  "MainPageLittleBlockFotSize": "14",
+  "MainPageBigBlockFotSize": "20",
+  "MainPageBasicButHeight": "32",
+  "MainPageBigButHeight": "45",
+
+  "RegPageBasicMainPanelWidth": "300",
+  "RegPageBasicMainPanelHeight": "400",
+  "RegPageBigMainPanelWidth": "400",
+  "RegPageBigMainPanelHeight": "550",
+  "RegPageFirstStepWidth": "1200",
+  "RegPageFirstStepHeight": "700",
+
+  "SetPlayersPageTextBlockFontSize": "16",
+
+  "UserOptionPageBasicBorderWidth": "185",
+  "UserOptionPageBasicBorderHeight": "330",
+  "UserOptionPageBigBorderWidth": "250",
+  "UserOptionPageBigBorderHeight": "360",
+  "UserOptionFirstStepWidth": "1200",
+  "UserOptionFirstStepHeight": "700",
+  "UserOptionBorderBlockNameBasicFZ": "24",
+  "UserOptionBorderBlockNameBigFZ": "28",
+  "UserOptionBlockBasicFZ": "12",
+  "UserOptionBlockBigFZ": "16"
+
+
+
+}

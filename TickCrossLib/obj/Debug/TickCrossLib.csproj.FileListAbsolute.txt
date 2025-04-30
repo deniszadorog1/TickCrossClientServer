@@ -79,3 +79,12 @@ B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.csproj.CoreC
 B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCros.7DB2BFB0.Up2Date
 B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.dll
 B:\GitHub\TickCrossClientServer\TickCrossLib\obj\Debug\TickCrossLib.pdb
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\DotNetEnv.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Microsoft.Extensions.Configuration.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Sprache.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Microsoft.Extensions.Configuration.xml
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Microsoft.Extensions.Configuration.Abstractions.xml
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\Sprache.xml
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\ru\EntityFramework.resources.dll
+B:\GitHub\TickCrossClientServer\TickCrossLib\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

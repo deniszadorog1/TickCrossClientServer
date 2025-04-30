@@ -16,6 +16,8 @@ using System.Security.Policy;
 using TickCrossLib.Models;
 using System.Windows.Forms;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect.Configuration;
+using System.Runtime.Remoting.Metadata;
+using TickCrossLib.Enums;
 
 namespace TickCrossLib.Services
 {
@@ -304,7 +306,7 @@ namespace TickCrossLib.Services
             }
         }
 
-        private static bool IsTempGameIsExist(int gameId)
+        public static bool IsTempGameIsExist(int gameId)
         {
             using (var model = new TickCross())
             {
@@ -502,7 +504,7 @@ namespace TickCrossLib.Services
         {
             using (var model = new TickCross())
             {
-                RequestStatus stat = model.RequestStatus.Where(x => x.Type == status).FirstOrDefault();
+                EntityModels.RequestStatus stat = model.RequestStatus.Where(x => x.Type == status).FirstOrDefault();
                 if (stat is null) return null;
                 return stat.Id;
             }
@@ -512,7 +514,7 @@ namespace TickCrossLib.Services
         {
             using (var model = new TickCross())
             {
-                RequestStatus stat = model.RequestStatus.Where(x => x.Id == id).FirstOrDefault();
+                EntityModels.RequestStatus stat = model.RequestStatus.Where(x => x.Id == id).FirstOrDefault();
                 if (stat is null) return null;
                 return stat.Type;
             }
@@ -610,6 +612,78 @@ namespace TickCrossLib.Services
             {
                 model.TempGame.RemoveRange(model.TempGame.Where(x => x.GameId == gameId));
                 model.SaveChanges();
+            }
+        }
+
+        public static void RemoveClosedGames(int userId)
+        {
+            using(var model = new TickCross())
+            {
+                var gamesToDelete = model.Game
+                    .Where(g => (g.FirstPlayerId == userId || g.SecondPlayerId == userId)
+                             && (g.IsDraw == null && g.WinnerId == null))
+                    .ToList();
+
+                var gameIds = gamesToDelete.Select(g => g.Id).ToList();
+
+                var tempGamesToDelete = model.TempGame
+                    .Where(t => gameIds.Contains(t.GameId ?? 0))  
+                    .ToList();
+
+                var requests = model.GameRequest.Where(x => x.SenderId == userId || x.ReciverId == userId);
+
+                model.GameRequest.RemoveRange(requests);
+
+                model.TempGame.RemoveRange(tempGamesToDelete);
+
+                model.Game.RemoveRange(gamesToDelete);
+
+                model.SaveChanges();
+            }
+        }
+
+        private static List<EntityModels.Game> GetGamesWhereUserIsPlaying(int userId)
+        {
+            using(var model = new TickCross())
+            {
+                return model.Game.Where(x => (x.FirstPlayerId == userId || x.SecondPlayerId == userId) && 
+                (x.IsDraw == null && x.WinnerId == null)).ToList();
+            }
+        }
+
+        public static void SetClosedStatusToGame(int gameId)
+        {
+            using(var model = new TickCross())
+            {
+                int? cancelTypeId =  GetCanceledGameStatusId();
+                if (cancelTypeId is null) return;
+
+               TempGame tempGame = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
+                if (tempGame is null) return;
+
+                tempGame.TypeId = cancelTypeId;
+                model.SaveChanges();
+            }
+        }
+
+        public static int? GetCanceledGameStatusId()
+        {
+            using(var model = new TickCross())
+            {
+                TempGameType type = model.TempGameType.Where(x => x.Type == GameEnded.Canceled.ToString()).FirstOrDefault();
+                if (type is null) return null;
+                return type.Id;
+            }
+        }
+
+        public static bool IsTempGameIsBeenCanceled(int gameId)
+        {
+            using(var model = new TickCross())
+            {
+                TempGame game = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
+                if (game is null) return false;
+
+                return game.TypeId == GetCanceledGameStatusId(); 
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using TickCrossLib.Models;
 using TickCrossLib.Services;
@@ -7,23 +8,18 @@ using TickCrossLib.Services;
 
 namespace TickCrossServer.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class LoginController : ControllerBase
     {
         // GET: api/<LoginController>
+        [AllowAnonymous]
         [HttpPost("GetLoggedUser")]
         public TickCrossLib.Models.User? GetLoggedUser([FromBody] DTOUser userParams)
         {
-
-            //return Ok("User received: " + userParams.UserLogin);
+            if (!RegexService.LoginValidation(userParams.UserLogin)) return null;
 
             var user = DBService.GetLoggedUser(userParams.UserLogin, userParams.UserPassword);
-
-            //string? user = null;
-/*
-            if (user is null)
-                return NotFound();*/
 
             return user;
         }
@@ -33,5 +29,15 @@ namespace TickCrossServer.Controllers
             public string? UserLogin { get; set; }
             public string? UserPassword { get; set; }
         }
+        [Authorize]
+        [HttpDelete("RemoveClosedGames")]
+        public void RemoveClosedGames([FromBody] ToRemoveGamesPram userId)
+        {
+            DBService.RemoveClosedGames(userId.UserId);
+        }
+        public class ToRemoveGamesPram()
+        {
+            public int UserId { get; set; }
+        };
     }
 }

@@ -10,6 +10,7 @@ namespace TickCrossLib.Enums
     {
         Won,
         Draw,
-        InProgress
+        InProgress,
+        Canceled
     }
 }

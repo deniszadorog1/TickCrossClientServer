@@ -45,6 +45,9 @@
                         </ComboBoxItem>
                     </ComboBox>
 
+
+
+
                     <Button x:Name="StartGameBut"  Margin="10 10 10 0 "
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Height="30"

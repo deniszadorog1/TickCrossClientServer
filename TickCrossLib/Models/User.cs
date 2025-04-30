@@ -18,6 +18,8 @@ namespace TickCrossLib.Models
         public int Draws { get; set; }
         public int TotalGames { get; set; }
 
+        private string _token { get; set; }
+
         public User()
         {
             Id = -1;
@@ -37,6 +39,13 @@ namespace TickCrossLib.Models
             return Login;
         }
 
-       
+        public void SetToken(string token)
+        {
+            _token = token;
+        }
+        public string GetToken()
+        {
+            return _token;
+        }
     }
 }

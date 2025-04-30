@@ -1,22 +1,7 @@
-﻿using MaterialDesignThemes.Wpf.Converters;
-using Microsoft.IdentityModel.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using TickCrossClient.Services;
 using TickCrossLib.Enums;
@@ -54,6 +39,7 @@ namespace TickCrossClient.Pages
             SetGameBlocksEvent();
         }
 
+        private Brush _previewColor = Brushes.Gray;
         public void SetGameBlocksEvent()
         {
             for (int i = 0; i < _gameBlocks.GetLength(0); i++)
@@ -63,14 +49,50 @@ namespace TickCrossClient.Pages
                     Point point = new Point(i, j);
                     _gameBlocks[i, j].PreviewMouseDown += async (sender, e) =>
                     {
+                        int x = (int)point.X;
+                        int y = (int)point.Y;
+                        if (_gameBlocks[x, y].Foreground == _previewColor)
+                        {
+                            ClearCellFromPreview(x, y);
+                        }
+
                         if (!_game.IsUserIsStepper(_user)) return;
                         bool setMove = await IsMoveIsSet(point);
 
                         //Change in db
                         if (setMove) SetMoveInDB(point);
                     };
+
+                    _gameBlocks[i, j].MouseEnter += (sender, e) =>
+                    {
+                        if (!_game.IsUserIsStepper(_user)) return;
+
+                        int x = (int)point.X;
+                        int y = (int)point.Y;
+
+                        if (_gameBlocks[x, y].Text != string.Empty) return;
+
+                        _gameBlocks[x, y].Foreground = _previewColor;
+                        _gameBlocks[x, y].Text = _game.GetSign().ToString();
+                    };
+
+                    _gameBlocks[i, j].MouseLeave += (sender, e) =>
+                    {
+                        int x = (int)point.X;
+                        int y = (int)point.Y;
+
+                        if (_gameBlocks[x, y].Foreground != _previewColor) return;
+
+                        ClearCellFromPreview(x, y);
+                    };
                 }
             }
+        }
+
+        public void ClearCellFromPreview(int x, int y)
+        {
+            _gameBlocks[x, y].Text = string.Empty;
+            _gameBlocks[x, y].Foreground = Brushes.Black;
         }
 
         public async Task<bool> IsMoveIsSet(Point point)
@@ -95,10 +117,10 @@ namespace TickCrossClient.Pages
                     winnerId = _user.Id;
                 }
                 SetGameResultForPlayerStatistic(res, winnerId);
-                
+
                 _moveTimer.Stop();
                 GameEnded(res);
-                
+
                 return true;
             }
 
@@ -117,9 +139,11 @@ namespace TickCrossClient.Pages
         {
             if (res == TickCrossLib.Enums.GameEnded.Won) MessageBox.Show("Game ended! Stepper is won");
             else if (res == TickCrossLib.Enums.GameEnded.Draw) MessageBox.Show("Game ended! Its draw.");
+            else if (res == TickCrossLib.Enums.GameEnded.Canceled) MessageBox.Show("Game is been canceled!"); ;
 
             _moveTimer.Stop();
             ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
 
             //Remove requests for logged player
             await ApiService.RemoveUserRequests(_user.Id);
@@ -188,17 +212,26 @@ namespace TickCrossClient.Pages
             };
             _moveTimer.Tick += async (sender, e) =>
             {
-                //
-                SetStepperVis();
-
-                /*if(!SetGameStart().Result)
+                //Is enemy is closed game
+                if(await IsGameIsClosed())
                 {
-                    //One of the players logged out
-                    //_moveTimer.Stop();
-                }*/
+                    await ApiService.RemoveTempGame(_game.Id);
+                    GameEnded(TickCrossLib.Enums.GameEnded.Canceled);
+                    return;
+                }
+
+
+                SetStepperVis();
                 SetEnemiesSign();
             };
             _moveTimer.Start();
+        }
+
+        public async Task<bool> IsGameIsClosed()
+        {
+            bool? isCanceled = await ApiService.IsGameBeenCanceled(_game.Id);
+            if (isCanceled is null) return false;
+            return (bool)isCanceled;
         }
 
         public async void CheckTempGameStatus()
@@ -208,7 +241,6 @@ namespace TickCrossClient.Pages
 
             GameEnded? stat = GetStatusByString(status);
             if (stat is null) return;
-
             if (stat != TickCrossLib.Enums.GameEnded.InProgress) _moveTimer.Stop();
         }
 
@@ -226,10 +258,6 @@ namespace TickCrossClient.Pages
                         await ApiService.SetGameResult(_game.Id, null, true);
                         break;
                     }
-                    /*                case TickCrossLib.Enums.GameEnded.InProgress:
-                                        {
-                                            break;
-                                        }*/
             };
         }
 
@@ -244,15 +272,6 @@ namespace TickCrossClient.Pages
             _game.GetEnemySign(_user).ToString();
 
             _game.SetEnemySign((int)cord.Item1, (int)cord.Item2, _user);
-
-
-            //Make Game end conditions here 
-/*            string? res = await ApiService.GetTempGameStatus(_game.Id);
-            if (res is null) return;*/
-
-/*            GameEnded? status = GetStatusByString(res);
-
-            if (status is null) return;*/
 
             GameEnded status = _game.GeGameResult();
             if (status != TickCrossLib.Enums.GameEnded.InProgress)
@@ -294,22 +313,9 @@ namespace TickCrossClient.Pages
 
             //Set this move for each player
             SetMoveToPlayer(((int, int))cord);
-
-            //Check game status(from db table column)
-            //if game ended write it + set result for each player
-            //show end game message
-            //close game page
-
-            return;
-            TickCrossLib.Enums.GameEnded? status = await CheckGameStatus();
-            if (status is null) return;
-
-            ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
-            //_moveTimer.Stop();
         }
 
-
-        public async Task<TickCrossLib.Enums.GameEnded?> CheckGameStatus()
+        public async Task<GameEnded?> CheckGameStatus()
         {
             string status = await ApiService.GetTempGameStatus(_game.Id);
             if (status is null) return null;
@@ -334,9 +340,9 @@ namespace TickCrossClient.Pages
             for (int i = (int)TickCrossLib.Enums.GameEnded.Won;
                 i <= (int)TickCrossLib.Enums.GameEnded.InProgress; i++)
             {
-                if (((TickCrossLib.Enums.GameEnded)i).ToString() == status)
+                if (((GameEnded)i).ToString() == status)
                 {
-                    return (TickCrossLib.Enums.GameEnded)i;
+                    return (GameEnded)i;
                 }
             }
             return null;

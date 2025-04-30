@@ -5,17 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TickCrossClient.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500" MaxHeight="450" MaxWidth="500"
+      d:DesignHeight="450" d:DesignWidth="500" 
+      MinHeight="450" MinWidth="500"
       Title="MainPage"
-     
+   
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      >
+      VerticalAlignment="Center" HorizontalAlignment="Center">
 
     <Grid>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
         <Image Grid.Column="0" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
@@ -25,15 +25,16 @@
                Stretch="Fill" Panel.ZIndex="0" />
 
 
-        <Border Grid.Column="0" Width="190" Height="340" Background="White"
-                CornerRadius="6" HorizontalAlignment="Left" Margin="20 0 0 0">
+        <Border x:Name="MenuBorder"
+                Grid.Column="0" Width="190" Height="340" Background="White"
+                CornerRadius="6" HorizontalAlignment="Right" Margin="0 0 20 0">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="-90" 
                     RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
             </Border.Effect>
 
-            <StackPanel>
-                <TextBlock Text="Menu" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="10"/>
+            <StackPanel x:Name="MenuPanel">
+                <TextBlock Name="MenuName" Text="Menu" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="10"/>
 
                 <Button x:Name="StartGameBut"  Margin="10 10 10 0 "
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -70,18 +71,20 @@
             </StackPanel>
         </Border>
 
-        <Border Grid.Column="1" Width="190" Height="340" Background="White"
+        <Border x:Name="UserInfoBorder" 
+            Grid.Column="1" Width="190" Height="340" Background="White"
          CornerRadius="6" HorizontalAlignment="Left" Margin="20 0 0 0">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="-90" 
              RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
             </Border.Effect>
 
-            <StackPanel>
-                <TextBlock Text="Logged user" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold" Margin="10"/>
+            <StackPanel x:Name="UserInfoPanel">
+                <TextBlock  Name="LoggedUserBlock" Text="Logged user" HorizontalAlignment="Center" 
+                           FontSize="22" FontWeight="Bold" Margin="10"/>
 
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Loggin: " HorizontalAlignment="Left" 
+                    <TextBlock Name ="LoginName"  Text="Loggin: " HorizontalAlignment="Left" 
                            FontSize="14"  Margin="10 0  0 0"/>
 
                     <TextBlock Name ="LoginText" VerticalAlignment="Center" Text ="user login" FontSize="14"/>
@@ -89,14 +92,14 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0"> 
-                    <TextBlock Text="Wins : " HorizontalAlignment="Left" 
+                    <TextBlock Name ="WonName"  Text="Wins : " HorizontalAlignment="Left" 
                            FontSize="14"  Margin="10 0 0 0"/>
 
                     <TextBlock Name ="WonsText" VerticalAlignment="Center" Text ="wons amount" FontSize="14"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                    <TextBlock Text="Loses: " HorizontalAlignment="Left" 
+                    <TextBlock Name ="LoseName"  Text="Loses: " HorizontalAlignment="Left" 
                            FontSize="14"  Margin="10 0 0 0"/>
 
                     <TextBlock Name ="LosesText" VerticalAlignment="Center" Text ="loses amount" FontSize="14"/>
@@ -104,7 +107,7 @@
 
 
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                    <TextBlock Text="TotalGames: " HorizontalAlignment="Left" 
+                    <TextBlock Name="TotalName" Text="TotalGames: " HorizontalAlignment="Left" 
                            FontSize="14"  Margin="10 0 0 0"/>
 
                     <TextBlock Name ="TotalGamesText" VerticalAlignment="Center" Text ="games amount" FontSize="14"/>
@@ -116,4 +119,5 @@
 
 
     </Grid>
+
 </Page>

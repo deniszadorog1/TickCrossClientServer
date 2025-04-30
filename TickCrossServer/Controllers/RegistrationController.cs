@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 using TickCrossLib.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TickCrossServer.Controllers
 {
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class RegistrationController : ControllerBase
@@ -14,7 +17,7 @@ namespace TickCrossServer.Controllers
         public IActionResult Get([FromBody] TempDTO login)
         {
             bool result = TickCrossLib.Services.DBService.IsUserLoginIsExist(login.SimpleReq);
-            return Ok(result ? "1" : "0");        
+            return Ok(result ? "1" : "0");
         }
 
         public class TempDTO
@@ -26,7 +29,11 @@ namespace TickCrossServer.Controllers
         [HttpPost("AddUser")]
         public IActionResult Post([FromBody] UserRegistrationModel model)
         {
-            TickCrossLib.Services.DBService.AddNewUser(model.Login, model.Password);
+            if (!RegexService.RegistrationPasswordValid(model.Password) ||
+                !!RegexService.RegistrationPasswordValid(model.Login)) return NoContent();
+
+
+            DBService.AddNewUser(model.Login, model.Password);
             return Ok();
         }
 

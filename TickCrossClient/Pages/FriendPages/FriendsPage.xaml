@@ -24,7 +24,7 @@
                Stretch="Fill" Panel.ZIndex="0" />
 
 
-        <Border Grid.Column="0" 
+        <Border Grid.Column="0" Name="LeftBorder" HorizontalAlignment="Right" Margin="0 0 50 0"
             Width="300" Height="400" Background="White" CornerRadius="6">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="-90" 
@@ -33,22 +33,34 @@
 
             <StackPanel>
                 <TextBlock Name ="RemoveFriendsBlock" Text="Friends to Remove"
-                           HorizontalAlignment="Center" Margin="10" FontSize="24" FontWeight="Bold"/>
+                           HorizontalAlignment="Center" 
+                           Margin="10" FontSize="24" FontWeight="Bold"/>
 
-                <ListBox Name ="FriendsToRemoveList"  Height="250" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                <ListBox Name ="FriendsToRemoveList"  Height="250" 
+                         Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
 
 
-                <Button x:Name="RemoveBut"  Margin="10 10 10 0 "
+                <Button x:Name="RemoveBut"  Margin="10 0 10 0 "
                          Style="{StaticResource MaterialDesignRaisedLightButton}"
                          Content="Remove friend" 
                          BorderBrush="Transparent"
                          Foreground="White"
                          Background="Black"
-                         Click="RemoveBut_Click"/>
+                         Click="RemoveBut_Click" />
+
+
+                <Button x:Name="BackBut"  Margin="10 5 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Back" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                         Click="BackBut_Click"/>
+
             </StackPanel>
         </Border>
 
-        <Border Grid.Column="1" 
+        <Border Grid.Column="1" Name="RightBorder" HorizontalAlignment="Left" Margin="50 0 0 0"
             Width="300" Height="400" Background="White" CornerRadius="6">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="-90" 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TickCrossLib.Models;
 using TickCrossLib.Services;
 
@@ -7,6 +8,7 @@ using TickCrossLib.Services;
 
 namespace TickCrossServer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ChoseEnemyController : ControllerBase

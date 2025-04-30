@@ -1,44 +1,39 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using TickCrossLib.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace TickCrossServer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameController : ControllerBase
     {
-
         // GET: api/<GameController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("IsGameBeenCanceled")]
+        public bool IsGameBeenCanceled(int gameId)
         {
-            return new string[] { "value1", "value2" };
+            return DBService.IsTempGameIsBeenCanceled(gameId);
         }
 
-        // GET api/<GameController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpPost("SetGameCanceledStatus")]
+        public void SetGameCanceledStatus([FromBody] GameIdParam gameParam)
         {
-            return "value";
+            DBService.SetClosedStatusToGame(gameParam.GameId);
         }
 
-        // POST api/<GameController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("IsTempGameIsExist")]
+        public bool IsTempGameIsExist(int gameId)
         {
+            return DBService.IsTempGameIsExist(gameId);
         }
 
-        // PUT api/<GameController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public class GameIdParam
         {
+            public int GameId { get; set; }
         }
 
-        // DELETE api/<GameController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }

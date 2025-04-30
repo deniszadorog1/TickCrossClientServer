@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics.Eventing.Reader;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -64,21 +65,6 @@ namespace TickCrossClient
             return stat == TickCrossLib.Enums.RequestStatus.Accepted;
         }
 
-        /* public async Task SetGamePage()
-         {
-             ClearSecondaryFrame();
-
-             List<char>? signs = await ApiService.GetSigns();
-             if (signs is null || _req is null) return;
-
-             //TickCrossLib.Models.Game game = new TickCrossLib.Models.Game((TickCrossLib.Models.GameRequest)_req, signs);
-
-             //GamePage gamePage = new GamePage(game, MainFrame, _loggedUser);
-             //SetContentToMainFrame(gamePage);
-
-            // gamePage.SetGameMoveTimer(_req);
-         }*/
-
         public async Task<bool> SetGameStart()
         {
             if (_tempGameReq is null) return false;
@@ -94,10 +80,8 @@ namespace TickCrossClient
             if (_req is null) return false;
             else if (MainFrame.Content is GamePage) return true;
 
-
             string? status = await ApiService.GetReqStatus(_req.Id);
             TickCrossLib.Enums.RequestStatus stat = GetRequestStatByString((string)status);
-
 
             if (!(_req is null) && !(status is null) && _req.Sender.Id == _loggedUser.Id &&
                stat == TickCrossLib.Enums.RequestStatus.Accepted)
@@ -131,10 +115,10 @@ namespace TickCrossClient
             return TickCrossLib.Enums.RequestStatus.InProgress;
         }
 
-
-        public void SetLoggedUser(TickCrossLib.Models.User user)
+        public async void SetLoggedUser(TickCrossLib.Models.User user)
         {
             _loggedUser = user;
+            await ApiService.RemoveClosedGames(user.Id);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -146,22 +130,43 @@ namespace TickCrossClient
             {
                 MainFrame.Content = new Login(MainFrame);
                 e.Cancel = true;
-                _timer.Stop();
+                if(!(_timer is null))   _timer.Stop();
                 _loggedUser = null;
             }
             else if (MainFrame.Content is GamePage || MainFrame.Content is FriendsPage)
             {
+                if(MainFrame.Content is GamePage gamePage)
+                {
+                    //Set end game for oponent!
+                    SetGameClosed(gamePage);
+                }
+
                 MainFrame.Content = new MainPage(MainFrame, _loggedUser);
                 e.Cancel = true;
             }
+            SetWindowSize();
+        }
 
+        public async void SetGameClosed(GamePage page)
+        {
+            //Is game is Still exist
+            bool isExist = await ApiService.IsTempGameIsExist(page._game.Id);
+
+            //Set game Canceled status
+            if (isExist)
+            {
+                await ApiService.SetGameCanceledStatus(page._game.Id);
+            }
+           
         }
 
         public void ClearSecondaryFrame()
         {
+            const int maxZIndex = 100;
+
             SecondaryFrame.Content = null;
             Canvas.SetZIndex(SecondaryFrame, -1);
-            Canvas.SetZIndex(MainFrame, 100);
+            Canvas.SetZIndex(MainFrame, maxZIndex);
 
             MainFrame.Effect = null;
             MainFrame.IsEnabled = true;
@@ -217,6 +222,49 @@ namespace TickCrossClient
             }
         }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SetWindowSizeParams();
+        }
 
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            SetWindowSize();
+        }
+
+        public void SetWindowSize()
+        {
+            this.Dispatcher.BeginInvoke(new Action(() =>
+            {
+                SetWindowSizeParams();
+            }), System.Windows.Threading.DispatcherPriority.Render);
+        }
+
+        public void SetWindowSizeParams()
+        {
+            Size windowSize = new Size(this.ActualWidth, this.ActualHeight);
+
+            if (MainFrame.Content is Login login)
+            {
+                login.ChangeCardSize(windowSize);
+            }
+            else if (MainFrame.Content is Registration reg)
+            {
+                reg.ChangeCardSize(windowSize);
+            }
+            else if (MainFrame.Content is MainPage main)
+            {
+                main.ChangeCardSize(windowSize);
+            }
+            else if(MainFrame.Content is FriendsPage friends)
+            {
+                friends.OptionsParamsSize(windowSize);
+            }
+            
+            if(SecondaryFrame.Content is UserOptions option)
+            {
+                option.ChangeCardSize(windowSize);
+            }
+        }
     }
 }

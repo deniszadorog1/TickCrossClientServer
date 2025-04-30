@@ -1,20 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TickCrossClient.Services;
-using TickCrossLib.EntityModels;
 
 namespace TickCrossClient.Pages.GameReqs
 {
@@ -27,7 +13,7 @@ namespace TickCrossClient.Pages.GameReqs
         TickCrossLib.Models.GameRequest _req;
         private TickCrossLib.Models.User _user;
 
-        public GotGameRequest(Frame frame, TickCrossLib.Models.GameRequest req, 
+        public GotGameRequest(Frame frame, TickCrossLib.Models.GameRequest req,
             TickCrossLib.Models.User user)
         {
             _req = req;
@@ -55,7 +41,7 @@ namespace TickCrossClient.Pages.GameReqs
 
             List<char>? signs = await ApiService.GetSigns();
             if (signs is null || _req is null) return;
-            
+
             TickCrossLib.Models.Game game = new TickCrossLib.Models.Game((TickCrossLib.Models.GameRequest)_req, signs);
 
             await ApiService.SetRequestStatus(_req, TickCrossLib.Enums.RequestStatus.Accepted);

@@ -1,11 +1,13 @@
 ﻿using Microsoft.Identity.Client;
 using Microsoft.Xaml.Behaviors.Media;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,21 +19,18 @@ using TickCrossLib.Enums;
 using TickCrossLib.Models;
 using TickCrossLib.Services;
 
-
-
 namespace TickCrossClient.Services
 {
     public static class ApiService
     {
         private static readonly HttpClient _client;
-
+        public static string _token;
 
         static ApiService()
         {
             DotNetEnv.Env.Load();
 
             string? host = Environment.GetEnvironmentVariable("localHost");
-
 
             var handler = new HttpClientHandler
             {
@@ -40,7 +39,13 @@ namespace TickCrossClient.Services
             _client = new HttpClient(handler);
             _client.BaseAddress = new Uri("https://localhost:7238/");
 
-            _client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        }
+
+        public static void SetToken(string token)
+        {
+            _token = token;
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _token);
         }
 
         //REGISTRATION
@@ -78,7 +83,6 @@ namespace TickCrossClient.Services
         //LOGIN
         public static async Task<TickCrossLib.Models.User> GetLoggedUser(string login, string password)
         {
-
             //var qwe = DBService.GetLoggedUser(login, password);
 
             var data = new { UserLogin = login, UserPassword = password };
@@ -94,6 +98,19 @@ namespace TickCrossClient.Services
                 JsonConvert.DeserializeObject<TickCrossLib.Models.User>(jsonResponse);
 
             return user;
+        }
+
+        public static async Task RemoveClosedGames(int userId)
+        {
+            var data = new { UserId = userId };
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/Login/RemoveClosedGames"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            var response = await _client.SendAsync(request);
         }
 
         //Get user enemies for game
@@ -212,7 +229,7 @@ namespace TickCrossClient.Services
         }
 
         //Game Request
-        public static async Task AddNewGameRequest(string senderLogin, string receiverLogin, 
+        public static async Task AddNewGameRequest(string senderLogin, string receiverLogin,
             char enemySign, char userSign, TickCrossLib.Enums.RequestStatus status)
         {
             var data = new
@@ -308,7 +325,6 @@ namespace TickCrossClient.Services
         {
             public int X { get; set; }
             public int Y { get; set; }
-
         }
 
 
@@ -342,7 +358,7 @@ namespace TickCrossClient.Services
 
         public static async Task AddGameInDB(TickCrossLib.Models.Game game)
         {
-            var data = new {Game = game};
+            var data = new { Game = game };
 
             var json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -353,7 +369,7 @@ namespace TickCrossClient.Services
         public static async Task SetRequestStatus(TickCrossLib.Models.GameRequest req,
             TickCrossLib.Enums.RequestStatus newStatus)
         {
-            var data = new { Request = req, Status = newStatus};
+            var data = new { Request = req, Status = newStatus };
 
             var json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -396,7 +412,7 @@ namespace TickCrossClient.Services
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<int?>(jsonResponse);
-            
+
         }
 
         public static async Task SetGameResult(int gameId, int? winnerId, bool? isDraw)
@@ -444,6 +460,37 @@ namespace TickCrossClient.Services
             var response = await _client.SendAsync(request);
         }
 
+        public static async Task SetGameCanceledStatus(int gameId)
+        {
+            var data = new
+            {
+                GameId = gameId,
+            };
+
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync("api/Game/SetGameCanceledStatus", content);
+        }
+
+        public static async Task<bool> IsGameBeenCanceled(int gameId)
+        {
+            var response = await _client.GetAsync($"api/Game/IsGameBeenCanceled?gameId={gameId}");
+            if (!response.IsSuccessStatusCode) return false;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<bool>(jsonResponse);
+        }
+
+        public static async Task<bool> IsTempGameIsExist(int gameId)
+        {
+            var response = await _client.GetAsync($"api/Game/IsTempGameIsExist?gameId={gameId}");
+            if (!response.IsSuccessStatusCode) return false;
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<bool>(jsonResponse);
+        }
+
         //MAIN MENU
         public static async Task<int> GetUserWinsAmount(int userId)
         {
@@ -471,8 +518,6 @@ namespace TickCrossClient.Services
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<int>(jsonResponse);
         }
-
-
 
         public static void SetEnv()
         {

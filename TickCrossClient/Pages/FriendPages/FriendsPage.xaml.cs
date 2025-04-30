@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TickCrossClient.Services;
-using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages.FriendPages
 {
@@ -23,9 +10,11 @@ namespace TickCrossClient.Pages.FriendPages
     public partial class FriendsPage : Page
     {
         private TickCrossLib.Models.User _user;
-        public FriendsPage(TickCrossLib.Models.User user)
+        private Frame _frame;
+        public FriendsPage(TickCrossLib.Models.User user, Frame frame)
         {
             _user = user;
+            _frame = frame;
             InitializeComponent();
 
             AddBasicParams();
@@ -58,6 +47,7 @@ namespace TickCrossClient.Pages.FriendPages
 
         public void SetUsersInTextBlock(List<TickCrossLib.Models.User> users, ListBox box)
         {
+            if (users is null) users = new List<TickCrossLib.Models.User>();
             foreach (var user in users)
             {
                 box.Items.Add(GetTextBlockWithUserLogin(user.Login));
@@ -69,7 +59,7 @@ namespace TickCrossClient.Pages.FriendPages
             return new TextBlock()
             {
                 Text = login,
-                FontSize = 16,
+                FontSize = JsonService.GetNumByName("FriendPageBasicListFont"),
             };
         }
 
@@ -101,5 +91,97 @@ namespace TickCrossClient.Pages.FriendPages
             return block.Text;
         }
 
+        private Size _basicMainPanelSize =
+            new Size(JsonService.GetNumByName("FriendPageBasicMainPageWidth"),
+                JsonService.GetNumByName("FriendPageBasicMainPageHeight"));
+
+        private Size _bigMainPanelSize =
+            new Size(JsonService.GetNumByName("FriendPageBigMainPanelWidth"),
+                JsonService.GetNumByName("FriendPageBigMainPanelHeight"));
+
+        private Size _firstStep =
+            new Size(JsonService.GetNumByName("FriendPageFirstStepWidth"),
+                JsonService.GetNumByName("FriendPageFirstStepHeight"));
+
+        public void OptionsParamsSize(Size size)
+        {
+            // isBig
+            if (_firstStep.Width > size.Width || _firstStep.Height > size.Height)
+            {
+                SetBordersSize(false);
+
+                return;
+            }
+            //IsLittle
+
+            SetBordersSize(true);
+        }
+
+        public void SetBordersSize(bool isBig)
+        {
+            Size toSet = isBig ? _bigMainPanelSize : _basicMainPanelSize;
+
+            SetBorderSize(LeftBorder, toSet);
+            SetBorderSize(RightBorder, toSet);
+
+            SetBorderNameFontSize(isBig ? _bigBorderBlockNameFontSize :
+                _basicBorderBlockNameFontSize);
+
+            SetLestBoxesHeight(isBig);
+
+            SetButtonsParams(isBig);
+        }
+
+        public void SetButtonsParams(bool isBig)
+        {
+            int height = isBig ? JsonService.GetNumByName("FriendPageBigButHeight") :
+                JsonService.GetNumByName("FriendPageBasicButHeight");
+
+            int fontSize = isBig ? JsonService.GetNumByName("FriendPageBigButFontSize") :
+                JsonService.GetNumByName("FriendPageBasicButFontSize");
+
+            RemoveBut.Height = height;
+            RemoveBut.FontSize = fontSize;
+
+            BackBut.Height = height;
+            BackBut.FontSize = fontSize;
+
+            AddBut.Height = height;
+            AddBut.FontSize = fontSize;
+        }
+
+
+        public void SetLestBoxesHeight(bool isBig)
+        {
+            int height = isBig ? JsonService.GetNumByName("UserPageBigListBoxSize") :
+                JsonService.GetNumByName("UserPageBasicListBoxSize");
+
+            FriendsToRemoveList.Height = height;
+            FriendsToAddList.Height = height;
+
+        }
+
+        private int _basicBorderBlockNameFontSize =
+            JsonService.GetNumByName("FriendPageBlockNameBasicFontSize");
+        private int _bigBorderBlockNameFontSize =
+             JsonService.GetNumByName("FriendPageBlockNameBigFontSize");
+
+        public void SetBorderNameFontSize(int size)
+        {
+            RemoveFriendsBlock.FontSize = size;
+            AddFriendsBlock.FontSize = size;
+        }
+
+        public void SetBorderSize(Border border, Size size)
+        {
+            border.Width = size.Width;
+            border.Height = size.Height;
+        }
+
+        private void BackBut_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Content = new MainPage(_frame, _user);
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
+        }
     }
 }

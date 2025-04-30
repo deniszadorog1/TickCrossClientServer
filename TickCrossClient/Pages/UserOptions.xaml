@@ -13,7 +13,7 @@
       >
 
     <Grid>
-        <Border Name ="FirstPlayerBorder" Width="185" Height="330" Background="White" CornerRadius="6"
+        <Border Name ="OptionBorder" Width="185" Height="330" Background="White" CornerRadius="6"
          HorizontalAlignment="Left" Margin="5">
             <Border.Effect>
                 <DropShadowEffect BlurRadius="15" Direction="-90" 
@@ -21,19 +21,24 @@
             </Border.Effect>
 
             <StackPanel Orientation="Vertical">
-                <TextBlock Text="Options" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Margin="5"/>
+                <TextBlock Name ="OptionsBlock"  Text="Options" HorizontalAlignment="Center" 
+                           FontSize="24" FontWeight="Bold" Margin="5"/>
 
-                <TextBlock Text="New login" Margin="10 0 0 0" FontWeight="Bold"/>
-                <TextBox 
+                <TextBlock Name="LoginBlock" Text="New login" 
+                           Margin="10 0 0 0" FontWeight="Bold"/>
+                <TextBox  
                   x:Name="LoginTextBox"
-                  materialDesign:HintAssist.Hint="Login" Width="165" Height="30" VerticalContentAlignment="Center"
-                    MaxLength="12"
+                  materialDesign:HintAssist.Hint="Login" Width="165" 
+                    Height="30" VerticalContentAlignment="Center"
+                    MaxLength="12" 
                   HorizontalAlignment="Left" Margin="10"/>
 
-                <TextBlock Text="New Password" Margin="10 0 0 0" FontWeight="Bold"/>
+                <TextBlock Name ="PasswordBlock" Text="New Password" 
+                           Margin="10 0 0 0" FontWeight="Bold"/>
                 <TextBox 
                   x:Name="PasswordTextBox" MaxLength="12"
-                  materialDesign:HintAssist.Hint="Password" Width="165" Height="30" VerticalContentAlignment="Center"
+                  materialDesign:HintAssist.Hint="Password" Width="165" 
+                    Height="30" VerticalContentAlignment="Center"
                   HorizontalAlignment="Left" Margin="10"/>
 
                 <Button x:Name="ApplyBut"  Margin="10 10 10 0 "

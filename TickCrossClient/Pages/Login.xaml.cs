@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TickCrossClient.Services;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -41,11 +31,78 @@ namespace TickCrossClient.Pages
                 MessageBox.Show("Something went wrong!");
                 return;
             }
+            if (string.IsNullOrWhiteSpace(LoginBox.Text) || 
+                !TickCrossLib.Services.RegexService.LoginValidation(LoginBox.Text) ||
+                string.IsNullOrWhiteSpace(PasswordBox.Password))
+            {
+                MessageBox.Show("something went wrong!");
+                return;
+            }
+            
+            loggedUser.SetToken(JwtService.Generate(loggedUser));
+            ApiService.SetToken(loggedUser.GetToken());
+
             ((MainWindow)Window.GetWindow(_frame)).SetLoggedUser(loggedUser);
 
             _frame.Content = new MainPage(_frame, (TickCrossLib.Models.User)loggedUser);
             ((MainWindow)Window.GetWindow(_frame)).SetGameRequestTimer();
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
+        }
 
+        private Size _basicMainPanelSize = 
+            new Size(JsonService.GetNumByName("LoginPageBasicMainPageWidth"),
+                JsonService.GetNumByName("LoginPageBasicMainPageHeight"));
+
+        private Size _bigMainPanelSize = 
+            new Size(JsonService.GetNumByName("LoginPageBigMainPanelWidth"),
+                JsonService.GetNumByName("LoginPageBigMainPanelHeight"));
+
+        private Size _firstStep =
+            new Size(JsonService.GetNumByName("LoginPageFirstStepWidth"),
+                JsonService.GetNumByName("LoginPageFirstStepHeight"));
+
+        public void ChangeCardSize(Size size)
+        {
+            if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
+            {
+                SetMainBorderSize(_basicMainPanelSize);
+                SetTextBoxSize();
+                SetBoxNameSize(_baseTextBoxFontSize);
+                KchauImage.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                SetMainBorderSize(_bigMainPanelSize);
+                SetTextBoxSize();
+                SetBoxNameSize(_bigTextBoxFontSize);
+                KchauImage.Visibility = Visibility.Visible;
+            }
+        }
+
+        private int _baseTextBoxFontSize = 
+            JsonService.GetNumByName("LoginPageBasicFontSize");
+        private int _bigTextBoxFontSize = 
+            JsonService.GetNumByName("LoginPageBigFontSize");
+        public void SetBoxNameSize(int size)
+        {
+            UserNameBlock.FontSize = size;
+            PasswordBlock.FontSize = size;
+
+            LoginBox.FontSize = size;
+            PasswordBox.FontSize = size;
+        }
+
+        public void SetMainBorderSize(Size size)
+        {
+            MainBorder.Width = size.Width;
+            MainBorder.Height = size.Height;
+        }
+
+        public void SetTextBoxSize()
+        {
+            double marginDistance = MainPanel.Margin.Left + MainPanel.Margin.Right;
+            LoginBox.Width = MainBorder.Width - marginDistance;
+            PasswordBox.Width = MainBorder.Width - marginDistance;
         }
     }
 }

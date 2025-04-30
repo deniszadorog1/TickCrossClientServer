@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -32,9 +33,7 @@ namespace TickCrossClient.Pages
             _user = loggedUser;
 
             InitializeComponent();
-
             FillEnemiesLoginsList();
-
         }
 
         public async void FillEnemiesLoginsList()
@@ -54,7 +53,7 @@ namespace TickCrossClient.Pages
             return new TextBlock()
             {
                 Text = login,
-                FontSize = 16,
+                FontSize = JsonService.GetNumByName("SetPlayersPageTextBlockFontSize"),
             };
         }
 
@@ -64,7 +63,6 @@ namespace TickCrossClient.Pages
             if (enemyLogin == string.Empty) return;
 
             User? enemy = await ApiService.GetEnemyPlayer(enemyLogin);
-
             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
 
             List<char>? signs = await ApiService.GetSigns();
@@ -74,19 +72,8 @@ namespace TickCrossClient.Pages
             if (enemySign is null) return;
 
             await ApiService.AddNewGameRequest(_user.Login, enemyLogin, (char)enemySign,
-                signs.First() == enemySign ? signs.Last() : signs.First(), TickCrossLib.Enums.RequestStatus.InProgress); //add signs
-
-/*
-            char userSign = enemySign == signs.First() ? signs.Last() : signs.First();
-
-            int toStep = userSign == signs.First() ? 0 : 1;
-
-            Game game = new Game(_user, enemy, toStep, userSign, (char)enemySign);
-
-            _frame.Content = new GamePage(game, _frame, _user);*/
+                signs.First() == enemySign ? signs.Last() : signs.First(), TickCrossLib.Enums.RequestStatus.InProgress);
         }
-
-        
 
         public char? GetEnemySign()
         {
@@ -101,12 +88,9 @@ namespace TickCrossClient.Pages
             return item is null ? string.Empty : ((TextBlock)item).Text;
         }
 
-
         private void BackBut_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
         }
-
-
     }
 }

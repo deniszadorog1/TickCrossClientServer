@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using TickCrossClient.Services;
 
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -39,7 +41,16 @@ namespace TickCrossClient.Pages
                 return;
             }
 
-            bool isAdded =  await ApiService.AddNewUser(LoginBox.Text, PassBox.Password);
+            if (string.IsNullOrWhiteSpace(LoginBox.Text) ||
+                !RegexService.RegistrationPasswordValid(PassBox.Password) ||
+                !RegexService.RegistrationPasswordValid(LoginBox.Text) ||
+            string.IsNullOrWhiteSpace(PassBox.Password))
+            {
+                MessageBox.Show("something went wrong!");
+                return;
+            }
+
+            bool isAdded = await ApiService.AddNewUser(LoginBox.Text, PassBox.Password);
             if (!isAdded) return;
 
             MessageBox.Show("Added new user");
@@ -50,9 +61,58 @@ namespace TickCrossClient.Pages
             _frame.Content = new Login(_frame);
         }
 
+        private bool CheckLogin()
+        {
+            Regex rg = new Regex(@"^[a-zA-Z0-9_]{3,20}$");
+            return rg.Match(LoginBox.Text).Success;
+        }
+
+        private bool CheckPassword()
+        {
+            Regex rg = new Regex(@"^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
+            return rg.Match(PassBox.Password).Success;
+        }
+
+
         private void BackBut_Click(object sender, RoutedEventArgs e)
         {
             _frame.Content = new Login(_frame);
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
+        }
+
+        private Size _basicMainPanelSize = 
+            new Size(JsonService.GetNumByName("RegPageBasicMainPanelWidth"),
+                JsonService.GetNumByName("RegPageBasicMainPanelHeight"));
+
+        private Size _bigMainPanelSize = 
+            new Size(JsonService.GetNumByName("RegPageBigMainPanelWidth"),
+                JsonService.GetNumByName("RegPageBigMainPanelHeight"));
+
+        private Size _firstStep = 
+            new Size(JsonService.GetNumByName("RegPageFirstStepWidth"),
+                JsonService.GetNumByName("RegPageFirstStepHeight"));
+
+        public void ChangeCardSize(Size size)
+        {
+            if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
+            {
+                MainBorder.Width = _basicMainPanelSize.Width;
+                MainBorder.Height = _basicMainPanelSize.Height;
+                SetTextBoxSize();
+            }
+            else
+            {
+                MainBorder.Width = _bigMainPanelSize.Width;
+                MainBorder.Height = _bigMainPanelSize.Height;
+                SetTextBoxSize();
+            }
+        }
+
+        public void SetTextBoxSize()
+        {
+            double marginDistance = MainPanel.Margin.Left + MainPanel.Margin.Right;
+            LoginBox.Width = MainBorder.Width - marginDistance;
+            PassBox.Width = MainBorder.Width - marginDistance;
         }
     }
 }

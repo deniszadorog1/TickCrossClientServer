@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Runtime;
 using System.Runtime.CompilerServices;
@@ -9,6 +10,7 @@ using TickCrossLib.Services;
 
 namespace TickCrossServer.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class GameReqController : ControllerBase
