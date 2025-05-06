@@ -1,4 +1,8 @@
-﻿using Microsoft.Identity.Client;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.Identity.Client;
 using Microsoft.Xaml.Behaviors.Media;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -17,6 +21,7 @@ using TickCrossClient.Pages;
 using TickCrossLib.EntityModels;
 using TickCrossLib.Enums;
 using TickCrossLib.Models;
+using TickCrossLib.Models.NonePlayable;
 using TickCrossLib.Services;
 
 namespace TickCrossClient.Services
@@ -211,13 +216,6 @@ namespace TickCrossClient.Services
                 ToAddLogin = login
             };
 
-            /*            string json = JsonConvert.SerializeObject(data);
-                        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                        //To ask about remove
-                        var response =  await _client.DeleteAsync($"api/Friends/RemoveFriend?userLogin={content}&toRemove={login}");
-            */
-
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
@@ -226,6 +224,90 @@ namespace TickCrossClient.Services
             };
             var response = await _client.SendAsync(request);
 
+        }
+        
+        public static async Task<List<string>> GetFriendsLogins(int userId)
+        {
+            var response = await _client.GetAsync($"api/Friends/GetFriendsLogins?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<string>>(jsonResponse);
+        }
+
+        public static async Task<List<string>> GetUserLoginsToAddInFriends(int userId)
+        {
+            var response = await _client.GetAsync($"api/Friends/GetUserLoginsToAddInFriends?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<string>>(jsonResponse);
+        }
+
+        public static async Task AddRequest(int userId, string receiverLogin)
+        {
+            var data = new
+            {
+                UserId = userId,
+                ReceiverLogin = receiverLogin
+            };
+
+            string json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            await _client.PostAsync($"api/Friends/AddFriendOffer", content);
+        }
+
+        public static async Task<List<FriendRequestModel>> GetFriendReqsSentByUser(int userId)
+        {
+            var response = await _client.GetAsync($"api/Friends/GetReqsSentByUser?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<FriendRequestModel>>(jsonResponse);
+        }
+
+        public static async Task<List<FriendRequestModel>> GetFriendReqsSentToUser(int userId)
+        {
+            var response = await _client.GetAsync($"api/Friends/GetReqsSentToUser?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<FriendRequestModel>>(jsonResponse);
+        }
+
+        public static async Task DeleteFriendReqBySenderLogin(int userId, string senderLogin)
+        {
+            var data = new
+            {
+                ReceiverId = userId,
+                SenderLogin = senderLogin
+            };
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveReqBySenderLogin"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            await _client.SendAsync(request);
+        }
+
+        public static async Task DeleteFriendReqByReceiverLogin(int userId, string receiverLogin)
+        {
+            var data = new
+            {
+                SenderId = userId,
+                ReceiverLogin = receiverLogin
+            };
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveReqByReceiverLogin"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            await _client.SendAsync(request);
         }
 
         //Game Request
@@ -278,9 +360,23 @@ namespace TickCrossClient.Services
             return isLogged;
         }
 
+        public static async void SetUserLoginStatus(int userId, bool isLogged)
+        {
+            var data = new
+            {
+                UserId = userId,
+                IsLogged = isLogged
+            };
+
+            string json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            await _client.PostAsync($"api/Login/SetUserLoginStatus", content);
+        }
+
         public static async Task<bool> IsUserIsLoggedById(int id)
         {
-            var response = await _client.GetAsync($"api/GameReq/IsUserIsLoggedInById?login={id}");
+            var response = await _client.GetAsync($"api/Login/IsUserLogged?userId={id}");
             if (!response.IsSuccessStatusCode) return false;
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -525,6 +621,24 @@ namespace TickCrossClient.Services
 
             var message = Environment.GetEnvironmentVariable("ASD");
             //return message;
+        }
+
+        public static async Task<List<GameRequestModel>> GetGameRequestsSentToUser(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetUserReqsSentToUser?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<GameRequestModel>>(jsonResponse);
+        }
+
+        public static async Task<List<GameRequestModel>> GetRequestsSentByUser(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetGameReqsSentByUser?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<GameRequestModel>>(jsonResponse);
         }
     }
 }

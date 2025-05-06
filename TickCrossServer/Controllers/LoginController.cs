@@ -17,7 +17,7 @@ namespace TickCrossServer.Controllers
         [HttpPost("GetLoggedUser")]
         public TickCrossLib.Models.User? GetLoggedUser([FromBody] DTOUser userParams)
         {
-            if (!RegexService.LoginValidation(userParams.UserLogin)) return null;
+            //if (!RegexService.LoginValidation(userParams.UserLogin)) return null;
 
             var user = DBService.GetLoggedUser(userParams.UserLogin, userParams.UserPassword);
 
@@ -39,5 +39,25 @@ namespace TickCrossServer.Controllers
         {
             public int UserId { get; set; }
         };
+
+        [HttpPost("SetUserLoginStatus")]
+        public void SetUserLoginStatus([FromBody] UserLoginStatus status)
+        {
+            DBService.SetUserLoginStatus(status.UserId, status.IsLogged);
+        }
+
+        public class UserLoginStatus()
+        {
+            public int UserId { get; set; }
+            public bool IsLogged { get; set; }
+        };
+
+
+        [HttpGet("IsUserLogged")]
+        public bool IsUserLogged(int userId)
+        {
+            return DBService.IsUserLogged(userId);
+        }
+
     }
 }

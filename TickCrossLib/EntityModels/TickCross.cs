@@ -12,6 +12,8 @@ namespace TickCrossLib.EntityModels
         {
         }
 
+        public virtual DbSet<FriendOffer> FriendOffer { get; set; }
+        public virtual DbSet<FriendReqStatus> FriendReqStatus { get; set; }
         public virtual DbSet<Game> Game { get; set; }
         public virtual DbSet<GameHistory> GameHistory { get; set; }
         public virtual DbSet<GameRequest> GameRequest { get; set; }
@@ -24,6 +26,11 @@ namespace TickCrossLib.EntityModels
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<FriendReqStatus>()
+                .HasMany(e => e.FriendOffer)
+                .WithOptional(e => e.FriendReqStatus)
+                .HasForeignKey(e => e.StatusId);
+
             modelBuilder.Entity<RequestStatus>()
                 .HasMany(e => e.GameRequest)
                 .WithOptional(e => e.RequestStatus)
@@ -57,6 +64,16 @@ namespace TickCrossLib.EntityModels
                 .HasMany(e => e.TempGame)
                 .WithOptional(e => e.TempGameType)
                 .HasForeignKey(e => e.TypeId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.FriendOffer)
+                .WithOptional(e => e.User)
+                .HasForeignKey(e => e.ReciverId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.FriendOffer1)
+                .WithOptional(e => e.User1)
+                .HasForeignKey(e => e.SenderId);
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Game)

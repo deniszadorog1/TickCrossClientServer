@@ -60,6 +60,22 @@
                          Background="Black"
                         Click="OptionsBut_Click"/>
 
+                <Button x:Name="GameReqsBut"  Margin="10 15 10 0 "
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Game requests" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                         Click="GameReqsBut_Click"/>
+                
+                <Button x:Name="FriendRequest"  Margin="10 15 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Friend requests" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                         Click="FriendRequest_Click"/>
+                
                 <Button x:Name="ExitBut"  Margin="10 15 10 0 "
                            Style="{StaticResource MaterialDesignRaisedLightButton}"
                         Content="Exit" 

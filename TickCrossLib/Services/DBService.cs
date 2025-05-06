@@ -18,6 +18,9 @@ using System.Windows.Forms;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect.Configuration;
 using System.Runtime.Remoting.Metadata;
 using TickCrossLib.Enums;
+using TickCrossLib.Models.NonePlayable;
+using System.Reflection;
+using System.Data.OleDb;
 
 namespace TickCrossLib.Services
 {
@@ -528,8 +531,21 @@ namespace TickCrossLib.Services
                 if (req is null) return null;
 
                 return GetRequestStatusId((int)req.StatusId);
-
             }
+        }
+
+        public static Enums.RequestStatus GetGameReqStatusById(int id)
+        {
+            string status = GetRequestsStatus(id);
+
+            for (int i = (int)Enums.RequestStatus.Accepted; i <= (int)Enums.RequestStatus.InProgress; i++)
+            {
+                if (((Enums.RequestStatus)i).ToString() == status.ToString())
+                {
+                    return ((Enums.RequestStatus)i);
+                }
+            }
+            return Enums.RequestStatus.InProgress;
         }
 
         public static void SetRequestStatus(int reqId, int statusId)
@@ -617,7 +633,7 @@ namespace TickCrossLib.Services
 
         public static void RemoveClosedGames(int userId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 var gamesToDelete = model.Game
                     .Where(g => (g.FirstPlayerId == userId || g.SecondPlayerId == userId)
@@ -627,7 +643,7 @@ namespace TickCrossLib.Services
                 var gameIds = gamesToDelete.Select(g => g.Id).ToList();
 
                 var tempGamesToDelete = model.TempGame
-                    .Where(t => gameIds.Contains(t.GameId ?? 0))  
+                    .Where(t => gameIds.Contains(t.GameId ?? 0))
                     .ToList();
 
                 var requests = model.GameRequest.Where(x => x.SenderId == userId || x.ReciverId == userId);
@@ -644,21 +660,21 @@ namespace TickCrossLib.Services
 
         private static List<EntityModels.Game> GetGamesWhereUserIsPlaying(int userId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
-                return model.Game.Where(x => (x.FirstPlayerId == userId || x.SecondPlayerId == userId) && 
+                return model.Game.Where(x => (x.FirstPlayerId == userId || x.SecondPlayerId == userId) &&
                 (x.IsDraw == null && x.WinnerId == null)).ToList();
             }
         }
 
         public static void SetClosedStatusToGame(int gameId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
-                int? cancelTypeId =  GetCanceledGameStatusId();
+                int? cancelTypeId = GetCanceledGameStatusId();
                 if (cancelTypeId is null) return;
 
-               TempGame tempGame = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
+                TempGame tempGame = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
                 if (tempGame is null) return;
 
                 tempGame.TypeId = cancelTypeId;
@@ -668,7 +684,7 @@ namespace TickCrossLib.Services
 
         public static int? GetCanceledGameStatusId()
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 TempGameType type = model.TempGameType.Where(x => x.Type == GameEnded.Canceled.ToString()).FirstOrDefault();
                 if (type is null) return null;
@@ -678,13 +694,229 @@ namespace TickCrossLib.Services
 
         public static bool IsTempGameIsBeenCanceled(int gameId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 TempGame game = model.TempGame.Where(x => x.GameId == gameId).FirstOrDefault();
                 if (game is null) return false;
 
-                return game.TypeId == GetCanceledGameStatusId(); 
+                return game.TypeId == GetCanceledGameStatusId();
             }
         }
+
+        public static void SetUserLoginStatus(int userId, bool status)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
+                if (user is null) return;
+
+                user.IsLogged = status;
+
+                model.SaveChanges();
+            }
+        }
+
+        public static bool IsUserLogged(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
+                return user.IsLogged is null || !((bool)user.IsLogged) ? false : true;
+            }
+        }
+
+        public static List<EntityModels.GameRequest> GetAllGotUserRequests(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.GameRequest.Where(x => x.ReciverId == userId).ToList();
+            }
+        }
+
+        public static List<EntityModels.GameRequest> GetGameRequestSentByUser(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.GameRequest.Where(x => x.SenderId == userId).ToList();
+            }
+        }
+
+        public static string GetUserLoginById(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
+                return user is null ? null : user.Login;
+            }
+        }
+
+        public static void AddFriendOffer(int senderId, int receiverId)
+        {
+            using (var model = new TickCross())
+            {
+                FriendOffer offer = new FriendOffer();
+
+                offer.SenderId = senderId;
+                offer.ReciverId = receiverId;
+                offer.StatusId = GetFriendRequestStatusId(FriendRequestStatus.Sent);
+
+                model.FriendOffer.Add(offer);
+
+                model.SaveChanges();
+            }
+        }
+
+        public static void ChangeStatusForFriendRequest(int senderId, int receiverId, FriendRequestStatus newStatus)
+        {
+            int friendReqId = GetFriendRequestBySenderReceiverIds(senderId, receiverId);
+            using (var model = new TickCross())
+            {
+                model.FriendOffer.Where(x => x.Id == friendReqId).First().StatusId = GetFriendRequestStatusId(newStatus);
+                model.SaveChanges();
+            }
+        }
+
+        public static void RemoveFriendRequest(int senderId, int receiverId)
+        {
+            using (var model = new TickCross())
+            {
+                model.FriendOffer.Remove(model.FriendOffer.Where(x => x.SenderId == senderId && x.ReciverId == receiverId).First());
+                model.SaveChanges();
+            }
+        }
+
+        public static List<FriendRequestModel> GetFriendReqsSentByUser(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return GetFriendReqModels(model.FriendOffer.Where(x => x.SenderId == userId).ToList());
+            }
+        }
+
+        public static List<FriendRequestModel> GetFriendReqsSentToUser(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return GetFriendReqModels(model.FriendOffer.Where(x => x.ReciverId == userId).ToList());
+            }
+        }
+
+        public static List<string> GetFriendLogins(int userId)
+        {
+            List<string> res = new List<string>();
+            using (var model = new TickCross())
+            {
+                List<EntityModels.UserFriend> userFriends = model.UserFriend.Where(x => x.UserId == userId).ToList();
+
+                foreach (var userFriend in userFriends)
+                {
+                    res.Add(GetUserLoginById((int)userFriend.FriendId));
+                }
+                return res;
+            }
+        }
+
+        public static List<string> GetUserLoginsToAddInFriends(int userId)
+        {
+            //That not friends 
+            //That not requested
+            //not userId
+
+            List<string> res = new List<string>();
+            using (var model = new TickCross())
+            {
+                List<int> friends = new List<int>();
+                foreach (var friend in model.UserFriend)
+                {
+                    if (friend.FriendId == userId && friend.UserId != userId)
+                    {
+                        friends.Add((int)friend.UserId);
+                    }
+                }
+
+                List<int> notFriendIds = new List<int>();
+
+                foreach (var user in model.User)
+                {
+                    if (user.Id != userId && !friends.Contains(user.Id))
+                    {
+                        notFriendIds.Add(user.Id);
+                    }
+                }
+
+                foreach (var offer in model.FriendOffer)
+                {
+                    if (notFriendIds.Contains((int)offer.SenderId) || notFriendIds.Contains((int)offer.ReciverId))
+                    {
+                        notFriendIds.Remove((int)offer.SenderId);
+                        notFriendIds.Remove((int)offer.ReciverId);
+                    }
+                }
+
+                for (int i = 0; i < notFriendIds.Count; i++)
+                {
+                    res.Add(GetUserLoginById(notFriendIds[i]));
+                }
+            }
+            return res;
+        }
+
+        public static void RemoveFriendOfferBySenderLogin(int userId, string senderLogin)
+        {
+            int senderId = GetUserByLogin(senderLogin).Id;
+
+            using(var model = new TickCross())
+            {
+                model.FriendOffer.Remove(model.FriendOffer.Where(
+                    x => x.SenderId == senderId && x.ReciverId == userId).First());
+
+                model.SaveChanges();
+            }
+        }
+
+        public static void RemoveFriendOfferByReceiverLogin(int userId, string receiverLogin)
+        {
+            int receiverId = GetUserByLogin(receiverLogin).Id;
+
+            using (var model = new TickCross())
+            {
+                model.FriendOffer.Remove(model.FriendOffer.Where(
+                    x => x.SenderId == userId && x.ReciverId == receiverId).First());
+
+                model.SaveChanges();
+            }
+        }
+
+        private static List<FriendRequestModel> GetFriendReqModels(List<FriendOffer> reqs)
+        {
+            List<FriendRequestModel> res = new List<FriendRequestModel>();
+
+            foreach (var req in reqs)
+            {
+                string senderLogin = GetUserLoginById((int)req.SenderId);
+                string receiverLogin = GetUserLoginById((int)req.ReciverId);
+
+                res.Add(new FriendRequestModel(senderLogin, receiverLogin));
+            }
+            return res;
+        }
+
+        private static int GetFriendRequestBySenderReceiverIds(int senderId, int receiverId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.FriendOffer.Where(x => x.SenderId == senderId && x.ReciverId == receiverId).First().Id;
+            }
+        }
+
+        private static int GetFriendRequestStatusId(FriendRequestStatus status)
+        {
+            using (var model = new TickCross())
+            {
+                return model.FriendReqStatus.Where(x => x.Name == status.ToString()).First().Id;
+            }
+        }
+
+
     }
 }

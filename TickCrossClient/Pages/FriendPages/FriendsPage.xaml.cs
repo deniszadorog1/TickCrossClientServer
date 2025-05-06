@@ -1,6 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using TickCrossClient.Services;
+using TickCrossLib.EntityModels;
+using TickCrossLib.Models;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages.FriendPages
 {
@@ -17,9 +21,25 @@ namespace TickCrossClient.Pages.FriendPages
             _frame = frame;
             InitializeComponent();
 
-            AddBasicParams();
+            SetTimer();
         }
 
+        private DispatcherTimer _timer;
+        private void SetTimer()
+        {
+            _timer = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromSeconds(1)
+            };
+            _timer.Tick += async (sender, e) =>
+            {
+                FriendsToAddList.Items.Clear();
+                FriendsToRemoveList.Items.Clear();
+                AddBasicParams();
+            };
+            _timer.Start();
+        }
+        
         public void AddBasicParams()
         {
             SetListBoxes();
@@ -34,23 +54,22 @@ namespace TickCrossClient.Pages.FriendPages
         public async void SetFriendsToRemove()
         {
             FriendsToAddList.Items.Clear();
-            List<TickCrossLib.Models.User> toRemove = await ApiService.GetUsersThatNotFriend(_user.Login);
+            List<string> toRemove = await ApiService.GetUserLoginsToAddInFriends(_user.Id);
             SetUsersInTextBlock(toRemove, FriendsToAddList);
         }
 
         public async void SetFriendsToAdd()
         {
             FriendsToRemoveList.Items.Clear();
-            List<TickCrossLib.Models.User> friends = await ApiService.GetUserFriends(_user.Login);
+            List<string> friends = await ApiService.GetFriendsLogins(_user.Id);
             SetUsersInTextBlock(friends, FriendsToRemoveList);
         }
 
-        public void SetUsersInTextBlock(List<TickCrossLib.Models.User> users, ListBox box)
+        public void SetUsersInTextBlock(List<string> users, ListBox box)
         {
-            if (users is null) users = new List<TickCrossLib.Models.User>();
             foreach (var user in users)
             {
-                box.Items.Add(GetTextBlockWithUserLogin(user.Login));
+                box.Items.Add(GetTextBlockWithUserLogin(user));
             }
         }
 
@@ -75,11 +94,20 @@ namespace TickCrossClient.Pages.FriendPages
 
         private async void AddBut_Click(object sender, RoutedEventArgs e)
         {
+            if (FriendsToAddList.SelectedItem is null) return;
+            //Check is Offer can be crated (already in offers or friends etc...)
+            //Add In Friend offer
+
+            await ApiService.AddRequest(_user.Id, ((TextBlock)FriendsToAddList.SelectedItem).Text);
+
+
+            return;
+
             string? newFriendLoginName = GetUserLoginFromListBox(FriendsToAddList);
             if (newFriendLoginName == string.Empty) return;
 
             await ApiService.AddFriend(_user, newFriendLoginName);
-
+           
             SetListBoxes();
         }
 

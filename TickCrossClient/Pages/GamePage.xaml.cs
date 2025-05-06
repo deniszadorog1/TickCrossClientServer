@@ -212,8 +212,16 @@ namespace TickCrossClient.Pages
             };
             _moveTimer.Tick += async (sender, e) =>
             {
+                if (!await ApiService.IsUserIsLoggedById(_game.FirstPlayer.Id) ||
+                    !await ApiService.IsUserIsLoggedById(_game.SecondPlayer.Id))
+                {
+                    await ApiService.RemoveTempGame(_game.Id);
+                    GameEnded(TickCrossLib.Enums.GameEnded.Canceled);
+                    return;
+                }
+
                 //Is enemy is closed game
-                if(await IsGameIsClosed())
+                if (await IsGameIsClosed())
                 {
                     await ApiService.RemoveTempGame(_game.Id);
                     GameEnded(TickCrossLib.Enums.GameEnded.Canceled);

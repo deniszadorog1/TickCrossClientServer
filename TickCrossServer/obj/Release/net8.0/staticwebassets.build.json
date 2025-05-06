@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "i7Q/jI5aGCY8GjeYZmXw36Bq0HvCoKOfcMJADMcDbxM=",
+  "Source": "TickCrossServer",
+  "BasePath": "_content/TickCrossServer",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

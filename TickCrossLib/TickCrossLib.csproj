@@ -297,6 +297,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EntityModels\FriendOffer.cs" />
+    <Compile Include="EntityModels\FriendReqStatus.cs" />
     <Compile Include="EntityModels\Game.cs" />
     <Compile Include="EntityModels\GameHistory.cs" />
     <Compile Include="EntityModels\GameRequest.cs" />
@@ -307,6 +309,7 @@
     <Compile Include="EntityModels\TickCross.cs" />
     <Compile Include="EntityModels\User.cs" />
     <Compile Include="EntityModels\UserFriend.cs" />
+    <Compile Include="Enums\FriendRequestStatus.cs" />
     <Compile Include="Enums\GameEnded.cs" />
     <Compile Include="Enums\RequestStatus.cs" />
     <Compile Include="Enums\TickType.cs" />
@@ -315,6 +318,8 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameRequest.cs" />
     <Compile Include="Models\HelpModels\Cord.cs" />
+    <Compile Include="Models\NonePlayable\FriendRequestModel.cs" />
+    <Compile Include="Models\NonePlayable\GameRequestModel.cs" />
     <Compile Include="Models\System.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

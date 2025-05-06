@@ -196,5 +196,14 @@ namespace TickCrossClient.Pages
             but.Height = height;
         }
 
+        private void GameReqsBut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FriendRequest_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Content = new FriendPages.FriendAcceptance(_frame, _user);
+        }
     }
 }

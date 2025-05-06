@@ -125,15 +125,26 @@ namespace TickCrossClient
         {
             if (!MainFrame.IsEnabled) ClearSecondaryFrame();
 
+            
             if (MainFrame.Content is Registration || MainFrame.Content is MainPage ||
                 MainFrame.Content is UserOptions)
             {
                 MainFrame.Content = new Login(MainFrame);
+
+                if ( _loggedUser is not null)
+                {
+                    ApiService.SetUserLoginStatus(_loggedUser.Id, false);
+                    ApiService.RemoveUserRequests(_loggedUser.Id);
+                    ApiService.RemoveTempGame(_loggedUser.Id);
+                }
+
                 e.Cancel = true;
                 if(!(_timer is null))   _timer.Stop();
                 _loggedUser = null;
             }
-            else if (MainFrame.Content is GamePage || MainFrame.Content is FriendsPage)
+            else if (MainFrame.Content is GamePage || MainFrame.Content is FriendsPage || 
+                MainFrame.Content is FriendAcceptance || MainFrame.Content is GameRequests)
+                 
             {
                 if(MainFrame.Content is GamePage gamePage)
                 {
@@ -144,6 +155,8 @@ namespace TickCrossClient
                 MainFrame.Content = new MainPage(MainFrame, _loggedUser);
                 e.Cancel = true;
             }
+
+
             SetWindowSize();
         }
 

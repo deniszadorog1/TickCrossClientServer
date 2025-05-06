@@ -12,6 +12,8 @@ namespace TickCrossLib.EntityModels
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
+            FriendOffer = new HashSet<FriendOffer>();
+            FriendOffer1 = new HashSet<FriendOffer>();
             Game = new HashSet<Game>();
             Game1 = new HashSet<Game>();
             GameHistory = new HashSet<GameHistory>();
@@ -30,6 +32,12 @@ namespace TickCrossLib.EntityModels
         public string Password { get; set; }
 
         public bool? IsLogged { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FriendOffer> FriendOffer { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FriendOffer> FriendOffer1 { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Game> Game { get; set; }

@@ -38,9 +38,16 @@ namespace TickCrossClient.Pages
                 MessageBox.Show("something went wrong!");
                 return;
             }
-            
+
+            if (await ApiService.IsUserIsLoggedById(loggedUser.Id))
+            {
+                MessageBox.Show("Вы думали я вас не переинраю?");
+                return;
+            }
             loggedUser.SetToken(JwtService.Generate(loggedUser));
             ApiService.SetToken(loggedUser.GetToken());
+
+            ApiService.SetUserLoginStatus(loggedUser.Id, true);
 
             ((MainWindow)Window.GetWindow(_frame)).SetLoggedUser(loggedUser);
 

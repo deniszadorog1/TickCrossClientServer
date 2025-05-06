@@ -37,6 +37,7 @@ namespace TickCrossClient.Pages.GameReqs
 
         private async void AcceptReq_Click(object sender, RoutedEventArgs e)
         {
+           
             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
 
             List<char>? signs = await ApiService.GetSigns();
