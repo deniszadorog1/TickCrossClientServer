@@ -67,10 +67,16 @@
             </Border.Effect>
 
             <StackPanel>
-                <TextBlock Name ="AddFriendsBlock" Text="Friends to add"
+                <TextBlock Name ="AddFriendsBlock" Text="Friends to add" 
                            HorizontalAlignment="Center" Margin="10" FontSize="24" FontWeight="Bold"/>
 
-                <ListBox Name ="FriendsToAddList"  Height="250" Margin="10" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                <TextBlock Margin="10 0 10 0" FontSize="15" Foreground="Gray" Text="Login"/>
+                <TextBox Name ="FriendsToAddBox" VerticalContentAlignment="Center"
+                         Height="50" Margin="10" MaxLength="24" FontSize="16" />
+
+                <TextBlock Margin="10 0 10 10 " Height="50" FontSize="20" Text="Entter new friend login"
+                           HorizontalAlignment="Center" FontWeight="Bold" Foreground="Gray"/>
+
 
                 <Button x:Name="AddBut"  Margin="10 10 10 0 "
                          Style="{StaticResource MaterialDesignRaisedLightButton}"
@@ -79,6 +85,15 @@
                          Foreground="White"
                          Background="Black"
                         Click="AddBut_Click"/>
+
+                <Button x:Name="UpdateDbBUt"  Margin="10 10 10 0 "
+                         Style="{StaticResource MaterialDesignRaisedLightButton}"
+                         Content="Update page" 
+                         BorderBrush="Transparent"
+                         Foreground="White"
+                         Background="Black"
+                        Click="UpdateDbBUt_Click"/>
+
             </StackPanel>
         </Border>
 

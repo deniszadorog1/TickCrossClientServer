@@ -44,13 +44,29 @@
                   Background="Black"
                         Click="RemoveBut_Click"/>
 
-                <Button x:Name="BackBut"  Margin="10 5 10 0 "
-                  Style="{StaticResource MaterialDesignRaisedLightButton}"
-                  Content="Back" 
-                  BorderBrush="Transparent"
-                  Foreground="White"
-                  Background="Black"
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Grid.Column="0" x:Name="UpdatePageBut"  Margin="10 5 5 0 "
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Content="Update page" 
+                        BorderBrush="Transparent"
+                        Foreground="White"
+                        Background="Black"
+                        Click="UpdatePageBut_Click"/>
+
+                    <Button Grid.Column="1" x:Name="BackBut"  Margin="5 5 10 0 "
+                        Style="{StaticResource MaterialDesignRaisedLightButton}"
+                        Content="Back" 
+                        BorderBrush="Transparent"
+                        Foreground="White"
+                        Background="Black"
                         Click="BackBut_Click"/>
+                </Grid>
+
             </StackPanel>
         </Border>
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
+using TickCrossLib.Enums;
 using TickCrossLib.Models;
 using TickCrossLib.Services;
 
@@ -43,13 +44,13 @@ namespace TickCrossServer.Controllers
         [HttpPost("SetUserLoginStatus")]
         public void SetUserLoginStatus([FromBody] UserLoginStatus status)
         {
-            DBService.SetUserLoginStatus(status.UserId, status.IsLogged);
+            DBService.SetUserLoginStatus(status.UserId, status.Stat);
         }
 
         public class UserLoginStatus()
         {
             public int UserId { get; set; }
-            public bool IsLogged { get; set; }
+            public UserStat Stat { get; set; }
         };
 
 

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.Eventing.Reader;
+﻿using MaterialDesignThemes.Wpf;
+using System.Diagnostics.Eventing.Reader;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,6 +10,7 @@ using TickCrossClient.Pages;
 using TickCrossClient.Pages.FriendPages;
 using TickCrossClient.Pages.GameReqs;
 using TickCrossClient.Services;
+using TickCrossLib.Enums;
 
 namespace TickCrossClient
 {
@@ -133,8 +135,8 @@ namespace TickCrossClient
 
                 if ( _loggedUser is not null)
                 {
-                    ApiService.SetUserLoginStatus(_loggedUser.Id, false);
-                    ApiService.RemoveUserRequests(_loggedUser.Id);
+                    ApiService.SetUserLoginStatus(_loggedUser.Id, UserStat.Offline);
+                    //ApiService.RemoveUserRequests(_loggedUser.Id);
                     ApiService.RemoveTempGame(_loggedUser.Id);
                 }
 
@@ -232,6 +234,11 @@ namespace TickCrossClient
 
                 _req = null;
                 _timer.Start();
+            }
+
+            if (_loggedUser is not null && page is Login)
+            {
+                ApiService.SetUserLoginStatus(_loggedUser.Id, UserStat.Offline);
             }
         }
 

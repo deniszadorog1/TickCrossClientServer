@@ -36,25 +36,14 @@ namespace TickCrossClient.Pages.FriendPages
 
             InitializeComponent();
 
-            FillListBoxes();
+            SetRequests();
         }
 
-        private DispatcherTimer _timer;
-        private void FillListBoxes()
+        private void SetRequests()
         {
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(1)
-            };
-            _timer.Tick += async (sender, e) =>
-            {
-                SentOffersList.Items.Clear();
-                RecivedOffersList.Items.Clear();
-                SetListBoxes();
-                //Get sent friend requests
-                //Get recived friend Requests
-            };
-            _timer.Start();
+            SentOffersList.Items.Clear();
+            RecivedOffersList.Items.Clear();
+            SetListBoxes();
         }
 
         private void SetListBoxes()
@@ -101,7 +90,7 @@ namespace TickCrossClient.Pages.FriendPages
             TextBlock isEnemy = new TextBlock()
             {
                 Margin = new Thickness(15, 0, 0, 0),
-                Text = " - is enemy",
+                Text = " - pot friend",
                 FontSize = textSize
             };
 
@@ -130,6 +119,7 @@ namespace TickCrossClient.Pages.FriendPages
             if (SentOffersList.SelectedItem is null) return;
             string senderLogin = GetEnemyLogin(SentOffersList);
             await ApiService.DeleteFriendReqByReceiverLogin(_user.Id, senderLogin);
+            SetRequests();
         }
 
         private void BackBut_Click(object sender, RoutedEventArgs e)
@@ -143,6 +133,7 @@ namespace TickCrossClient.Pages.FriendPages
             if (RecivedOffersList.SelectedItem is null) return;
             string receiverLogin = GetEnemyLogin(RecivedOffersList);
             await ApiService.DeleteFriendReqBySenderLogin(_user.Id, receiverLogin);
+            SetRequests();
         }
 
         private async void AcceptBut_Click(object sender, RoutedEventArgs e)
@@ -154,8 +145,13 @@ namespace TickCrossClient.Pages.FriendPages
             await ApiService.AddFriend(_user, enemyLogin);
 
             await ApiService.DeleteFriendReqBySenderLogin(_user.Id, enemyLogin);
+            SetRequests();
             //remove req by senderLogin + receiver id
+        }
 
+        private void UpdatePageBut_Click(object sender, RoutedEventArgs e)
+        {
+            SetRequests();
         }
     }
 }

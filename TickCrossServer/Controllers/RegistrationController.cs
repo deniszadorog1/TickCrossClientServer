@@ -30,7 +30,7 @@ namespace TickCrossServer.Controllers
         public IActionResult Post([FromBody] UserRegistrationModel model)
         {
             if (!RegexService.RegistrationPasswordValid(model.Password) ||
-                !!RegexService.RegistrationPasswordValid(model.Login)) return NoContent();
+                !RegexService.RegistrationPasswordValid(model.Login)) return NoContent();
 
 
             DBService.AddNewUser(model.Login, model.Password);

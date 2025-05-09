@@ -309,10 +309,12 @@
     <Compile Include="EntityModels\TickCross.cs" />
     <Compile Include="EntityModels\User.cs" />
     <Compile Include="EntityModels\UserFriend.cs" />
+    <Compile Include="EntityModels\UserStatus.cs" />
     <Compile Include="Enums\FriendRequestStatus.cs" />
     <Compile Include="Enums\GameEnded.cs" />
     <Compile Include="Enums\RequestStatus.cs" />
     <Compile Include="Enums\TickType.cs" />
+    <Compile Include="Enums\UserStat.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\Field.cs" />
     <Compile Include="Models\Game.cs" />

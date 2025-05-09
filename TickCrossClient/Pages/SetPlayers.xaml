@@ -26,7 +26,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Vertical" Margin="10"> 
+            <StackPanel Orientation="Vertical" Margin="10">
                 <TextBlock Name ="ChosenEnemyBlock" Text="Enemy Login:"/>
                 <ListBox x:Name="EnemiesList" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="160" Width="200" HorizontalAlignment="Left"/>
             </StackPanel>
@@ -45,19 +45,25 @@
                         </ComboBoxItem>
                     </ComboBox>
 
-
-
-
-                    <Button x:Name="StartGameBut"  Margin="10 10 10 0 "
+                    <Button x:Name="SendREquestBut"  Margin="10 10 10 0"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Height="30"
-                         Content="Start Game"       
-                         BorderBrush="Transparent"
-                         Foreground="White"
-                         Background="Black"
+                            Content="Send request"       
+                            BorderBrush="Transparent"
+                            Foreground="White"
+                            Background="Black"
                             Click="StartGameBut_Click"/>
 
-                    <Button x:Name="BackBut"  Margin="10 5 10 0 "
+                    <Button x:Name="UpdatePageBut"  Margin="10 5 10 0"
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Height="30"
+                            Content="Update page"       
+                            BorderBrush="Transparent"
+                            Foreground="White"
+                            Background="Black"
+                            Click="UpdatePageBut_Click"/>
+
+                    <Button x:Name="BackBut"  Margin="10 5 10 0"
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                             Height="30"
                          Content="Back"       

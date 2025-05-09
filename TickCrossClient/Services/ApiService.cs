@@ -225,7 +225,7 @@ namespace TickCrossClient.Services
             var response = await _client.SendAsync(request);
 
         }
-        
+
         public static async Task<List<string>> GetFriendsLogins(int userId)
         {
             var response = await _client.GetAsync($"api/Friends/GetFriendsLogins?userId={userId}");
@@ -310,6 +310,15 @@ namespace TickCrossClient.Services
             await _client.SendAsync(request);
         }
 
+        public static async Task<bool> IsFriendRequestCanBeSent(int userId, string newFriendLogin)
+        {
+            var response = await _client.GetAsync($"api/Friends/IsFriendRequestCanBeSent?userId={userId}&newFriendLogin={newFriendLogin}");
+            if (!response.IsSuccessStatusCode) return false;
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<bool>(json);
+        }
+
         //Game Request
         public static async Task AddNewGameRequest(string senderLogin, string receiverLogin,
             char enemySign, char userSign, TickCrossLib.Enums.RequestStatus status)
@@ -349,9 +358,9 @@ namespace TickCrossClient.Services
             var response = await _client.PostAsync("api/GameReq/AddNewTempGame", content);
         }
 
-        public static async Task<bool> IsUserIsLogged(string login)
+        public static async Task<bool> IsUserIsOnline(string login)
         {
-            var response = await _client.GetAsync($"api/GameReq/IsUserIsLoggedIn?login={login}");
+            var response = await _client.GetAsync($"api/GameReq/IsUserIsOnline?login={login}");
             if (!response.IsSuccessStatusCode) return false;
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -360,12 +369,12 @@ namespace TickCrossClient.Services
             return isLogged;
         }
 
-        public static async void SetUserLoginStatus(int userId, bool isLogged)
+        public static async void SetUserLoginStatus(int userId, UserStat isLogged)
         {
             var data = new
             {
                 UserId = userId,
-                IsLogged = isLogged
+                Stat = isLogged
             };
 
             string json = JsonConvert.SerializeObject(data);
@@ -639,6 +648,50 @@ namespace TickCrossClient.Services
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<List<GameRequestModel>>(jsonResponse);
+        }
+
+        public static async Task RemoveGameRequest(int userId, string enemyLogin)
+        {
+            var data = new
+            {
+                UserId = userId,
+                EnemyLogin = enemyLogin
+            };
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveGameRequest"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            var response = await _client.SendAsync(request);
+        }
+
+        public static async Task RejectGameRequest(int userId, string senderLogin)
+        {
+            var data = new
+            {
+                UserId = userId,
+                EnemyLogin = senderLogin
+            };
+
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Delete,
+                RequestUri = new Uri("https://localhost:7238/api/GameReq/RejectGameRequest"),
+                Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
+            };
+            var response = await _client.SendAsync(request);
+        }
+
+        public static async Task<List<TickCrossLib.Models.User>> GetUsersToSendGameReq(int userId)
+        {
+            var response = await _client.GetAsync($"api/GameReq/GetUsersToSendGameRequest?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<List<TickCrossLib.Models.User>>(jsonResponse);
         }
     }
 }

@@ -39,17 +39,34 @@
                          Content="Remove" 
                          BorderBrush="Transparent"
                          Foreground="White"
-                         Background="Black"/>
+                         Background="Black"
+                         Click="RemoveRequestBut_Click"/>
 
-                <Button x:Name="BackBut"  Margin="10 5 10 0 "
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0" x:Name="BackBut"  Margin="10 5 2 0 "
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
-                         Content="Back" 
-                         BorderBrush="Transparent"
-                         Foreground="White"
-                         Background="Black"/>
+                            Content="Back" 
+                            BorderBrush="Transparent"
+                            Foreground="White"
+                            Background="Black"
+                            Click="BackBut_Click"/>
+
+                    <Button Grid.Column="1" x:Name="UpdatePageBut"  Margin="2 5 10 0 "
+                            Style="{StaticResource MaterialDesignRaisedLightButton}"
+                            Content="Update" 
+                            BorderBrush="Transparent"
+                            Foreground="White"
+                            Background="Black"
+                            Click="UpdatePageBut_Click"/>
+                </Grid>
+
 
             </StackPanel>
-
         </Border>
 
         <Border x:Name="ConfirmRequestsBorder"
@@ -66,25 +83,23 @@
                        Margin="15"/>
 
                 <ListBox x:Name="SetReqsListBox" Height="200" Margin="5"/>
-                
+
                 <Button x:Name="AcceptGameBut"  Margin="10 0 10 0 "
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                          Content="Accept" 
                          BorderBrush="Transparent"
                          Foreground="White"
-                         Background="Black"/>
+                         Background="Black"
+                         Click="AcceptGameBut_Click"/>
 
                 <Button x:Name="RejectGameBut"  Margin="10 5 10 0 "
                             Style="{StaticResource MaterialDesignRaisedLightButton}"
                          Content="Reject" 
                          BorderBrush="Transparent"
                          Foreground="White"
-                         Background="Black"/>
-
+                         Background="Black"
+                         Click="RejectGameBut_Click"/>
             </StackPanel>
-
         </Border>
-
-
     </Grid>
 </Page>

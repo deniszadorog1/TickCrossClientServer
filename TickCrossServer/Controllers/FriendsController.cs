@@ -96,6 +96,12 @@ namespace TickCrossServer.Controllers
             public string ReceiverLogin { get; set; }
         }
 
+        [HttpGet("IsFriendRequestCanBeSent")]
+        public bool IsFriendRequestCanBeSent(int userId, string newFriendLogin)
+        {
+            return DBService.IsFriendRequestCanBeSent(userId, newFriendLogin);
+        }
+
 
         // DELETE api/<FriendsController>/5
         [HttpDelete("RemoveFriend")]

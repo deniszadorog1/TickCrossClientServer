@@ -9,13 +9,13 @@ namespace TickCrossLib.Models.NonePlayable
 {
     public class GameRequestModel
     {
-        private string SenderLogin { get; set; }
+        public string SenderLogin { get; set; }
 
-        private string ReceiverLogin { get; set; }
+        public string ReceiverLogin { get; set; }
 
-        private char? SenderSign { get; set; }
+        public char? SenderSign { get; set; }
         
-        private char? ReceiverSign { get; set; }
+        public char? ReceiverSign { get; set; }
 
         private Enums.RequestStatus Status { get; set; }
         

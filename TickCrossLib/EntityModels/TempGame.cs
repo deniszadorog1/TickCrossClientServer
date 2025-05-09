@@ -23,6 +23,8 @@ namespace TickCrossLib.EntityModels
 
         public virtual Game Game { get; set; }
 
+        public virtual User User { get; set; }
+
         public virtual TempGameType TempGameType { get; set; }
     }
 }

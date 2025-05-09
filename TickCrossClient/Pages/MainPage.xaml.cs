@@ -173,7 +173,6 @@ namespace TickCrossClient.Pages
         public void SetPanelPramsSize(Size panelSize)
         {
             SetMenuButtsSize(panelSize);
-
         }
 
         public void SetMenuButtsSize(Size panelSize)
@@ -198,7 +197,7 @@ namespace TickCrossClient.Pages
 
         private void GameReqsBut_Click(object sender, RoutedEventArgs e)
         {
-
+            _frame.Content = new GameReqs.GameRequests(_frame, _user);
         }
 
         private void FriendRequest_Click(object sender, RoutedEventArgs e)

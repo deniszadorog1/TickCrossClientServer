@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using TickCrossClient.Services;
@@ -21,41 +22,7 @@ namespace TickCrossClient.Pages.FriendPages
             _frame = frame;
             InitializeComponent();
 
-            SetTimer();
-        }
-
-        private DispatcherTimer _timer;
-        private void SetTimer()
-        {
-            _timer = new DispatcherTimer
-            {
-                Interval = TimeSpan.FromSeconds(1)
-            };
-            _timer.Tick += async (sender, e) =>
-            {
-                FriendsToAddList.Items.Clear();
-                FriendsToRemoveList.Items.Clear();
-                AddBasicParams();
-            };
-            _timer.Start();
-        }
-        
-        public void AddBasicParams()
-        {
-            SetListBoxes();
-        }
-
-        public void SetListBoxes()
-        {
             SetFriendsToAdd();
-            SetFriendsToRemove();
-        }
-
-        public async void SetFriendsToRemove()
-        {
-            FriendsToAddList.Items.Clear();
-            List<string> toRemove = await ApiService.GetUserLoginsToAddInFriends(_user.Id);
-            SetUsersInTextBlock(toRemove, FriendsToAddList);
         }
 
         public async void SetFriendsToAdd()
@@ -88,27 +55,23 @@ namespace TickCrossClient.Pages.FriendPages
             if (toRemoveLogin == string.Empty) return;
 
             await ApiService.RemoveFriend(_user, toRemoveLogin);
-
-            SetListBoxes();
         }
 
         private async void AddBut_Click(object sender, RoutedEventArgs e)
         {
-            if (FriendsToAddList.SelectedItem is null) return;
+            if (string.IsNullOrEmpty(FriendsToAddBox.Text)) return;
             //Check is Offer can be crated (already in offers or friends etc...)
             //Add In Friend offer
 
-            await ApiService.AddRequest(_user.Id, ((TextBlock)FriendsToAddList.SelectedItem).Text);
 
+            
 
-            return;
+            //check is user exist + is it a friend + is it in request
+            bool isCanBeSent = await ApiService.IsFriendRequestCanBeSent(_user.Id, FriendsToAddBox.Text);
 
-            string? newFriendLoginName = GetUserLoginFromListBox(FriendsToAddList);
-            if (newFriendLoginName == string.Empty) return;
+            if (!isCanBeSent) return;
 
-            await ApiService.AddFriend(_user, newFriendLoginName);
-           
-            SetListBoxes();
+            await ApiService.AddRequest(_user.Id, FriendsToAddBox.Text);
         }
 
         public string GetUserLoginFromListBox(ListBox box)
@@ -178,15 +141,12 @@ namespace TickCrossClient.Pages.FriendPages
             AddBut.FontSize = fontSize;
         }
 
-
         public void SetLestBoxesHeight(bool isBig)
         {
             int height = isBig ? JsonService.GetNumByName("UserPageBigListBoxSize") :
                 JsonService.GetNumByName("UserPageBasicListBoxSize");
 
             FriendsToRemoveList.Height = height;
-            FriendsToAddList.Height = height;
-
         }
 
         private int _basicBorderBlockNameFontSize =
@@ -210,6 +170,13 @@ namespace TickCrossClient.Pages.FriendPages
         {
             _frame.Content = new MainPage(_frame, _user);
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
+        }
+
+        private void UpdateDbBUt_Click(object sender, RoutedEventArgs e)
+        {
+            FriendsToAddBox.Text = string.Empty;
+            FriendsToRemoveList.Items.Clear();
+            SetFriendsToAdd();
         }
     }
 }

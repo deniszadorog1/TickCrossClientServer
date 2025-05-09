@@ -21,6 +21,7 @@ using TickCrossLib.Enums;
 using TickCrossLib.Models.NonePlayable;
 using System.Reflection;
 using System.Data.OleDb;
+using System.Diagnostics.Contracts;
 
 namespace TickCrossLib.Services
 {
@@ -29,9 +30,9 @@ namespace TickCrossLib.Services
         public static List<Models.User> GetAllUsers()
         {
             List<Models.User> result = new List<Models.User>();
-            using (var system = new TickCross())
+            using (var model = new TickCross())
             {
-                foreach (var user in system.User)
+                foreach (var user in model.User)
                 {
                     result.Add(new Models.User(user.Login, user.Password, user.Id));
                 }
@@ -246,21 +247,21 @@ namespace TickCrossLib.Services
             }
         }
 
-        public static void SetLoginStatusToUser(string login, bool status)
+        public static void SetLoginStatusToUser(string login, UserStat status)
         {
             using (var model = new TickCross())
             {
                 var user = model.User.Where(x => x.Login == login).FirstOrDefault();
                 if (user is null) return;
-                user.IsLogged = status;
+                user.StatusId = GetUserStatusId(status.ToString());
             }
         }
 
-        public static bool IsUserIsLogged(string login)
+        public static bool IsUserIsOnline(string login)
         {
             using (var model = new TickCross())
             {
-                return model.User.Where(x => x.Login == login && !(x.IsLogged == null) && (bool)x.IsLogged).Any();
+                return model.User.Where(x => x.Login == login && !(x.StatusId == null) && IsUserStatusIsOnline((int)x.StatusId)).Any();
             }
 
         }
@@ -269,7 +270,7 @@ namespace TickCrossLib.Services
         {
             using (var model = new TickCross())
             {
-                return model.User.Where(x => x.Id == id && !(x.IsLogged == null) && (bool)x.IsLogged).Any();
+                return model.User.Where(x => x.Id == id && !(x.StatusId == null) && IsUserStatusIsOnline((int)x.StatusId)).Any();
             }
         }
 
@@ -527,7 +528,7 @@ namespace TickCrossLib.Services
         {
             using (var model = new TickCross())
             {
-                EntityModels.GameRequest req = model.GameRequest.Where(x => x.Id == requestId).FirstOrDefault();
+                EntityModels.GameRequest req = model.GameRequest.Where(x => x.StatusId == requestId).FirstOrDefault();
                 if (req is null) return null;
 
                 return GetRequestStatusId((int)req.StatusId);
@@ -703,14 +704,14 @@ namespace TickCrossLib.Services
             }
         }
 
-        public static void SetUserLoginStatus(int userId, bool status)
+        public static void SetUserLoginStatus(int userId, UserStat status)
         {
             using (var model = new TickCross())
             {
                 EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
                 if (user is null) return;
 
-                user.IsLogged = status;
+                user.StatusId = GetUserStatusId(status.ToString());
 
                 model.SaveChanges();
             }
@@ -721,7 +722,7 @@ namespace TickCrossLib.Services
             using (var model = new TickCross())
             {
                 EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
-                return user.IsLogged is null || !((bool)user.IsLogged) ? false : true;
+                return user.StatusId is null || !(IsUserStatusIsOnline((int)user.StatusId)) ? false : true;
             }
         }
 
@@ -865,7 +866,7 @@ namespace TickCrossLib.Services
         {
             int senderId = GetUserByLogin(senderLogin).Id;
 
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 model.FriendOffer.Remove(model.FriendOffer.Where(
                     x => x.SenderId == senderId && x.ReciverId == userId).First());
@@ -917,6 +918,120 @@ namespace TickCrossLib.Services
             }
         }
 
+        public static void RemoveGameRequest(int senderId, int receiverId)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.GameRequest req = model.GameRequest.Where(x => x.SenderId == senderId &&
+                  x.ReciverId == receiverId).First();
 
+                model.GameRequest.Remove(req);
+
+                model.SaveChanges();
+            }
+        }
+
+        public static List<Models.User> GetFriendsByUserId(int userId)
+        {
+            List<Models.User> res = new List<Models.User>();
+            using (var model = new TickCross())
+            {
+                List<UserFriend> friends = model.UserFriend.Where(x => x.UserId == userId).ToList();
+
+                for (int i = 0; i < friends.Count; i++)
+                {
+                    res.Add(GetUserModelByLogin(GetUserById((int)friends[i].FriendId).Login));
+                }
+            }
+            return res;
+        }
+
+        public static List<Models.User> GetUsersToSendGameReq(int userId)
+        {
+            List<Models.User> res = new List<Models.User>();
+            List<Models.User> friends = GetFriendsByUserId(userId);
+            using (var model = new TickCross())
+            {
+                for (int i = 0; i < friends.Count; i++)
+                {
+                    int friendId = friends[i].Id;
+                    bool hasRequest = model.GameRequest
+                        .Any(x => x.SenderId == friendId || x.ReciverId == friendId);
+
+                    if (!hasRequest)
+                    {
+                        res.Add(friends[i]);
+                    }
+                }
+            }
+            return res;
+        }
+
+        public static bool IsFriendRequestCanBeSent(int userId, string newFriendLogin)
+        {
+            Models.User newUser = GetUserByLogin(newFriendLogin);
+            Models.User temUser = GetUserById(userId);
+
+            //is user exist + is the same logins
+            if (newUser is null || temUser.Login == newUser.Login) return false;
+
+            using (var model = new TickCross())
+            {
+                bool check = model.FriendOffer.Where(x => (x.SenderId == userId && x.ReciverId == newUser.Id) ||
+                (x.SenderId == userId && x.ReciverId == newUser.Id)).Any();
+
+                return !check;
+            }
+        }
+
+        private static bool IsUserStatusIsOnline(int userStatusId)
+        {
+            return GetUserStatusId("Online") == userStatusId;
+        }
+      
+        private static int GetUserStatusId(string userStatus)
+        {
+            using(var model = new TickCross())
+            {
+                var status = model.UserStatus.FirstOrDefault(x => x.Name == userStatus);
+
+                if (status == null)
+                {
+                    throw new InvalidOperationException($"User status '{userStatus}' not found in database.");
+                }
+                return status.Id;
+            }
+        }
+
+        private static string GetUserStatById(int id)
+        {
+            using (var model = new TickCross())
+            {
+                return model.UserStatus.Where(x => x.Id == id).First().Name;
+            }
+        }
+
+        private static UserStat GetUserStatus(string status)
+        {
+            for(int i = (int)UserStat.Offline; i <= (int)UserStat.Unavailable; i++)
+            {
+                if(status == ((UserStat)i).ToString())
+                {
+                    return ((UserStat)i);
+                }
+            }
+            return UserStat.Unavailable;
+        }
+
+        public static bool IsPlayerCanPlayGame(int userId)
+        {
+            using(var model = new TickCross())
+            {
+                EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
+                if (user is null) return false;
+                else if (user.StatusId == 3) return true;
+            }
+            return false;
+        }
     }
 }

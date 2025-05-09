@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using TickCrossClient.Services;
+using TickCrossLib.Enums;
 using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
@@ -47,7 +48,7 @@ namespace TickCrossClient.Pages
             loggedUser.SetToken(JwtService.Generate(loggedUser));
             ApiService.SetToken(loggedUser.GetToken());
 
-            ApiService.SetUserLoginStatus(loggedUser.Id, true);
+            ApiService.SetUserLoginStatus(loggedUser.Id, UserStat.Online);
 
             ((MainWindow)Window.GetWindow(_frame)).SetLoggedUser(loggedUser);
 

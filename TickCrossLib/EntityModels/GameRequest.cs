@@ -15,11 +15,11 @@ namespace TickCrossLib.EntityModels
 
         public int? ReciverId { get; set; }
 
+        public int? StatusId { get; set; }
+
         public int? SenderSignId { get; set; }
 
         public int? ReciverSignId { get; set; }
-
-        public int? StatusId { get; set; }
 
         public virtual User User { get; set; }
 

@@ -19,6 +19,7 @@ namespace TickCrossLib.EntityModels
             GameHistory = new HashSet<GameHistory>();
             GameRequest = new HashSet<GameRequest>();
             GameRequest1 = new HashSet<GameRequest>();
+            TempGame = new HashSet<TempGame>();
             UserFriend = new HashSet<UserFriend>();
             UserFriend1 = new HashSet<UserFriend>();
         }
@@ -31,7 +32,7 @@ namespace TickCrossLib.EntityModels
         [StringLength(255)]
         public string Password { get; set; }
 
-        public bool? IsLogged { get; set; }
+        public int? StatusId { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FriendOffer> FriendOffer { get; set; }
@@ -53,6 +54,11 @@ namespace TickCrossLib.EntityModels
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GameRequest> GameRequest1 { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TempGame> TempGame { get; set; }
+
+        public virtual UserStatus UserStatus { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFriend> UserFriend { get; set; }

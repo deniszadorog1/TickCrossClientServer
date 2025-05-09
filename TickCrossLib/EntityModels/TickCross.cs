@@ -23,6 +23,7 @@ namespace TickCrossLib.EntityModels
         public virtual DbSet<TempGameType> TempGameType { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<UserFriend> UserFriend { get; set; }
+        public virtual DbSet<UserStatus> UserStatus { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -101,6 +102,11 @@ namespace TickCrossLib.EntityModels
                 .HasForeignKey(e => e.SenderId);
 
             modelBuilder.Entity<User>()
+                .HasMany(e => e.TempGame)
+                .WithOptional(e => e.User)
+                .HasForeignKey(e => e.StepperId);
+
+            modelBuilder.Entity<User>()
                 .HasMany(e => e.UserFriend)
                 .WithOptional(e => e.User)
                 .HasForeignKey(e => e.FriendId);
@@ -109,6 +115,11 @@ namespace TickCrossLib.EntityModels
                 .HasMany(e => e.UserFriend1)
                 .WithOptional(e => e.User1)
                 .HasForeignKey(e => e.UserId);
+
+            modelBuilder.Entity<UserStatus>()
+                .HasMany(e => e.User)
+                .WithOptional(e => e.UserStatus)
+                .HasForeignKey(e => e.StatusId);
         }
     }
 }

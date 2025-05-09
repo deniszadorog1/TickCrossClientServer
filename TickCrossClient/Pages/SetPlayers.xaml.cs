@@ -15,7 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using TickCrossClient.Services;
+using TickCrossLib.EntityModels;
 using TickCrossLib.Models;
 
 namespace TickCrossClient.Pages
@@ -26,20 +28,32 @@ namespace TickCrossClient.Pages
     public partial class SetPlayers : Page
     {
         private Frame _frame;
-        private User _user;
-        public SetPlayers(Frame frame, User loggedUser)
+        private TickCrossLib.Models.User _user;
+        public SetPlayers(Frame frame, TickCrossLib.Models.User loggedUser)
         {
             _frame = frame;
             _user = loggedUser;
 
             InitializeComponent();
+            SetEnemiesPages();
+        }
+
+        public void SetEnemiesPages()
+        {
+            EnemiesList.Items.Clear();
             FillEnemiesLoginsList();
         }
 
         public async void FillEnemiesLoginsList()
         {
-            List<User> enemies = new List<User>();
-            enemies.AddRange(await ApiService.GetEnemies(_user.Login));
+            List<TickCrossLib.Models.User> enemies = 
+                await ApiService.GetUsersToSendGameReq(_user.Id);
+
+            if (enemies is null) return;
+
+            //Get enemys friends + that doesnt gave game req
+
+            //enemies.AddRange(await ApiService.GetEnemies(_user.Login));
 
             foreach (var enemy in enemies)
             {
@@ -62,8 +76,8 @@ namespace TickCrossClient.Pages
             string enemyLogin = GetChosenEnemyLogin();
             if (enemyLogin == string.Empty) return;
 
-            User? enemy = await ApiService.GetEnemyPlayer(enemyLogin);
-            ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
+            TickCrossLib.Models.User? enemy = await ApiService.GetEnemyPlayer(enemyLogin);
+            //((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
 
             List<char>? signs = await ApiService.GetSigns();
             if (signs is null || signs.Count == 0) throw new NullReferenceException("Something wrong with signs");
@@ -73,6 +87,7 @@ namespace TickCrossClient.Pages
 
             await ApiService.AddNewGameRequest(_user.Login, enemyLogin, (char)enemySign,
                 signs.First() == enemySign ? signs.Last() : signs.First(), TickCrossLib.Enums.RequestStatus.InProgress);
+            SetEnemiesPages();
         }
 
         public char? GetEnemySign()
@@ -91,6 +106,11 @@ namespace TickCrossClient.Pages
         private void BackBut_Click(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
+        }
+
+        private void UpdatePageBut_Click(object sender, RoutedEventArgs e)
+        {
+            SetEnemiesPages();
         }
     }
 }

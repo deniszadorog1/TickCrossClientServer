@@ -273,6 +273,37 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.FriendsController",
+    "Method": "IsFriendRequestCanBeSent",
+    "RelativePath": "api/Friends/IsFriendRequestCanBeSent",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "newFriendLogin",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.FriendsController",
     "Method": "RemoveFriend",
     "RelativePath": "api/Friends/RemoveFriend",
     "HttpMethod": "DELETE",
@@ -691,21 +722,21 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.GameReqController",
-    "Method": "IsUserIsLogged",
-    "RelativePath": "api/GameReq/IsUserIsLoggedIn",
+    "Method": "GetUsersToSendGameRequest",
+    "RelativePath": "api/GameReq/GetUsersToSendGameRequest",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "login",
-        "Type": "System.String",
+        "Name": "userId",
+        "Type": "System.Int32",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Boolean",
+        "Type": "System.Collections.Generic.List\u00601[[TickCrossLib.Models.User, TickCrossLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -737,6 +768,76 @@
           "application/json",
           "text/json"
         ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "IsUserIsOnline",
+    "RelativePath": "api/GameReq/IsUserIsOnline",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "RejectGameReq",
+    "RelativePath": "api/GameReq/RejectGameRequest",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "toRemove",
+        "Type": "TickCrossServer.Controllers.GameReqController\u002BRemoveGameReqDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "RemoveGameRequest",
+    "RelativePath": "api/GameReq/RemoveGameRequest",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "toRemove",
+        "Type": "TickCrossServer.Controllers.GameReqController\u002BRemoveGameReqDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ]

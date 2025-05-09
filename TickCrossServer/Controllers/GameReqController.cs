@@ -60,10 +60,10 @@ namespace TickCrossServer.Controllers
         }
 
         // GET api/<GameReqController>/5
-        [HttpGet("IsUserIsLoggedIn")]
-        public bool IsUserIsLogged(string login)
+        [HttpGet("IsUserIsOnline")]
+        public bool IsUserIsOnline(string login)
         {
-            return DBService.IsUserIsLogged(login);
+            return DBService.IsUserIsOnline(login);
         }
 
         [HttpGet("GetUserByLogin")]
@@ -134,12 +134,18 @@ namespace TickCrossServer.Controllers
         }
 
 
-
         [HttpGet("GetTempGameStatus")]
         public string GetTempGameStatus(int gameId)
         {
             return DBService.GetTempGameStatus(gameId);
         }
+
+        [HttpGet("GetUsersToSendGameRequest")]
+        public List<TickCrossLib.Models.User> GetUsersToSendGameRequest(int userId)
+        {
+            return DBService.GetUsersToSendGameReq(userId);
+        }
+
 
         [HttpPost("SetRequestStatus")]
         public void SetRequestStatus([FromBody] NewReqStatusParams request)
@@ -205,6 +211,30 @@ namespace TickCrossServer.Controllers
         {
             public int UserId { get; set; }
         };
+
+        [HttpDelete("RemoveGameRequest")]
+        public void RemoveGameRequest([FromBody] RemoveGameReqDTO toRemove)
+        {
+            TickCrossLib.Models.User enemy = 
+                DBService.GetUserByLogin(toRemove.EnemyLogin);
+
+            DBService.RemoveGameRequest(toRemove.UserId, enemy.Id);
+        }
+
+        public class RemoveGameReqDTO
+        {
+            public int UserId { get; set; }
+            public string EnemyLogin { get; set; }
+        };
+
+        [HttpDelete("RejectGameRequest")]
+        public void RejectGameReq([FromBody] RemoveGameReqDTO toRemove)
+        {
+            TickCrossLib.Models.User enemy =
+                DBService.GetUserByLogin(toRemove.EnemyLogin);
+
+            DBService.RemoveGameRequest(enemy.Id, toRemove.UserId);
+        }
 
         [HttpDelete("RemoveTempGame")]
         public void RemoveFriend([FromBody] TempGameId toRemove)
