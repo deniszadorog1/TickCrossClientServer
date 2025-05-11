@@ -66,6 +66,12 @@ namespace TickCrossServer.Controllers
             return DBService.IsUserIsOnline(login);
         }
 
+        [HttpGet("IsUserIsInGame")]
+        public bool IsUserIsInGame(string login)
+        {
+            return DBService.IsUserIsInGame(login);
+        }
+
         [HttpGet("GetUserByLogin")]
         public TickCrossLib.Models.User GetUserByLogin(string login)
         {
@@ -164,7 +170,7 @@ namespace TickCrossServer.Controllers
         [HttpGet("GetRequestStatus")]
         public string GetRequestStatus(int reqId)
         {
-            return DBService.GetRequestsStatus(reqId);
+            return DBService.GetRequestStatusByReqId(reqId);
         }
 
         [HttpGet("GetLastGameId")]

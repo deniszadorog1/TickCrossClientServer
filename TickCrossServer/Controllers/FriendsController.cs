@@ -102,6 +102,14 @@ namespace TickCrossServer.Controllers
             return DBService.IsFriendRequestCanBeSent(userId, newFriendLogin);
         }
 
+        [HttpGet("IsUserIsAlreadyAFriend")]
+        public bool IsUserAlreadyAFriend(int userId, string newFriendLogin)
+        {
+            TickCrossLib.Models.User user = DBService.GetUserByLogin(newFriendLogin);
+
+            return DBService.IsUserAlreadyIsFriend(userId, user.Id);
+        }
+
 
         // DELETE api/<FriendsController>/5
         [HttpDelete("RemoveFriend")]

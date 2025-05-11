@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TickCrossClient.Services;
+using TickCrossLib.Enums;
 
 namespace TickCrossClient.Pages
 {
@@ -56,6 +57,7 @@ namespace TickCrossClient.Pages
         {
             _frame.Content = new Login(_frame);
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
+            ApiService.SetUserLoginStatus(_user.Id, UserStat.Offline);
         }
 
         private void OptionsBut_Click(object sender, RoutedEventArgs e)

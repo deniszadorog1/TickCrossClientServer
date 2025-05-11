@@ -28,9 +28,9 @@ namespace TickCrossClient
         }
 
         public DispatcherTimer _timer;
-        private TickCrossLib.Models.GameRequest _tempGameReq;
+       //private TickCrossLib.Models.GameRequest _tempGameReq;
 
-        private TickCrossLib.Models.GameRequest? _req;
+        public TickCrossLib.Models.GameRequest? _req;
         public void SetGameRequestTimer()
         {
             _timer = new DispatcherTimer
@@ -39,40 +39,42 @@ namespace TickCrossClient
             };
             _timer.Tick += async (sender, e) =>
             {
+                if (_loggedUser is null) return;
                 bool isPlay = await SetReceiversGamePage();
                 if (isPlay) return;
 
-                if (!(_req is null)) return;
+                if (!(_req is null) || _loggedUser is null) return;
                 _req = await ApiService.GetFirstGameRequest(_loggedUser.Login);
+                //_tempGameReq = _req;
+
                 if (_req is null) return;
 
-                if (_req.Sender.Id != _loggedUser.Id) SetPageForSecondFrame(new GotGameRequest(MainFrame, _req, _loggedUser));
+                //if (_req.Sender.Id != _loggedUser.Id) SetPageForSecondFrame(new GotGameRequest(MainFrame, _req, _loggedUser));
 
                 //If game accepted + two players are logged in - start game
-                _tempGameReq = _req;
-                if (_tempGameReq is null) return;
-                // if (!SetGameStart().Result) return;
+                //if (_tempGameReq is null) return;
+                //if (!SetGameStart().Result) return;
                 //await SetGamePage();
 
             };
             _timer.Start();
         }
 
-        public async Task<bool> IsGameRequestAccepted()
-        {
-            string? reqStatus = await ApiService.GetReqStatus(_req.Id);
-            if (reqStatus is null) return false;
+        /*        public async Task<bool> IsGameRequestAccepted()
+                {
+                    //string? reqStatus = await ApiService.GetReqStatus(_req.Id);
+                    //if (reqStatus is null) return false;
 
-            TickCrossLib.Enums.RequestStatus stat = GetRequestStatByString(reqStatus);
-            return stat == TickCrossLib.Enums.RequestStatus.Accepted;
-        }
+                    TickCrossLib.Enums.RequestStatus stat = GetRequestStatByString(reqStatus);
+                    return stat == TickCrossLib.Enums.RequestStatus.Accepted;
+                }*/
 
         public async Task<bool> SetGameStart()
         {
-            if (_tempGameReq is null) return false;
+            if (_req is null) return false;
 
-            bool isReceiverLogged = await ApiService.IsUserIsLoggedById((int)_tempGameReq.Receiver.Id); //temp user
-            bool isSenderLogged = await ApiService.IsUserIsLoggedById((int)_tempGameReq.Sender.Id); //future enemy
+            bool isReceiverLogged = await ApiService.IsUserIsLoggedById((int)_req.Receiver.Id); //temp user
+            bool isSenderLogged = await ApiService.IsUserIsLoggedById((int)_req.Sender.Id); //future enemy
 
             return isReceiverLogged && isSenderLogged;
         }
@@ -126,8 +128,6 @@ namespace TickCrossClient
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (!MainFrame.IsEnabled) ClearSecondaryFrame();
-
-            
             if (MainFrame.Content is Registration || MainFrame.Content is MainPage ||
                 MainFrame.Content is UserOptions)
             {
@@ -141,7 +141,7 @@ namespace TickCrossClient
                 }
 
                 e.Cancel = true;
-                if(!(_timer is null))   _timer.Stop();
+                //if(!(_timer is null))  _timer.Stop();
                 _loggedUser = null;
             }
             else if (MainFrame.Content is GamePage || MainFrame.Content is FriendsPage || 
@@ -150,6 +150,8 @@ namespace TickCrossClient
             {
                 if(MainFrame.Content is GamePage gamePage)
                 {
+                    gamePage.SetGameEndStatForPlayers();
+
                     //Set end game for oponent!
                     SetGameClosed(gamePage);
                 }
@@ -232,7 +234,7 @@ namespace TickCrossClient
             {
                 newPage.SetUserGameParams();
 
-                _req = null;
+                //_req = null;
                 _timer.Start();
             }
 

@@ -63,13 +63,10 @@ namespace TickCrossClient.Pages.FriendPages
             //Check is Offer can be crated (already in offers or friends etc...)
             //Add In Friend offer
 
-
-            
-
             //check is user exist + is it a friend + is it in request
             bool isCanBeSent = await ApiService.IsFriendRequestCanBeSent(_user.Id, FriendsToAddBox.Text);
 
-            if (!isCanBeSent) return;
+            if (!isCanBeSent || await ApiService.IsUserAlreadyAFriend(_user.Id, FriendsToAddBox.Text)) return;
 
             await ApiService.AddRequest(_user.Id, FriendsToAddBox.Text);
         }

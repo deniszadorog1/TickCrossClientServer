@@ -257,13 +257,34 @@ namespace TickCrossLib.Services
             }
         }
 
-        public static bool IsUserIsOnline(string login)
+        public static void SetStatusToUser(int id, UserStat status)
         {
             using (var model = new TickCross())
             {
-                return model.User.Where(x => x.Login == login && !(x.StatusId == null) && IsUserStatusIsOnline((int)x.StatusId)).Any();
+                var user = model.User.Where(x => x.Id == id).FirstOrDefault();
+                if (user is null) return;
+                user.StatusId = GetUserStatusId(status.ToString());
             }
+        }
 
+        public static bool IsUserIsOnline(string login)
+        {
+            using (var model = new TickCross())
+            {             
+                EntityModels.User user =  model.User.Where(x => x.Login == login && !(x.StatusId == null)).FirstOrDefault();
+                if (user is null) return false;
+                return IsUserStatusIsOnline((int)user.StatusId);
+            }
+        }
+
+        public static bool IsUserIsInGame(string login)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.User user = model.User.Where(x => x.Login == login && !(x.StatusId == null)).FirstOrDefault();
+                if (user is null) return false;
+                return GetUserStatusId("InGame") == user.StatusId;
+            }
         }
 
         public static bool IsUserIsLoggedById(int id)
@@ -535,6 +556,17 @@ namespace TickCrossLib.Services
             }
         }
 
+        public static string GetRequestStatusByReqId(int requestId)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.GameRequest req = model.GameRequest.Where(x => x.Id == requestId).FirstOrDefault();
+                if (req is null) return null;
+
+                return GetRequestStatusId((int)req.StatusId);
+            }
+        }
+
         public static Enums.RequestStatus GetGameReqStatusById(int id)
         {
             string status = GetRequestsStatus(id);
@@ -649,11 +681,15 @@ namespace TickCrossLib.Services
 
                 var requests = model.GameRequest.Where(x => x.SenderId == userId || x.ReciverId == userId);
 
-                model.GameRequest.RemoveRange(requests);
+                if (requests.Any())
+                    model.GameRequest.RemoveRange(requests);
 
-                model.TempGame.RemoveRange(tempGamesToDelete);
+                if (tempGamesToDelete.Any())
+                    model.TempGame.RemoveRange(tempGamesToDelete);
 
-                model.Game.RemoveRange(gamesToDelete);
+                if (gamesToDelete.Any())
+                    model.Game.RemoveRange(gamesToDelete);
+
 
                 model.SaveChanges();
             }
@@ -988,10 +1024,10 @@ namespace TickCrossLib.Services
         {
             return GetUserStatusId("Online") == userStatusId;
         }
-      
+
         private static int GetUserStatusId(string userStatus)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 var status = model.UserStatus.FirstOrDefault(x => x.Name == userStatus);
 
@@ -1013,9 +1049,9 @@ namespace TickCrossLib.Services
 
         private static UserStat GetUserStatus(string status)
         {
-            for(int i = (int)UserStat.Offline; i <= (int)UserStat.Unavailable; i++)
+            for (int i = (int)UserStat.Offline; i <= (int)UserStat.Unavailable; i++)
             {
-                if(status == ((UserStat)i).ToString())
+                if (status == ((UserStat)i).ToString())
                 {
                     return ((UserStat)i);
                 }
@@ -1025,13 +1061,45 @@ namespace TickCrossLib.Services
 
         public static bool IsPlayerCanPlayGame(int userId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
                 if (user is null) return false;
-                else if (user.StatusId == 3) return true;
+                else if (user.StatusId == 2) return true;
             }
             return false;
         }
+
+        public static Models.GameRequest GetGameRequest(int receiverId, int senderId)
+        {
+            using (var model = new TickCross())
+            {
+                EntityModels.GameRequest req =
+                    model.GameRequest.Where(x => x.ReciverId == receiverId &&
+                    x.SenderId == senderId).FirstOrDefault();
+                if (req is null) return null;
+
+                Models.User sender = GetUserById((int)req.SenderId);
+                Models.User receiver = GetUserById((int)req.ReciverId);
+
+                char senderSign = (char)GetSignById((int)req.SenderSignId);
+                char receiverSign = (char)GetSignById((int)req.ReciverSignId);
+
+                Models.GameRequest res = new Models.GameRequest(
+                    req.Id, sender, receiver, senderSign, receiverSign);
+
+                return res;
+            }
+        }
+
+        public static bool IsUserAlreadyIsFriend(int userId, int friendId)
+        {
+            using(var model = new TickCross())
+            {
+                return model.UserFriend.Where(x => x.UserId == userId && x.FriendId == friendId).Any();
+            }
+        }
+
+
     }
 }

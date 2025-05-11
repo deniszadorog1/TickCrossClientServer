@@ -49,7 +49,6 @@ namespace TickCrossServer.Controllers
             return GetConvertedGameReqs(reqs);
         }
 
-
         private List<GameRequestModel> GetConvertedGameReqs(List<TickCrossLib.EntityModels.GameRequest> reqs)
         {
             List<GameRequestModel> res = new List<GameRequestModel>();
@@ -66,10 +65,15 @@ namespace TickCrossServer.Controllers
 
                 res.Add(new GameRequestModel(senderLogin, receiverLogin, senderSign, receiverSign, status));
             }
-
             return res;
         }
 
-
+        [AllowAnonymous]
+        [HttpGet("GetGameRequest")]
+        public TickCrossLib.Models.GameRequest GetGameRequest(int receiverId, int senderId)
+        {
+            TickCrossLib.Models.GameRequest req = DBService.GetGameRequest(receiverId, senderId);
+            return req;
+        }
     }
 }

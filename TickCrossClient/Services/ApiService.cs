@@ -319,6 +319,15 @@ namespace TickCrossClient.Services
             return JsonConvert.DeserializeObject<bool>(json);
         }
 
+        public static async Task<bool> IsUserAlreadyAFriend(int userId, string newFriendLogin)
+        {
+            var response = await _client.GetAsync($"api/Friends/IsUserIsAlreadyAFriend?userId={userId}&newFriendLogin={newFriendLogin}");
+            if (!response.IsSuccessStatusCode) return true;
+
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<bool>(json);
+        }
+
         //Game Request
         public static async Task AddNewGameRequest(string senderLogin, string receiverLogin,
             char enemySign, char userSign, TickCrossLib.Enums.RequestStatus status)
@@ -361,6 +370,17 @@ namespace TickCrossClient.Services
         public static async Task<bool> IsUserIsOnline(string login)
         {
             var response = await _client.GetAsync($"api/GameReq/IsUserIsOnline?login={login}");
+            if (!response.IsSuccessStatusCode) return false;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var isLogged = JsonConvert.DeserializeObject<bool>(jsonResponse);
+
+            return isLogged;
+        }
+
+        public static async Task<bool> IsUserInGame(string login)
+        {
+            var response = await _client.GetAsync($"api/GameReq/IsUserIsInGame?login={login}");
             if (!response.IsSuccessStatusCode) return false;
 
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -518,6 +538,19 @@ namespace TickCrossClient.Services
             var jsonResponse = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<int?>(jsonResponse);
 
+        }
+
+        public static async Task<TickCrossLib.Models.GameRequest> GetGameRequest(string senderLogin, string receiverLogin)
+        {
+            TickCrossLib.Models.User receiver = DBService.GetUserByLogin(receiverLogin);
+            TickCrossLib.Models.User sender = DBService.GetUserByLogin(senderLogin);
+
+            var response = await _client.GetAsync(
+                $"api/MainMenu/GetGameRequest?receiverId={receiver.Id}&senderId={sender.Id}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonContent = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<TickCrossLib.Models.GameRequest>(jsonContent);
         }
 
         public static async Task SetGameResult(int gameId, int? winnerId, bool? isDraw)

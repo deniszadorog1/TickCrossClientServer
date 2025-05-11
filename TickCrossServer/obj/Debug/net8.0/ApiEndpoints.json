@@ -304,6 +304,37 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.FriendsController",
+    "Method": "IsUserAlreadyAFriend",
+    "RelativePath": "api/Friends/IsUserIsAlreadyAFriend",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "newFriendLogin",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.FriendsController",
     "Method": "RemoveFriend",
     "RelativePath": "api/Friends/RemoveFriend",
     "HttpMethod": "DELETE",
@@ -748,6 +779,32 @@
   },
   {
     "ContainingType": "TickCrossServer.Controllers.GameReqController",
+    "Method": "IsUserIsInGame",
+    "RelativePath": "api/GameReq/IsUserIsInGame",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Boolean",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.GameReqController",
     "Method": "IsUserLoggedById",
     "RelativePath": "api/GameReq/IsUserIsLoggedInById",
     "HttpMethod": "GET",
@@ -1087,6 +1144,37 @@
     "ReturnTypes": [
       {
         "Type": "System.Collections.Generic.List\u00601[[TickCrossLib.Models.NonePlayable.GameRequestModel, TickCrossLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "TickCrossServer.Controllers.MainMenuController",
+    "Method": "GetGameRequest",
+    "RelativePath": "api/MainMenu/GetGameRequest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "receiverId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "senderId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "TickCrossLib.Models.GameRequest",
         "MediaTypes": [
           "text/plain",
           "application/json",

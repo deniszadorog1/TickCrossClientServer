@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -74,8 +75,11 @@ namespace TickCrossClient.Pages
         private async void StartGameBut_Click(object sender, RoutedEventArgs e)
         {
             string enemyLogin = GetChosenEnemyLogin();
-            if (enemyLogin == string.Empty) return;
-
+            if (enemyLogin == string.Empty || !await IsEnemyCanBeChosen(enemyLogin))
+            {
+                SetEnemiesPages();
+                return;
+            }
             TickCrossLib.Models.User? enemy = await ApiService.GetEnemyPlayer(enemyLogin);
             //((MainWindow)Window.GetWindow(_frame)).ClearSecondaryFrame();
 
@@ -88,6 +92,13 @@ namespace TickCrossClient.Pages
             await ApiService.AddNewGameRequest(_user.Login, enemyLogin, (char)enemySign,
                 signs.First() == enemySign ? signs.Last() : signs.First(), TickCrossLib.Enums.RequestStatus.InProgress);
             SetEnemiesPages();
+        }
+
+        public async Task<bool> IsEnemyCanBeChosen(string enemyLogin)
+        {
+            List<TickCrossLib.Models.User> enemies =
+                await ApiService.GetUsersToSendGameReq(_user.Id);
+            return enemies.Where(x => x.Login == enemyLogin).Any();
         }
 
         public char? GetEnemySign()

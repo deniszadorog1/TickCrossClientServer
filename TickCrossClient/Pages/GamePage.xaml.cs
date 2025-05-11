@@ -89,6 +89,12 @@ namespace TickCrossClient.Pages
             }
         }
 
+        public void SetGameEndStatForPlayers()
+        {
+            ApiService.SetUserLoginStatus(_game.FirstPlayer.Id, TickCrossLib.Enums.UserStat.Online);
+            ApiService.SetUserLoginStatus(_game.SecondPlayer.Id, TickCrossLib.Enums.UserStat.Online);
+        }
+
         public void ClearCellFromPreview(int x, int y)
         {
             _gameBlocks[x, y].Text = string.Empty;
@@ -137,16 +143,19 @@ namespace TickCrossClient.Pages
 
         private async void GameEnded(TickCrossLib.Enums.GameEnded res)
         {
+            _moveTimer.Stop();
             if (res == TickCrossLib.Enums.GameEnded.Won) MessageBox.Show("Game ended! Stepper is won");
             else if (res == TickCrossLib.Enums.GameEnded.Draw) MessageBox.Show("Game ended! Its draw.");
             else if (res == TickCrossLib.Enums.GameEnded.Canceled) MessageBox.Show("Game is been canceled!"); ;
 
-            _moveTimer.Stop();
             ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
 
             //Remove requests for logged player
             await ApiService.RemoveUserRequests(_user.Id);
+            ((MainWindow)Window.GetWindow(_frame))._req = null;
+            ApiService.SetUserLoginStatus(_game.FirstPlayer.Id, TickCrossLib.Enums.UserStat.Online);
+            ApiService.SetUserLoginStatus(_game.SecondPlayer.Id, TickCrossLib.Enums.UserStat.Online);
         }
 
         public void ClearGameBlocks()
@@ -198,11 +207,11 @@ namespace TickCrossClient.Pages
         }
 
         private DispatcherTimer _moveTimer;
-        private TickCrossLib.Models.GameRequest _tempGameReq;
+        //private TickCrossLib.Models.GameRequest _tempGameReq;
 
         public void SetGameMoveTimer(TickCrossLib.Models.GameRequest req)
         {
-            _tempGameReq = req;
+            //_tempGameReq = req;
 
             ApiService.AddTempGameInDB(_game.Id);
 
@@ -212,27 +221,35 @@ namespace TickCrossClient.Pages
             };
             _moveTimer.Tick += async (sender, e) =>
             {
-                if (!await ApiService.IsUserIsLoggedById(_game.FirstPlayer.Id) ||
-                    !await ApiService.IsUserIsLoggedById(_game.SecondPlayer.Id))
+                if (/*!await ApiService.IsUserIsLoggedById(_game.FirstPlayer.Id) ||
+                    !await ApiService.IsUserIsLoggedById(_game.SecondPlayer.Id) || */
+                    
+                    (!await ApiService.IsUserInGame(_game.FirstPlayer.Login) ||
+                    (!await ApiService.IsUserInGame(_game.SecondPlayer.Login))))
                 {
+                    _moveTimer.Stop();
                     await ApiService.RemoveTempGame(_game.Id);
                     GameEnded(TickCrossLib.Enums.GameEnded.Canceled);
+                    ((MainWindow)Window.GetWindow(_frame))._timer.Start();
+                    ((MainWindow)Window.GetWindow(_frame))._req = null;
+                    SetGameEndStatForPlayers();
                     return;
                 }
-
                 //Is enemy is closed game
-                if (await IsGameIsClosed())
+                else if (await IsGameIsClosed())
                 {
+                    _moveTimer.Stop();
                     await ApiService.RemoveTempGame(_game.Id);
                     GameEnded(TickCrossLib.Enums.GameEnded.Canceled);
+                    ((MainWindow)Window.GetWindow(_frame))._timer.Start();
+                    ((MainWindow)Window.GetWindow(_frame))._req = null;
+                    SetGameEndStatForPlayers();
                     return;
                 }
-
-
                 SetStepperVis();
                 SetEnemiesSign();
             };
-            _moveTimer.Start();
+            _moveTimer.Start();        
         }
 
         public async Task<bool> IsGameIsClosed()
@@ -290,6 +307,9 @@ namespace TickCrossClient.Pages
 
                 //Remove temp games;
                 await ApiService.RemoveTempGame(_game.Id);
+                ((MainWindow)Window.GetWindow(_frame))._timer.Start();
+                ((MainWindow)Window.GetWindow(_frame))._req = null;
+                _moveTimer.Stop();
             }
         }
 
@@ -303,15 +323,15 @@ namespace TickCrossClient.Pages
             SetTurnVisibility();
         }
 
-        public async Task<bool> SetGameStart()
+   /*     public async Task<bool> SetGameStart()
         {
-            if (_tempGameReq is null) return false;
+            if (_req is null) return false;
 
             bool isReceiverLogged = await ApiService.IsUserIsLoggedById((int)_tempGameReq.Receiver.Id); //temp user
             bool isSenderLogged = await ApiService.IsUserIsLoggedById((int)_tempGameReq.Sender.Id); //future enemy
 
             return isReceiverLogged && isSenderLogged;
-        }
+        }*/
 
         private async Task MakeMove(int gameId)
         {
@@ -331,7 +351,6 @@ namespace TickCrossClient.Pages
             TickCrossLib.Enums.GameEnded? gameStat = GetStatusByString(status);
             return gameStat;
         }
-
 
         public async void SetMoveToPlayer((int, int) moveCord)
         {
