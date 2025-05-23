@@ -1,11 +1,4 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TickCrossLib.Models.NonePlayable
+﻿namespace TickCrossLib.Models.NonePlayable
 {
     public class GameRequestModel
     {
@@ -14,12 +7,12 @@ namespace TickCrossLib.Models.NonePlayable
         public string ReceiverLogin { get; set; }
 
         public char? SenderSign { get; set; }
-        
+
         public char? ReceiverSign { get; set; }
 
         private Enums.RequestStatus Status { get; set; }
-        
-        public GameRequestModel(string senderLogin, string receiverLogin, 
+
+        public GameRequestModel(string senderLogin, string receiverLogin,
             char? senderSign, char? receiverSign, Enums.RequestStatus status)
         {
             SenderLogin = senderLogin;

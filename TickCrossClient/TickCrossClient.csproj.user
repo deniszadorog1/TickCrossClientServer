@@ -13,6 +13,12 @@
     <Compile Update="Pages\FriendPages\FriendsPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\GameHistory\GameHist.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\GameHistory\GameHistElement.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\GamePage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +52,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\FriendPages\FriendsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\GameHistory\GameHist.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\GameHistory\GameHistElement.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\GamePage.xaml">

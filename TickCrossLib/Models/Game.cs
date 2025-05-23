@@ -25,8 +25,6 @@ namespace TickCrossLib.Models
         public char FirstPlayerSign { get; set; }
         public char SecondPlayerSign { get; set; }
 
-        private List<(int, int)> _movesHistory = new List<(int, int)>();
-
 
         public Game()
         {
@@ -139,10 +137,6 @@ namespace TickCrossLib.Models
             return Players[StepperIndex] == FirstPlayer ? FirstPlayerSign : SecondPlayerSign;
         }
 
-        public void AddMoveInHistory(int x, int y)
-        {
-            _movesHistory.Add((x, y));
-        }
 
         public void AddGameId(int? newId)
         {

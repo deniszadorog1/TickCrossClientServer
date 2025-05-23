@@ -51,7 +51,72 @@
   "UserOptionBorderBlockNameBasicFZ": "24",
   "UserOptionBorderBlockNameBigFZ": "28",
   "UserOptionBlockBasicFZ": "12",
-  "UserOptionBlockBigFZ": "16"
+  "UserOptionBlockBigFZ": "16",
+
+  "TimeForMove": "10",
+
+  "FriendAcceptBasicButHeight": "32",
+  "FriendAcceptBigButHeight": "43",
+  "FriendAcceptBasicButFZ": "14",
+  "FriendAcceptBigButFZ": "18",
+  "FriendAcceptListBoxBasicHeight": "250",
+  "FriendAcceptListBoxBigHeight": "300",
+  "FriendAcceptBorderNameBlockBasicFz": "24",
+  "FriendAcceptBorderNameBlockBigFz": "28",
+
+  "GameRequestBasicButHeight": "32",
+  "GameRequestBigButHeight": "43",
+  "GameRequestBasicButFZ": "14",
+  "GameRequestBigButFZ": "18",
+  "GameRequestListBoxBasicHeight": "200",
+  "GameRequestListBoxBigHeight": "300",
+  "GameRequestBorderNameBlockBasicFz": "18",
+  "GameRequestBorderNameBlockBigFz": "22",
+
+  "FriendAcceptMainPanelWidth": "400",
+  "FriendAcceptMainPanelHeight": "550",
+  "FriendAcceptFirstStepWidth": "1200",
+  "FriendAcceptFirstStepHeight": "700",
+  "FriendAcceptBasicBorderWidth": "300",
+  "FriendAcceptBasicBorderHeight": "400",
+  "FriendAcceptBigBorderWidth": "400",
+  "FriendAcceptBigBorderHeight": "500",
+
+  "GameHistElemWinnerString": "Winner - ",
+  "GameHistElemDrawString": "Its draw",
+  "GameHistElemCanceledString": "Game was canceled!",
+
+  "DefaultNullValString": "Bonk",
+
+  "GameRequestIsEnemy": " - is enemy",
+  "GameRequestUserNotOnline": "User does not have online status!",
+  "GameRequestEnemyNotOnline": "Enemy does not have online status!",
+  "GameRequestBigMainPanelWidth": "400",
+  "GameRequestBigMainPanelHeight": "550",
+  "GameRequestFirstStepWidth": "1200",
+  "GameRequestFirstStepHeight": "700",
+
+  "GameRequestBasicBorderWidth": "200",
+  "GameRequestBasicBorderHeight": "340",
+  "GameRequestBigBorderWidth": "300",
+  "GameRequestBigBorderHeight": "480",
+
+  "MainPageBasicMainPanelWidth": "190",
+  "MainPageBasicMainPanelHeight": "340",
+  "MainPageBigMainPanelWidth": "400",
+  "MainPageBigMainPanelHeight": "550",
+  "MainPageFirstStepWidth": "1200",
+  "MainPageFirstStepHeight": "700",
+
+  "TimerInterval": "1",
+
+  "ImagesFile": "ImageExpansions.json",
+  "ParamsFile": "params.json",
+  "TimeToMakeMove": "60",
+  "OnlineStatusId": "2",
+
+
+
 
 
 

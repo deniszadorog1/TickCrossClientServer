@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace TickCrossLib.Models
+﻿namespace TickCrossLib.Models
 {
     public class User
     {
@@ -18,7 +11,7 @@ namespace TickCrossLib.Models
         public int Draws { get; set; }
         public int TotalGames { get; set; }
 
-        private string _token { get; set; }
+        public string _token { get; set; } //++-
 
         public User()
         {
@@ -39,13 +32,5 @@ namespace TickCrossLib.Models
             return Login;
         }
 
-        public void SetToken(string token)
-        {
-            _token = token;
-        }
-        public string GetToken()
-        {
-            return _token;
-        }
     }
 }

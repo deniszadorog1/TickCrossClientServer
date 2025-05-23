@@ -27,6 +27,13 @@ namespace TickCrossServer.Controllers
             return DBService.GetLosesAmount(userId);
         }
 
+        [HttpGet("GetUserDrawsAmount")]
+        public int GetUserDrawsAmount(int userId)
+        {
+            return DBService.GetDrawsAmount(userId);
+        }
+
+
         [HttpGet("GetUserGamesAmount")]
         public int GetUserGamesAmount(int userId)
         {
@@ -49,21 +56,26 @@ namespace TickCrossServer.Controllers
             return GetConvertedGameReqs(reqs);
         }
 
-        private List<GameRequestModel> GetConvertedGameReqs(List<TickCrossLib.EntityModels.GameRequest> reqs)
+        private static List<GameRequestModel> GetConvertedGameReqs(List<TickCrossLib.EntityModels.GameRequest> reqs) //++-
         {
             List<GameRequestModel> res = new List<GameRequestModel>();
 
             for (int i = 0; i < reqs.Count; i++)
             {
-                string senderLogin = DBService.GetUserLoginById((int)reqs[i].SenderId);
+/*                string senderLogin = DBService.GetUserLoginById((int)reqs[i].SenderId);
                 string receiverLogin = DBService.GetUserLoginById((int)reqs[i].ReciverId);
 
                 char? senderSign = DBService.GetSignById((int)reqs[i].SenderSignId);
-                char? receiverSign = DBService.GetSignById((int)reqs[i].SenderSignId);
+                char? receiverSign = DBService.GetSignById((int)reqs[i].ReciverSignId);
 
                 TickCrossLib.Enums.RequestStatus status = DBService.GetGameReqStatusById((int)reqs[i].StatusId);
-
-                res.Add(new GameRequestModel(senderLogin, receiverLogin, senderSign, receiverSign, status));
+*/
+                res.Add(new GameRequestModel(
+                    DBService.GetUserLoginById((int)reqs[i].SenderId),
+                    DBService.GetUserLoginById((int)reqs[i].ReciverId),
+                    DBService.GetSignById((int)reqs[i].SenderSignId),
+                    DBService.GetSignById((int)reqs[i].ReciverSignId),
+                    DBService.GetGameReqStatusById((int)reqs[i].StatusId)));
             }
             return res;
         }
@@ -74,6 +86,12 @@ namespace TickCrossServer.Controllers
         {
             TickCrossLib.Models.GameRequest req = DBService.GetGameRequest(receiverId, senderId);
             return req;
+        }
+
+        [HttpGet("GetGameHistory")]
+        public List<GameResult> GetGameHistory(int userId)
+        {
+            return DBService.GetGamesWithUser(userId);
         }
     }
 }

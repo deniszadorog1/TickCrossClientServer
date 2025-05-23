@@ -1,24 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.SignalR.Protocol;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Automation;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using TickCrossClient.Services;
 using TickCrossLib.Models.NonePlayable;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages.FriendPages
 {
@@ -56,29 +40,32 @@ namespace TickCrossClient.Pages.FriendPages
         {
             List<FriendRequestModel> reqs = await ApiService.GetFriendReqsSentByUser(_user.Id);
 
-            for(int i = 0; i < reqs.Count; i ++)
+            for (int i = 0; i < reqs.Count; i++)
             {
                 AddItemToListBox(reqs[i], SentOffersList);
-            }      
+            }
         }
 
         private async void SetReceivedOffersList()
         {
             List<FriendRequestModel> reqs = await ApiService.GetFriendReqsSentToUser(_user.Id);
 
-            for(int i = 0; i < reqs.Count; i++)
+            for (int i = 0; i < reqs.Count; i++)
             {
                 AddItemToListBox(reqs[i], RecivedOffersList);
-            }         
+            }
         }
 
         private void AddItemToListBox(FriendRequestModel model, ListBox box)
         {
             const int textSize = 16;
+            const int rightMarginPanel = 10;
+            const int rightMarginEnemyPanel = 15;
+
             StackPanel panel = new StackPanel()
             {
                 Orientation = Orientation.Horizontal,
-                Margin = new Thickness(10, 0, 0, 0)
+                Margin = new Thickness(rightMarginPanel, 0, 0, 0)
             };
 
             TextBlock enemy = new TextBlock()
@@ -89,7 +76,7 @@ namespace TickCrossClient.Pages.FriendPages
 
             TextBlock isEnemy = new TextBlock()
             {
-                Margin = new Thickness(15, 0, 0, 0),
+                Margin = new Thickness(rightMarginEnemyPanel, 0, 0, 0),
                 Text = " - pot friend",
                 FontSize = textSize
             };
@@ -104,7 +91,7 @@ namespace TickCrossClient.Pages.FriendPages
         {
             StackPanel panel = (StackPanel)box.SelectedItem;
 
-            for(int i = 0; i < panel.Children.Count; i++)
+            for (int i = 0; i < panel.Children.Count; i++)
             {
                 if (panel.Children[i] is TextBlock block)
                 {
@@ -152,6 +139,102 @@ namespace TickCrossClient.Pages.FriendPages
         private void UpdatePageBut_Click(object sender, RoutedEventArgs e)
         {
             SetRequests();
+        }
+
+        private Size _bigMainPanelSize = new Size
+            (JsonService.GetNumByName("FriendAcceptMainPanelWidth"),
+            JsonService.GetNumByName("FriendAcceptMainPanelHeight"));
+
+        private Size _firstStep = new Size(
+            JsonService.GetNumByName("FriendAcceptFirstStepWidth"),
+            JsonService.GetNumByName("FriendAcceptFirstStepHeight"));
+
+        public void ChangeCardSize(Size size)
+        {
+            if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
+            {
+                SetParams(false);
+                return;
+            }
+            SetParams(true);
+        }
+
+        private Size _basicBorderSize = new Size(
+            JsonService.GetNumByName("FriendAcceptBasicBorderWidth"),
+            JsonService.GetNumByName("FriendAcceptBasicBorderHeight"));
+
+
+        private Size _bigBorderSize = new Size(
+            JsonService.GetNumByName("FriendAcceptBigBorderWidth"),
+            JsonService.GetNumByName("FriendAcceptBigBorderHeight"));
+
+        private void SetParams(bool isBig)
+        {
+            //border
+            SetBorderSize(isBig ? _bigBorderSize : _basicBorderSize);
+
+            //Border name text block
+            SetBorderNameParams(isBig);
+
+            //ListBox
+            SetListBoxesSize(isBig);
+            //Buttons
+            SetButtonHeight(isBig);
+        }
+
+        private int _basicButHeight = JsonService.GetNumByName("FriendAcceptBasicButHeight");
+        private int _bigButHeight = JsonService.GetNumByName("FriendAcceptBigButHeight");
+
+        private int _basicButFz = JsonService.GetNumByName("FriendAcceptBasicButFZ");
+        private int _bigButFz = JsonService.GetNumByName("FriendAcceptBigButFZ");
+
+        private void SetButtonHeight(bool isBig)
+        {
+            int height = isBig ? _bigButHeight : _basicButHeight;
+            int fontSize = isBig ? _bigButFz : _basicButFz;
+
+            SetButtonParams(height, fontSize, RemoveBut);
+            SetButtonParams(height, fontSize, UpdatePageBut);
+            SetButtonParams(height, fontSize, BackBut);
+            SetButtonParams(height, fontSize, AcceptBut);
+            SetButtonParams(height, fontSize, DeclineBut);
+        }
+
+        public void SetButtonParams(int height, int fontSize, Button but)
+        {
+            but.Height = height;
+            but.FontSize = fontSize;
+        }
+
+        private int _basicListBoxHeight = JsonService.GetNumByName("FriendAcceptListBoxBasicHeight");
+        private int _bigListBoxHeight = JsonService.GetNumByName("FriendAcceptListBoxBigHeight");
+
+        private void SetListBoxesSize(bool isBig)
+        {
+            int height = isBig ? _bigListBoxHeight : _basicListBoxHeight;
+
+            SentOffersList.Height = height;
+            RecivedOffersList.Height = height;
+        }
+
+        private int _borderNameTextBlockBasicSize = JsonService.GetNumByName("FriendAcceptBorderNameBlockBasicFz");
+        private int _borderNameTextBlockBigSize = JsonService.GetNumByName("FriendAcceptBorderNameBlockBigFz");
+
+        private void SetBorderNameParams(bool isBig)
+        {
+            int fontSize = isBig ? _borderNameTextBlockBigSize : _borderNameTextBlockBasicSize;
+
+            SentFriendOfferBlock.FontSize = fontSize;
+            RecivedFriendOfferBlock.FontSize = fontSize;
+        }
+
+        public void SetBorderSize(Size size)
+        {
+            LeftBorder.Width = size.Width;
+            LeftBorder.Height = size.Height;
+
+            RightBorder.Width = size.Width;
+            RightBorder.Height = size.Height;
         }
     }
 }

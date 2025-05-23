@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Runtime;
 using System.Runtime.CompilerServices;
 using TickCrossLib.EntityModels;
+using TickCrossLib.Models.HelpModels;
 using TickCrossLib.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -22,6 +23,14 @@ namespace TickCrossServer.Controllers
             TickCrossLib.Models.GameRequest result = DBService.GetFirstUnwatchedUserRequest(login);
             return result;
         }
+
+        [HttpGet("GetAcceptedGameRequest")]
+        public TickCrossLib.Models.GameRequest GetAcceptedGameRequester(string login)
+        {
+            TickCrossLib.Models.GameRequest result = DBService.GetAcceptedGameRequest(login);
+            return result;
+        }
+
 
         [HttpPost("AddGame")]
         public void AddGame([FromBody] GameParam game)
@@ -126,18 +135,18 @@ namespace TickCrossServer.Controllers
         [HttpPost("ChangeTempGameMoveCord")]
         public void ChangeTempGameMoveCord([FromBody] UpdateTempGameMove newMove)
         {
-            DBService.SetTempGameMoveCord((newMove.Cord.X, newMove.Cord.Y), newMove.GameId);
+            DBService.SetTempGameMoveCord(((int)newMove.Cord.X, (int)newMove.Cord.Y), newMove.GameId);
         }
         public class UpdateTempGameMove()
         {
-            public Point Cord { get; set; }
+            public Cord Cord { get; set; }
             public int GameId { get; set; }
         }
-        public class Point
+/*        public class Point //++-
         {
             public int X { get; set; }
             public int Y { get; set; }
-        }
+        }*/
 
 
         [HttpGet("GetTempGameStatus")]
@@ -251,6 +260,18 @@ namespace TickCrossServer.Controllers
         public class TempGameId()
         {
             public int GameId { get; set; }
+        }
+
+        [HttpGet("GetGameStatus")]
+        public TickCrossLib.Enums.GameEnded GetGameStatus(int gameId)
+        {
+            return DBService.GetGameResult(gameId);
+        }
+
+        [HttpGet("GetWinnerLogin")]
+        public string GetWinnerLogin(int gameId)
+        {
+            return DBService.GetWinnerLogin(gameId);
         }
     }
 }

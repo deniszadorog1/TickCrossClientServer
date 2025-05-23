@@ -1,10 +1,10 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using TickCrossClient.Services;
 using TickCrossLib.Enums;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -91,8 +91,8 @@ namespace TickCrossClient.Pages
 
         public void SetGameEndStatForPlayers()
         {
-            ApiService.SetUserLoginStatus(_game.FirstPlayer.Id, TickCrossLib.Enums.UserStat.Online);
-            ApiService.SetUserLoginStatus(_game.SecondPlayer.Id, TickCrossLib.Enums.UserStat.Online);
+            ApiService.SetUserLoginStatus(_game.FirstPlayer.Id, UserStat.Online);
+            ApiService.SetUserLoginStatus(_game.SecondPlayer.Id, UserStat.Online);
         }
 
         public void ClearCellFromPreview(int x, int y)
@@ -144,9 +144,6 @@ namespace TickCrossClient.Pages
         private async void GameEnded(TickCrossLib.Enums.GameEnded res)
         {
             _moveTimer.Stop();
-            if (res == TickCrossLib.Enums.GameEnded.Won) MessageBox.Show("Game ended! Stepper is won");
-            else if (res == TickCrossLib.Enums.GameEnded.Draw) MessageBox.Show("Game ended! Its draw.");
-            else if (res == TickCrossLib.Enums.GameEnded.Canceled) MessageBox.Show("Game is been canceled!"); ;
 
             ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
@@ -154,10 +151,25 @@ namespace TickCrossClient.Pages
             //Remove requests for logged player
             await ApiService.RemoveUserRequests(_user.Id);
             ((MainWindow)Window.GetWindow(_frame))._req = null;
-            ApiService.SetUserLoginStatus(_game.FirstPlayer.Id, TickCrossLib.Enums.UserStat.Online);
-            ApiService.SetUserLoginStatus(_game.SecondPlayer.Id, TickCrossLib.Enums.UserStat.Online);
-        }
+            ApiService.SetUserLoginStatus(_game.FirstPlayer.Id, UserStat.Online);
+            ApiService.SetUserLoginStatus(_game.SecondPlayer.Id, UserStat.Online);
 
+            if (res == TickCrossLib.Enums.GameEnded.Won)
+            {
+                string winnerLogin = await ApiService.GetGameWinnerLogin(_game.Id);
+                if (_user.Login == winnerLogin)
+                {
+                    MessageBox.Show($"{_user.Login}, you won!");
+                }
+                else
+                {
+                    MessageBox.Show($"{_user.Login}, you lost!");
+                }
+                return;
+            }
+            else if (res == TickCrossLib.Enums.GameEnded.Draw) MessageBox.Show("Game ended by draw");
+            else if (res == TickCrossLib.Enums.GameEnded.Canceled) MessageBox.Show("Game was canceled");
+        }
         public void ClearGameBlocks()
         {
             for (int i = 0; i < _gameBlocks.GetLength(0); i++)
@@ -212,24 +224,28 @@ namespace TickCrossClient.Pages
         public void SetGameMoveTimer(TickCrossLib.Models.GameRequest req)
         {
             //_tempGameReq = req;
-
             ApiService.AddTempGameInDB(_game.Id);
 
             _moveTimer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(1)
+                Interval = TimeSpan.FromSeconds(JsonService.GetNumByName("TimerInterval"))
             };
             _moveTimer.Tick += async (sender, e) =>
             {
                 if (/*!await ApiService.IsUserIsLoggedById(_game.FirstPlayer.Id) ||
                     !await ApiService.IsUserIsLoggedById(_game.SecondPlayer.Id) || */
-                    
+
                     (!await ApiService.IsUserInGame(_game.FirstPlayer.Login) ||
                     (!await ApiService.IsUserInGame(_game.SecondPlayer.Login))))
                 {
+
+                    //Get game result (is game was ended)
+                    GameEnded endStatus =
+                     await ApiService.GetGameStatus(_game.Id);
+
                     _moveTimer.Stop();
                     await ApiService.RemoveTempGame(_game.Id);
-                    GameEnded(TickCrossLib.Enums.GameEnded.Canceled);
+                    GameEnded(endStatus);
                     ((MainWindow)Window.GetWindow(_frame))._timer.Start();
                     ((MainWindow)Window.GetWindow(_frame))._req = null;
                     SetGameEndStatForPlayers();
@@ -246,10 +262,50 @@ namespace TickCrossClient.Pages
                     SetGameEndStatForPlayers();
                     return;
                 }
+
+                //Set timer
+
                 SetStepperVis();
                 SetEnemiesSign();
+                SetLefTimeToMove();
             };
-            _moveTimer.Start();        
+            _moveTimer.Start();
+        }
+
+        public void SetMoveTimer()
+        {
+            ApiService.StartMoveTimer(_game.Id);
+        }
+
+        public async void SetLefTimeToMove()
+        {
+            double? val = await ApiService.GetLeftTime(_game.Id);
+            if (val is null) return;
+
+            if (val < 0)
+            {
+                //Set Enemy won
+                SetTimeEnded();
+                return;
+            }
+
+            TextBlock timerBlock = _game.StepperIndex == 0 ? FirstTimer : SecondTimer;
+            TextBlock notTimerBlock = timerBlock == FirstTimer ? SecondTimer : FirstTimer;
+
+            string time = "Time left: ";
+            time += Math.Round(((double)val.Value)).ToString();
+            timerBlock.Text = time;
+            notTimerBlock.Text = "Bonk";
+        }
+
+        public async void SetTimeEnded()
+        {
+            _moveTimer.Stop();
+            await ApiService.RemoveTempGame(_game.Id);
+            GameEnded(TickCrossLib.Enums.GameEnded.Canceled);
+            ((MainWindow)Window.GetWindow(_frame))._timer.Start();
+            ((MainWindow)Window.GetWindow(_frame))._req = null;
+            SetGameEndStatForPlayers();
         }
 
         public async Task<bool> IsGameIsClosed()
@@ -297,6 +353,7 @@ namespace TickCrossClient.Pages
             _game.GetEnemySign(_user).ToString();
 
             _game.SetEnemySign((int)cord.Item1, (int)cord.Item2, _user);
+            SetMoveTimer();
 
             GameEnded status = _game.GeGameResult();
             if (status != TickCrossLib.Enums.GameEnded.InProgress)
@@ -323,32 +380,22 @@ namespace TickCrossClient.Pages
             SetTurnVisibility();
         }
 
-   /*     public async Task<bool> SetGameStart()
-        {
-            if (_req is null) return false;
+        /*        private async Task MakeMove(int gameId)
+                {
+                    //Get move (from columns x, y in temp game table)
+                    (int?, int?) cord = await ApiService.GetMoveCord(gameId);
+                    if (cord == (null, null) || cord == (-1, -1)) return;
 
-            bool isReceiverLogged = await ApiService.IsUserIsLoggedById((int)_tempGameReq.Receiver.Id); //temp user
-            bool isSenderLogged = await ApiService.IsUserIsLoggedById((int)_tempGameReq.Sender.Id); //future enemy
-
-            return isReceiverLogged && isSenderLogged;
-        }*/
-
-        private async Task MakeMove(int gameId)
-        {
-            //Get move (from columns x, y in temp game table)
-            (int?, int?) cord = await ApiService.GetMoveCord(gameId);
-            if (cord == (null, null) || cord == (-1, -1)) return;
-
-            //Set this move for each player
-            SetMoveToPlayer(((int, int))cord);
-        }
+                    //Set this move for each player
+                    SetMoveToPlayer(((int, int))cord);
+                }*/
 
         public async Task<GameEnded?> CheckGameStatus()
         {
             string status = await ApiService.GetTempGameStatus(_game.Id);
             if (status is null) return null;
 
-            TickCrossLib.Enums.GameEnded? gameStat = GetStatusByString(status);
+            GameEnded? gameStat = GetStatusByString(status);
             return gameStat;
         }
 

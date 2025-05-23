@@ -1,21 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TickCrossClient.Services;
-
-using System.Data.SqlClient;
-using System.Text.RegularExpressions;
 using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
@@ -61,34 +46,21 @@ namespace TickCrossClient.Pages
             _frame.Content = new Login(_frame);
         }
 
-        private bool CheckLogin()
-        {
-            Regex rg = new Regex(@"^[a-zA-Z0-9_]{3,20}$");
-            return rg.Match(LoginBox.Text).Success;
-        }
-
-        private bool CheckPassword()
-        {
-            Regex rg = new Regex(@"^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$");
-            return rg.Match(PassBox.Password).Success;
-        }
-
-
         private void BackBut_Click(object sender, RoutedEventArgs e)
         {
             _frame.Content = new Login(_frame);
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
         }
 
-        private Size _basicMainPanelSize = 
+        private Size _basicMainPanelSize =
             new Size(JsonService.GetNumByName("RegPageBasicMainPanelWidth"),
                 JsonService.GetNumByName("RegPageBasicMainPanelHeight"));
 
-        private Size _bigMainPanelSize = 
+        private Size _bigMainPanelSize =
             new Size(JsonService.GetNumByName("RegPageBigMainPanelWidth"),
                 JsonService.GetNumByName("RegPageBigMainPanelHeight"));
 
-        private Size _firstStep = 
+        private Size _firstStep =
             new Size(JsonService.GetNumByName("RegPageFirstStepWidth"),
                 JsonService.GetNumByName("RegPageFirstStepHeight"));
 

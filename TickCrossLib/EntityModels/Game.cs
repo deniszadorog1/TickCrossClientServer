@@ -30,6 +30,10 @@ namespace TickCrossLib.EntityModels
 
         public int? SecondSignId { get; set; }
 
+        public DateTime? StartTime { get; set; }
+
+        public DateTime? EndTime { get; set; }
+
         public virtual User User { get; set; }
 
         public virtual SignType SignType { get; set; }

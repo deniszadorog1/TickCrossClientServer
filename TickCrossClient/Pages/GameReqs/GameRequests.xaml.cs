@@ -1,23 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using TickCrossClient.Services;
-using TickCrossLib.EntityModels;
-using TickCrossLib.Models;
 using TickCrossLib.Models.NonePlayable;
 using TickCrossLib.Services;
 
@@ -54,7 +37,7 @@ namespace TickCrossClient.Pages.GameReqs
 
         public async void SetSentReqsToUser()
         {
-            List<TickCrossLib.Models.NonePlayable.GameRequestModel> reqs =
+            List<GameRequestModel> reqs =
                 await ApiService.GetGameRequestsSentToUser(_user.Id);
 
             if (reqs is null) return;
@@ -63,7 +46,7 @@ namespace TickCrossClient.Pages.GameReqs
 
         public async void SetSentReqsByUser()
         {
-            List<TickCrossLib.Models.NonePlayable.GameRequestModel> reqs =
+            List<GameRequestModel> reqs =
                  await ApiService.GetRequestsSentByUser(_user.Id);
 
             if (reqs is null) return;
@@ -71,7 +54,7 @@ namespace TickCrossClient.Pages.GameReqs
             SetGameReqsInBox(ToRemoveReqsListBox, reqs);
         }
 
-        public void SetGameReqsInBox(ListBox box, List<TickCrossLib.Models.NonePlayable.GameRequestModel> reqs)
+        public void SetGameReqsInBox(ListBox box, List<GameRequestModel> reqs)
         {
             for (int i = 0; i < reqs.Count; i++)
             {
@@ -94,7 +77,7 @@ namespace TickCrossClient.Pages.GameReqs
 
             TextBlock pointer = new TextBlock()
             {
-                Text = " - is enemy"
+                Text = JsonService.GetStringByName("GameRequestIsEnemy")
             };
 
             panel.Children.Add(enemyLoginBox);
@@ -140,7 +123,7 @@ namespace TickCrossClient.Pages.GameReqs
         {
             ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
         }
-
+        //----------------------------------------------------------------------------------------------------------------
         private async void AcceptGameBut_Click(object sender, RoutedEventArgs e)
         {
             //Check is enemy is online or in game!!
@@ -150,24 +133,22 @@ namespace TickCrossClient.Pages.GameReqs
             //is user online + is user in game
             bool isEnemyOnline = await ApiService.IsUserIsOnline(enemyLogin);
             bool isUserOnline = await ApiService.IsUserIsOnline(_user.Login);
-            if (!isEnemyOnline )
+            if (!isEnemyOnline)
             {
-                MessageBox.Show("Enemy does not have online status!");
+                MessageBox.Show(JsonService.GetStringByName("GameRequestEnemyNotOnline"));
                 return;
             }
             else if (!isUserOnline)
             {
-                MessageBox.Show("User does not have online status!");
+                MessageBox.Show(JsonService.GetStringByName("GameRequestUserNotOnline"));
                 return;
             }
 
-
             TickCrossLib.Models.User enemy = await ApiService.GetUserByLogin(enemyLogin);
-
 
             ApiService.SetUserLoginStatus(_user.Id, TickCrossLib.Enums.UserStat.InGame);
             ApiService.SetUserLoginStatus(enemy.Id, TickCrossLib.Enums.UserStat.InGame);
-    
+
             SetListBoxes();
 
             //Start game
@@ -244,6 +225,99 @@ namespace TickCrossClient.Pages.GameReqs
         {
             TickCrossLib.Models.GameRequest req = await ApiService.GetGameRequest(senderRequest, recieverLogin);
             return req is null ? false : true;
+        }
+
+        private Size _bigMainPanelSize = new Size
+            (JsonService.GetNumByName("GameRequestBigMainPanelWidth"),
+            JsonService.GetNumByName("GameRequestBigMainPanelHeight"));
+        private Size _firstStep = new Size(
+            JsonService.GetNumByName("GameRequestFirstStepWidth"),
+            JsonService.GetNumByName("GameRequestFirstStepHeight"));
+
+        public void ChangeCardSize(Size size)
+        {
+            if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
+            {
+                SetParams(false);
+                return;
+            }
+            SetParams(true);
+        }
+
+        private Size _basicBorderSize = new Size(
+            JsonService.GetNumByName("GameRequestBasicBorderWidth"),
+            JsonService.GetNumByName("GameRequestBasicBorderHeight"));
+        private Size _bigBorderSize = new Size(
+            JsonService.GetNumByName("GameRequestBigBorderWidth"),
+            JsonService.GetNumByName("GameRequestBigBorderHeight"));
+
+        private void SetParams(bool isBig)
+        {
+            //border
+            SetBorderSize(isBig ? _bigBorderSize : _basicBorderSize);
+
+            //Border name text block
+            SetBorderNameParams(isBig);
+
+            //ListBox
+            SetListBoxesSize(isBig);
+            //Buttons
+            SetButtonHeight(isBig);
+        }
+
+        private int _basicButHeight = JsonService.GetNumByName("GameRequestBasicButHeight");
+        private int _bigButHeight = JsonService.GetNumByName("GameRequestBigButHeight");
+
+        private int _basicButFz = JsonService.GetNumByName("GameRequestBasicButFZ");
+        private int _bigButFz = JsonService.GetNumByName("GameRequestBigButFZ");
+
+        private void SetButtonHeight(bool isBig)
+        {
+            int height = isBig ? _bigButHeight : _basicButHeight;
+            int fontSize = isBig ? _bigButFz : _basicButFz;
+
+            SetButtonParams(height, fontSize, RemoveRequestBut);
+            SetButtonParams(height, fontSize, UpdatePageBut);
+            SetButtonParams(height, fontSize, BackBut);
+            SetButtonParams(height, fontSize, AcceptGameBut);
+            SetButtonParams(height, fontSize, RejectGameBut);
+        }
+
+        public void SetButtonParams(int height, int fontSize, Button but)
+        {
+            but.Height = height;
+            but.FontSize = fontSize;
+        }
+
+        private int _basicListBoxHeight = JsonService.GetNumByName("GameRequestListBoxBasicHeight");
+        private int _bigListBoxHeight = JsonService.GetNumByName("GameRequestListBoxBigHeight");
+
+        private void SetListBoxesSize(bool isBig)
+        {
+            int height = isBig ? _bigListBoxHeight : _basicListBoxHeight;
+
+            ToRemoveReqsListBox.Height = height;
+            SetReqsListBox.Height = height;
+        }
+
+        private int _borderNameTextBlockBasicSize = JsonService.GetNumByName("GameRequestBorderNameBlockBasicFz");
+        private int _borderNameTextBlockBigSize = JsonService.GetNumByName("GameRequestBorderNameBlockBigFz");
+
+        private void SetBorderNameParams(bool isBig)
+        {
+            int fontSize = isBig ? _borderNameTextBlockBigSize : _borderNameTextBlockBasicSize;
+
+            SentTextBlock.FontSize = fontSize;
+            GotTextBlock.FontSize = fontSize;
+        }
+
+        public void SetBorderSize(Size size)
+        {
+            SentRequestsBorder.Width = size.Width;
+            SentRequestsBorder.Height = size.Height;
+
+            ConfirmRequestsBorder.Width = size.Width;
+            ConfirmRequestsBorder.Height = size.Height;
         }
 
     }

@@ -126,3 +126,7 @@ B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\G
 B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameReqs\GameRequests.baml
 B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\FriendPages\FriendAcceptance.g.cs
 B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\FriendPages\FriendAcceptance.baml
+B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameHistory\GameHist.g.cs
+B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameHistory\GameHist.baml
+B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameHistory\GameHistElement.g.cs
+B:\GitHub\TickCrossClientServer\TickCrossClient\obj\Debug\net8.0-windows\Pages\GameHistory\GameHistElement.baml

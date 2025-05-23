@@ -1,27 +1,10 @@
-﻿using Microsoft.SqlServer.Server;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations.Model;
-using System.Dynamic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Linq;
 using TickCrossLib.EntityModels;
-using System.IO;
-using System.Data.Entity.Infrastructure;
-using System.Security.Policy;
-using TickCrossLib.Models;
-using System.Windows.Forms;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect.Configuration;
-using System.Runtime.Remoting.Metadata;
 using TickCrossLib.Enums;
 using TickCrossLib.Models.NonePlayable;
-using System.Reflection;
-using System.Data.OleDb;
-using System.Diagnostics.Contracts;
 
 namespace TickCrossLib.Services
 {
@@ -176,7 +159,7 @@ namespace TickCrossLib.Services
             }
         }
 
-        public static bool ChangeUserParams(string oldLogin, string newLogin, string newPassword)
+        public static bool ChangeUserParams(string oldLogin, string newLogin, string newPassword)//-
         {
             using (var system = new TickCross())
             {
@@ -270,8 +253,8 @@ namespace TickCrossLib.Services
         public static bool IsUserIsOnline(string login)
         {
             using (var model = new TickCross())
-            {             
-                EntityModels.User user =  model.User.Where(x => x.Login == login && !(x.StatusId == null)).FirstOrDefault();
+            {
+                EntityModels.User user = model.User.Where(x => x.Login == login && !(x.StatusId == null)).FirstOrDefault();
                 if (user is null) return false;
                 return IsUserStatusIsOnline((int)user.StatusId);
             }
@@ -394,6 +377,37 @@ namespace TickCrossLib.Services
             return null;
         }
 
+        public static Models.GameRequest GetAcceptedGameRequest(string login)
+        {
+            using (var model = new TickCross())
+            {
+                foreach (var req in model.GameRequest)
+                {
+                    var sender = GetDbUserById((int)req.SenderId);
+                    var receiver = GetDbUserById((int)req.ReciverId);
+
+                    if (!(sender is null) && !(receiver is null) &&
+                        (sender.Login == login || receiver.Login == login))
+                    {
+                        Models.User senderUser = GetUserById((int)req.SenderId);
+                        Models.User receiverUser = GetUserById((int)req.ReciverId);
+
+                        char? senderSign = GetSignById((int)req.SenderSignId);
+                        char? receiverSign = GetSignById((int)req.ReciverSignId);
+
+                        if (senderSign is null || receiverSign is null) return null;
+
+                        if (req.StatusId == 1)
+                        {
+                            return new Models.GameRequest(req.Id, senderUser, receiverUser, (char)senderSign, (char)receiverSign);
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
         public static void RemoveUserRequests(int userId)
         {
             using (var model = new TickCross())
@@ -507,6 +521,8 @@ namespace TickCrossLib.Services
 
                 toAdd.FirstSignId = GetSignId(game.FirstPlayerSign);
                 toAdd.SecondSignId = GetSignId(game.SecondPlayerSign);
+
+                toAdd.StartTime = DateTime.Now;
 
                 model.Game.Add(toAdd);
 
@@ -628,7 +644,16 @@ namespace TickCrossLib.Services
         {
             using (var model = new TickCross())
             {
-                return model.Game.Where(x => x.WinnerId != userId &&
+                return model.Game.Where(x => x.WinnerId != userId && x.IsDraw == null &&
+                (x.FirstPlayerId == userId || x.SecondPlayerId == userId)).Count();
+            }
+        }
+
+        public static int GetDrawsAmount(int userId)
+        {
+            using (var model = new TickCross())
+            {
+                return model.Game.Where(x => x.IsDraw == true &&
                 (x.FirstPlayerId == userId || x.SecondPlayerId == userId)).Count();
             }
         }
@@ -660,6 +685,10 @@ namespace TickCrossLib.Services
             using (var model = new TickCross())
             {
                 model.TempGame.RemoveRange(model.TempGame.Where(x => x.GameId == gameId));
+
+                EntityModels.Game game = model.Game.Where(x => x.Id == gameId).FirstOrDefault();
+                if (!(game is null)) game.EndTime = DateTime.Now;
+
                 model.SaveChanges();
             }
         }
@@ -753,12 +782,14 @@ namespace TickCrossLib.Services
             }
         }
 
-        public static bool IsUserLogged(int userId)
+        public static bool IsUserLogged(int userId) //++-
         {
             using (var model = new TickCross())
             {
                 EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
-                return user.StatusId is null || !(IsUserStatusIsOnline((int)user.StatusId)) ? false : true;
+
+                return !(user.StatusId is null || !(IsUserStatusIsOnline((int)user.StatusId)));
+                //return user.StatusId is null || !(IsUserStatusIsOnline((int)user.StatusId)) ? false : true;
             }
         }
 
@@ -783,7 +814,8 @@ namespace TickCrossLib.Services
             using (var model = new TickCross())
             {
                 EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
-                return user is null ? null : user.Login;
+                return user?.Login;
+                //return user is null ? null : user.Login;
             }
         }
 
@@ -992,15 +1024,23 @@ namespace TickCrossLib.Services
                 {
                     int friendId = friends[i].Id;
                     bool hasRequest = model.GameRequest
-                        .Any(x => x.SenderId == friendId || x.ReciverId == friendId);
+                        .Any(x => (x.SenderId == friendId || x.ReciverId == friendId) && (x.SenderId == userId || x.ReciverId == userId));
 
-                    if (!hasRequest)
+                    if (!hasRequest && IsUserIsOnline(GetUserLoginById(friendId)))
                     {
                         res.Add(friends[i]);
                     }
                 }
             }
             return res;
+        }
+
+        public static string GetWinnerLogin(int gameId) //++-
+        {
+            EntityModels.Game game = GetGameById(gameId);
+            return game.WinnerId is null ? 
+                JsonService.GetStringByName("DefaultNullValString") : 
+                GetUserLoginById((int)game.WinnerId);
         }
 
         public static bool IsFriendRequestCanBeSent(int userId, string newFriendLogin)
@@ -1059,13 +1099,13 @@ namespace TickCrossLib.Services
             return UserStat.Unavailable;
         }
 
-        public static bool IsPlayerCanPlayGame(int userId)
+        public static bool IsPlayerCanPlayGame(int userId) //++-
         {
             using (var model = new TickCross())
             {
                 EntityModels.User user = model.User.Where(x => x.Id == userId).FirstOrDefault();
                 if (user is null) return false;
-                else if (user.StatusId == 2) return true;
+                else if (user.StatusId == JsonService.GetNumByName("OnlineStatusId")) return true;
             }
             return false;
         }
@@ -1092,14 +1132,51 @@ namespace TickCrossLib.Services
             }
         }
 
+        public static GameEnded GetGameResult(int gameId)
+        {
+            EntityModels.Game game = GetGameById(gameId);
+            return game.WinnerId is null && game.IsDraw is null ? GameEnded.Canceled :
+                !(game.IsDraw is null) && game.WinnerId is null ? GameEnded.Draw : GameEnded.Won;
+        }
+
         public static bool IsUserAlreadyIsFriend(int userId, int friendId)
         {
-            using(var model = new TickCross())
+            using (var model = new TickCross())
             {
                 return model.UserFriend.Where(x => x.UserId == userId && x.FriendId == friendId).Any();
             }
         }
 
+        public static List<GameResult> GetGamesWithUser(int userId)
+        {
+            List<GameResult> res = new List<GameResult>();
+
+            using (var model = new TickCross())
+            {
+                List<EntityModels.Game> games = model.Game.Where(x => x.FirstPlayerId == userId ||
+                x.SecondPlayerId == userId).ToList();
+
+                foreach (var game in games)
+                {
+                    Models.User first = GetUserById((int)game.FirstPlayerId);
+                    Models.User second = GetUserById((int)game.SecondPlayerId);
+
+                    Models.User winner = GetGameWinner(game);
+                    bool? isDraw = game.IsDraw;
+
+                    GameResult toAdd = new GameResult(first, second, winner, isDraw, game.StartTime, game.EndTime);
+                    res.Add(toAdd);
+                }
+            }
+            return res;
+        }
+
+        private static Models.User GetGameWinner(EntityModels.Game game)
+        {
+            int? userId = game.WinnerId;
+
+            return userId is null ? null : GetUserById((int)userId);
+        }
 
     }
 }

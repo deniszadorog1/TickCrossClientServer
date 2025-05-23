@@ -25,7 +25,7 @@ namespace TickCrossClient.Pages.GameReqs
             SetBasicParams();
         }
 
-        public async void SetBasicParams()
+        public void SetBasicParams()
         {
             EnemyLogin.Text = _user.Login == _req.Sender.Login ? _req.Receiver.Login : _req.Sender.Login;
         }

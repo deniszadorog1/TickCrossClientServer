@@ -1,26 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.Identity.Client;
-using Microsoft.Xaml.Behaviors.Media;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using System.Data;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using TickCrossClient.Pages;
-using TickCrossLib.EntityModels;
 using TickCrossLib.Enums;
-using TickCrossLib.Models;
 using TickCrossLib.Models.NonePlayable;
 using TickCrossLib.Services;
 
@@ -30,19 +13,20 @@ namespace TickCrossClient.Services
     {
         private static readonly HttpClient _client;
         public static string _token;
-
+        private static string? _host;
         static ApiService()
         {
             DotNetEnv.Env.Load();
 
-            string? host = Environment.GetEnvironmentVariable("localHost");
+            _host = Environment.GetEnvironmentVariable("localHost");
 
             var handler = new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
             };
             _client = new HttpClient(handler);
-            _client.BaseAddress = new Uri("https://localhost:7238/");
+            _client.BaseAddress = new Uri(_host);
+            //_client.BaseAddress = new Uri("https://localhost:7238/");
 
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
@@ -66,7 +50,7 @@ namespace TickCrossClient.Services
             {
                 string jsonResponse = await response.Content.ReadAsStringAsync();
                 jsonResponse = jsonResponse.Trim('"');
-                return jsonResponse == "1";
+                return jsonResponse.ToString() == true.ToString();
             }
 
             return false;
@@ -112,7 +96,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/Login/RemoveClosedGames"),
+                //RequestUri = new Uri("https://localhost:7238/api/Login/RemoveClosedGames"),
+                RequestUri = new Uri($"{_host}api/Login/RemoveClosedGames"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             var response = await _client.SendAsync(request);
@@ -154,22 +139,6 @@ namespace TickCrossClient.Services
         public static async Task ChangeUserParams(TickCrossLib.Models.User user, string newLogin, string password)
         {
             DBService.ChangeUserParams(user.Login, newLogin, password);
-
-            return;
-            var date = new
-            {
-                OldLogin = user.Login,
-                OldPassword = user.Password,
-                NewLogin = newLogin,
-                NewPassword = password
-            };
-
-            var json = JsonConvert.SerializeObject(date);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-            var response = await _client.PutAsync("api/Options/ChangeUserParams", content);
-
-            if (!response.IsSuccessStatusCode) throw new DataException("Cant be updated!!!");
         }
 
         //Friends 
@@ -219,7 +188,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveFriend"),
+                //RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveFriend"),
+                RequestUri = new Uri($"{_host}api/Friends/RemoveFriend"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             var response = await _client.SendAsync(request);
@@ -287,7 +257,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveReqBySenderLogin"),
+                //RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveReqBySenderLogin"),
+                RequestUri = new Uri($"{_host}api/Friends/RemoveReqBySenderLogin"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             await _client.SendAsync(request);
@@ -304,7 +275,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveReqByReceiverLogin"),
+                //RequestUri = new Uri("https://localhost:7238/api/Friends/RemoveReqByReceiverLogin"),
+                RequestUri = new Uri($"{_host}api/Friends/RemoveReqByReceiverLogin"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             await _client.SendAsync(request);
@@ -356,6 +328,17 @@ namespace TickCrossClient.Services
 
             return JsonConvert.DeserializeObject<TickCrossLib.Models.GameRequest>(jsonResponse);
         }
+
+        public static async Task<TickCrossLib.Models.GameRequest?> GetAcceptedGameRequest(string login)
+        {
+            var response = await _client.GetAsync($"api/GameReq/GetAcceptedGameRequest?login={login}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject<TickCrossLib.Models.GameRequest>(jsonResponse);
+        }
+
 
         public static async void AddTempGameInDB(int gameId)
         {
@@ -414,6 +397,17 @@ namespace TickCrossClient.Services
             return isLogged;
         }
 
+        public static async Task<bool> IsUserLoggedOnLoginPage(int userId)
+        {
+            var response = await _client.GetAsync($"api/Login/IsUserLoggedAtLoginPage?userId={userId}");
+            if (!response.IsSuccessStatusCode) return false;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var isLogged = JsonConvert.DeserializeObject<bool>(jsonResponse);
+
+            return isLogged;
+        }
+
         public static async Task<(int?, int?)> GetMoveCord(int gameId)
         {
             var response = await _client.GetAsync($"api/GameReq/GetCordToMove?gameId={gameId}");
@@ -439,18 +433,18 @@ namespace TickCrossClient.Services
 
         public static async Task SetMovePointInTempGame((int, int) cord, int gameId)
         {
-            var data = new { Cord = new Point { X = cord.Item1, Y = cord.Item2 }, GameId = gameId };
+            var data = new { Cord = new TickCrossLib.Models.HelpModels.Cord { X = cord.Item1, Y = cord.Item2 }, GameId = gameId };
 
             var json = JsonConvert.SerializeObject(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await _client.PostAsync("api/GameReq/ChangeTempGameMoveCord", content);
         }
-        public class Point
+/*        public class Point //++-
         {
             public int X { get; set; }
             public int Y { get; set; }
-        }
+        }*/
 
 
         public static async Task<string?> GetTempGameStatus(int gameId)
@@ -577,7 +571,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveRequests"),
+                //RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveRequests"),
+                RequestUri = new Uri($"{_host}api/GameReq/RemoveRequests"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             var response = await _client.SendAsync(request);
@@ -592,7 +587,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveTempGame"),
+                //RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveTempGame"),
+                RequestUri = new Uri($"{_host}api/GameReq/RemoveTempGame"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             var response = await _client.SendAsync(request);
@@ -648,6 +644,15 @@ namespace TickCrossClient.Services
             return JsonConvert.DeserializeObject<int>(jsonResponse);
         }
 
+        public static async Task<int> GetUserDrawsAmount(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetUserDrawsAmount?userId={userId}");
+            if (!response.IsSuccessStatusCode) return -1;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<int>(jsonResponse);
+        }
+
         public static async Task<int> GetUserGamesAmount(int userId)
         {
             var response = await _client.GetAsync($"api/MainMenu/GetUserGamesAmount?userId={userId}");
@@ -694,7 +699,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveGameRequest"),
+                //RequestUri = new Uri("https://localhost:7238/api/GameReq/RemoveGameRequest"),
+                RequestUri = new Uri($"{_host}api/GameReq/RemoveGameRequest"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             var response = await _client.SendAsync(request);
@@ -711,7 +717,8 @@ namespace TickCrossClient.Services
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Delete,
-                RequestUri = new Uri("https://localhost:7238/api/GameReq/RejectGameRequest"),
+                //RequestUri = new Uri("https://localhost:7238/api/GameReq/RejectGameRequest"),
+                RequestUri = new Uri($"{_host}api/GameReq/RejectGameRequest"),
                 Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json")
             };
             var response = await _client.SendAsync(request);
@@ -725,6 +732,57 @@ namespace TickCrossClient.Services
             var jsonResponse = await response.Content.ReadAsStringAsync();
 
             return JsonConvert.DeserializeObject<List<TickCrossLib.Models.User>>(jsonResponse);
+        }
+
+        public static async Task<GameEnded> GetGameStatus(int gameId)
+        {
+            var response = await _client.GetAsync($"api/GameReq/GetGameStatus?gameId={gameId}");
+            if (!response.IsSuccessStatusCode) return GameEnded.InProgress;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<GameEnded>(jsonResponse);
+        }
+
+        public static async Task<string> GetGameWinnerLogin(int gameId)
+        {
+            var response = await _client.GetAsync($"api/GameReq/GetWinnerLogin?gameId={gameId}");
+            if (!response.IsSuccessStatusCode) return JsonService.GetStringByName("DefaultNullValString"); //++-
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<string>(jsonResponse);
+        }
+
+        public static async Task<List<GameResult>> GetGameHistory(int userId)
+        {
+            var response = await _client.GetAsync($"api/MainMenu/GetGameHistory?userId={userId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonRequest = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<List<GameResult>>(jsonRequest);
+        }
+
+        //TimerController 
+
+        public static async void StartMoveTimer(int gameId)
+        {
+            var data = new
+            {
+                GameId = gameId,
+            };
+
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _client.PostAsync("api/Timer/StartTimer", content);
+        }
+
+        public static async Task<double?> GetLeftTime(int gameId)
+        {
+            var response = await _client.GetAsync($"api/Timer/GetTimeLeft?gameId={gameId}");
+            if (!response.IsSuccessStatusCode) return null;
+
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<double>(jsonResponse);
         }
     }
 }

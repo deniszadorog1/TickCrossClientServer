@@ -1,22 +1,8 @@
-﻿using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TickCrossClient.Services;
 using TickCrossLib.Enums;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -29,6 +15,7 @@ namespace TickCrossClient.Pages
         private TickCrossLib.Models.User _user;
         public MainPage(Frame frame, TickCrossLib.Models.User user)
         {
+
             _frame = frame;
             _user = user;
 
@@ -36,6 +23,8 @@ namespace TickCrossClient.Pages
 
             SetUserParams();
             SetUserGameParams();
+
+            ApiService.SetUserLoginStatus(_user.Id, UserStat.Online);
         }
 
         public void SetUserParams()
@@ -78,11 +67,20 @@ namespace TickCrossClient.Pages
             WonsText.Text = (await ApiService.GetUserWinsAmount(_user.Id)).ToString();
             LosesText.Text = (await ApiService.GetUserLosesAmount(_user.Id)).ToString();
             TotalGamesText.Text = (await ApiService.GetUserGamesAmount(_user.Id)).ToString();
+            DrawsText.Text = (await ApiService.GetUserDrawsAmount(_user.Id)).ToString();
         }
 
-        private Size _basicMainPanelSize = new Size(190, 340);
-        private Size _bigMainPanelSize = new Size(400, 550);
-        private Size _firstStep = new Size(1200, 700);
+        private Size _basicMainPanelSize = new Size(
+            JsonService.GetNumByName("MainPageBasicMainPanelWidth"),
+            JsonService.GetNumByName("MainPageBasicMainPanelHeight"));
+
+        private Size _bigMainPanelSize = new Size(
+            JsonService.GetNumByName("MainPageBigMainPanelWidth"),
+            JsonService.GetNumByName("MainPageBigMainPanelHeight"));
+
+        private Size _firstStep = new Size(
+             JsonService.GetNumByName("MainPageFirstStepWidth"),
+             JsonService.GetNumByName("MainPageFirstStepHeight"));
 
         public void ChangeCardSize(Size size)
         {
@@ -93,7 +91,7 @@ namespace TickCrossClient.Pages
             }
             SetParams(true);
         }
-
+        
         public void SetParams(bool isBig)
         {
             Size panelSize = isBig ? _bigMainPanelSize : _basicMainPanelSize;
@@ -117,6 +115,8 @@ namespace TickCrossClient.Pages
             SetFontSizeAndHeightForButton(height, fontSize, StartGameBut);
             SetFontSizeAndHeightForButton(height, fontSize, FriendOptionsBut);
             SetFontSizeAndHeightForButton(height, fontSize, OptionsBut);
+            SetFontSizeAndHeightForButton(height, fontSize, GameReqsBut);
+            SetFontSizeAndHeightForButton(height, fontSize, FriendRequest);
             SetFontSizeAndHeightForButton(height, fontSize, ExitBut);
         }
 
@@ -200,11 +200,18 @@ namespace TickCrossClient.Pages
         private void GameReqsBut_Click(object sender, RoutedEventArgs e)
         {
             _frame.Content = new GameReqs.GameRequests(_frame, _user);
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
         }
 
         private void FriendRequest_Click(object sender, RoutedEventArgs e)
         {
             _frame.Content = new FriendPages.FriendAcceptance(_frame, _user);
+            ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
+        }
+
+        private void GameHistBut_Click(object sender, RoutedEventArgs e)
+        {
+            _frame.Content = new GameHistory.GameHist(_user, _frame);
         }
     }
 }

@@ -14,10 +14,10 @@ namespace TickCrossServer.Controllers
     {
         // GET: api/<RegistrationController_cs>
         [HttpPost("CheckLogin")]
-        public IActionResult Get([FromBody] TempDTO login)
+        public IActionResult Get([FromBody] TempDTO login) //++-
         {
             bool result = TickCrossLib.Services.DBService.IsUserLoginIsExist(login.SimpleReq);
-            return Ok(result ? "1" : "0");
+            return Ok(result ? true : false);
         }
 
         public class TempDTO

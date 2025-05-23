@@ -296,7 +296,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="EntityModels\FriendOffer.cs" />
     <Compile Include="EntityModels\FriendReqStatus.cs" />
     <Compile Include="EntityModels\Game.cs" />
@@ -322,10 +321,12 @@
     <Compile Include="Models\HelpModels\Cord.cs" />
     <Compile Include="Models\NonePlayable\FriendRequestModel.cs" />
     <Compile Include="Models\NonePlayable\GameRequestModel.cs" />
+    <Compile Include="Models\NonePlayable\GameResult.cs" />
     <Compile Include="Models\System.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DBService.cs" />
+    <Compile Include="Services\JsonService.cs" />
     <Compile Include="Services\JwtService.cs" />
     <Compile Include="Services\RegexService.cs" />
   </ItemGroup>

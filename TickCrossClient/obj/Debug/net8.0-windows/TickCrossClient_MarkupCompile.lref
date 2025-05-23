@@ -3,6 +3,8 @@ FB:\GitHub\TickCrossClientServer\TickCrossClient\App.xaml;;
 FB:\GitHub\TickCrossClientServer\TickCrossClient\MainWindow.xaml;;
 FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\FriendPages\FriendAcceptance.xaml;;
 FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\FriendPages\FriendsPage.xaml;;
+FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\GameHistory\GameHist.xaml;;
+FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\GameHistory\GameHistElement.xaml;;
 FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\GamePage.xaml;;
 FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\GameReqs\GameRequests.xaml;;
 FB:\GitHub\TickCrossClientServer\TickCrossClient\Pages\GameReqs\GotGameRequest.xaml;;

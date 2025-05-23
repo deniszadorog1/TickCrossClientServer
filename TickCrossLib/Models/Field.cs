@@ -1,15 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Runtime.Remoting.Channels;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TickCrossLib.Enums;
+﻿using TickCrossLib.Enums;
 
 namespace TickCrossLib.Models
 {
@@ -27,14 +16,32 @@ namespace TickCrossLib.Models
         {
             Cells = new Cell[_boardSize, _boardSize];
 
-            for(int i = 0; i < _boardSize; i++)
+            for (int i = 0; i < _boardSize; i++)
             {
-                for(int j = 0; j < _boardSize; j++)
+                for (int j = 0; j < _boardSize; j++)
                 {
                     Cells[i, j] = new Cell();
                 }
             }
 
+        }
+
+
+        private char _clearedValue = ' ';
+        public bool IsVerticalWon() //++-
+        {
+            char? sign = _clearedValue;
+            for (int i = 0; i < Cells.GetLength(0); i++)
+            {
+                sign = _clearedValue;
+                for (int j = 0; j < Cells.GetLength(1); j++)
+                {
+                    if (j == 0) sign = Cells[j, i].Sign;
+                    else if (sign == _clearedValue || sign is null || !IsCellIsEqualsSign(Cells[j, i], sign)) break;
+                    if (j == Cells.GetLength(1) - 1) return true;
+                }
+            }
+            return false;
         }
 
         public void SetSignInCell(int xCord, int yCord, char sign)
@@ -64,7 +71,7 @@ namespace TickCrossLib.Models
         private const int _secondCellIndex = 1;
         private const int _thirdCellIndex = 2;
 
-        public bool IsHorizontalWon()
+        public bool IsHorizontalWon() //++-
         {
             return ((Cells[_firstCellIndex, _firstCellIndex].Sign == Cells[_firstCellIndex, _secondCellIndex].Sign &&
                 Cells[_firstCellIndex, _firstCellIndex].Sign == Cells[_firstCellIndex, _thirdCellIndex].Sign &&
@@ -80,43 +87,22 @@ namespace TickCrossLib.Models
         }
 
 
-        private char _clearedValue = ' ';
-        public bool IsVerticalWon()
-        {
-            char? sign = _clearedValue;
-            for (int i = 0; i < Cells.GetLength(0); i++)
-            {
-                sign = _clearedValue;
-                for (int j = 0; j < Cells.GetLength(1); j++)
-                {
-                    if (j == 0) sign = Cells[j, i].Sign;
-                    else if (sign == _clearedValue || sign is null || !IsCellIsEqualsSign(Cells[j, i], sign)) break;
-                    if (j == Cells.GetLength(1) - 1) return true;
-                }
-            }
-            return false;
-        }
-
         public bool IsCellIsEqualsSign(Cell cell, char? sign)
         {
             return cell.Sign.Equals(sign);
         }
 
-        public bool IsCrossWon()
+        public bool IsCrossWon() //++-
         {
             int size = Cells.GetLength(0);
 
             char? sign = _clearedValue;
-            for(int i = 0; i < size; i++)
+            for (int i = 0; i < size; i++)
             {
                 if (i == 0) sign = Cells[i, i].Sign;
-                if (sign is null || 
+                if (sign is null ||
                     Cells[i, i].Sign == _clearedValue || !IsCellIsEqualsSign(Cells[i, i], sign)) break;
-
-
                 if (i == size - 1) return true;
-
-
             }
             sign = _clearedValue;
             int count = 0;
@@ -124,7 +110,6 @@ namespace TickCrossLib.Models
             {
                 if (i == size - 1) sign = Cells[count, i].Sign;
                 if (sign is null || Cells[count, i].Sign == _clearedValue || !IsCellIsEqualsSign(Cells[count, i], sign)) break;
-
                 if (i == 0) return true;
                 count++;
             }
@@ -147,10 +132,9 @@ namespace TickCrossLib.Models
             return true;
         }
 
-        public bool IsCellSignIsEmpty(Cell cell)
+        public bool IsCellSignIsEmpty(Cell cell) //++-
         {
-            if (cell.Sign is null) return true;
-            return cell.Sign.ToString() == string.Empty;
+            return cell.Sign is null ?  true : cell.Sign.ToString() == string.Empty;
         }
     }
 }

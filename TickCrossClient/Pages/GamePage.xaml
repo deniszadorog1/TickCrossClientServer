@@ -35,15 +35,24 @@
                     RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
             </Border.Effect>
 
-            <StackPanel>
-                <TextBlock Name ="FirstLoginText" Text="Fir Player Login"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock Name ="FirstLoginText" Text="Fir Player Login"
                            FontSize="16" HorizontalAlignment="Center"
                            Margin="5" FontWeight="Bold"/>
 
-                <TextBlock Name ="FirstPlayerTurnText" Text="Your Turn" Foreground="Green"
+                    <TextBlock Name ="FirstPlayerTurnText" Text="Your Turn" Foreground="Green"
                            FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
 
-            </StackPanel>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Name ="FirstTimer" Text="Time" FontSize="18" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10"/>
+            </Grid>
         </Border>
 
         <Grid Grid.Column="1">
@@ -101,8 +110,7 @@
                 </Border>
             </Grid>
         </Grid>
-
-
+ 
         <Border Grid.Column="2" Name ="SecondPlayerBorder" Width="150" Height="330" 
                 Background="White" CornerRadius="6"
                 HorizontalAlignment="Left" Margin="10">
@@ -111,18 +119,28 @@
                     RenderingBias="Quality" ShadowDepth="2" Color="Gray"/>
             </Border.Effect>
 
-            <StackPanel>
-                <TextBlock Name ="SecondLoginText" Text="Sec Player Login"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <TextBlock Name ="SecondLoginText" Text="Sec Player Login"
                            FontSize="16" HorizontalAlignment="Center"
                            Margin="5" FontWeight="Bold"/>
 
-                <TextBlock Name ="SecondPlayerTurnText" Text="Your Turn" Foreground="Green"
+                    <TextBlock Name ="SecondPlayerTurnText" Text="Your Turn" Foreground="Green"
                            FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
 
-            </StackPanel>
+                </StackPanel>
+
+
+                <TextBlock Grid.Row="1" Name ="SecondTimer" Text="Time" FontSize="18" FontWeight="Bold"
+                           HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10"/>
+
+            </Grid>
         </Border>
-
-
 
         <Image Grid.Column="0" Source="pack://application:,,,/Visuals/Images/ListInCells.png"
                Stretch="Fill" Panel.ZIndex="-1" />

@@ -1,25 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.ExceptionServices;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using TickCrossClient.Services;
-using TickCrossLib.EntityModels;
-using TickCrossLib.Models;
+using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages
 {
@@ -47,7 +29,7 @@ namespace TickCrossClient.Pages
 
         public async void FillEnemiesLoginsList()
         {
-            List<TickCrossLib.Models.User> enemies = 
+            List<TickCrossLib.Models.User> enemies =
                 await ApiService.GetUsersToSendGameReq(_user.Id);
 
             if (enemies is null) return;

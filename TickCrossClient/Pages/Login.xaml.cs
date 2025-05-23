@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using TickCrossClient.Services;
 using TickCrossLib.Enums;
@@ -32,7 +31,7 @@ namespace TickCrossClient.Pages
                 MessageBox.Show("Something went wrong!");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(LoginBox.Text) || 
+            if (string.IsNullOrWhiteSpace(LoginBox.Text) ||
                 !TickCrossLib.Services.RegexService.LoginValidation(LoginBox.Text) ||
                 string.IsNullOrWhiteSpace(PasswordBox.Password))
             {
@@ -40,13 +39,13 @@ namespace TickCrossClient.Pages
                 return;
             }
 
-            if (await ApiService.IsUserIsLoggedById(loggedUser.Id))
+            if (await ApiService.IsUserLoggedOnLoginPage(loggedUser.Id))
             {
-                MessageBox.Show("Вы думали я вас не переинраю?");
+                MessageBox.Show("Is logged");
                 return;
             }
-            loggedUser.SetToken(JwtService.Generate(loggedUser));
-            ApiService.SetToken(loggedUser.GetToken());
+            loggedUser._token = JwtService.Generate(loggedUser);
+            ApiService.SetToken(loggedUser._token);
 
             ApiService.SetUserLoginStatus(loggedUser.Id, UserStat.Online);
 
@@ -57,11 +56,11 @@ namespace TickCrossClient.Pages
             ((MainWindow)Window.GetWindow(_frame)).SetWindowSize();
         }
 
-        private Size _basicMainPanelSize = 
+        private Size _basicMainPanelSize =
             new Size(JsonService.GetNumByName("LoginPageBasicMainPageWidth"),
                 JsonService.GetNumByName("LoginPageBasicMainPageHeight"));
 
-        private Size _bigMainPanelSize = 
+        private Size _bigMainPanelSize =
             new Size(JsonService.GetNumByName("LoginPageBigMainPanelWidth"),
                 JsonService.GetNumByName("LoginPageBigMainPanelHeight"));
 
@@ -87,9 +86,9 @@ namespace TickCrossClient.Pages
             }
         }
 
-        private int _baseTextBoxFontSize = 
+        private int _baseTextBoxFontSize =
             JsonService.GetNumByName("LoginPageBasicFontSize");
-        private int _bigTextBoxFontSize = 
+        private int _bigTextBoxFontSize =
             JsonService.GetNumByName("LoginPageBigFontSize");
         public void SetBoxNameSize(int size)
         {

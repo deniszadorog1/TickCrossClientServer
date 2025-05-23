@@ -52,7 +52,7 @@ namespace TickCrossServer.Controllers
         public class FriendOfferDTO
         {
             public int UserId { get; set; }
-            public string ReceiverLogin { get; set; }
+            public string ReceiverLogin { get; set; } 
         };
 
         [HttpGet("GetReqsSentByUser")]

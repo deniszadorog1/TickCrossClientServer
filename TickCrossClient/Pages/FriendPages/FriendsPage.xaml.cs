@@ -1,10 +1,6 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Threading;
 using TickCrossClient.Services;
-using TickCrossLib.EntityModels;
-using TickCrossLib.Models;
 using TickCrossLib.Services;
 
 namespace TickCrossClient.Pages.FriendPages
@@ -69,6 +65,10 @@ namespace TickCrossClient.Pages.FriendPages
             if (!isCanBeSent || await ApiService.IsUserAlreadyAFriend(_user.Id, FriendsToAddBox.Text)) return;
 
             await ApiService.AddRequest(_user.Id, FriendsToAddBox.Text);
+
+            FriendsToAddBox.Text = string.Empty;
+            FriendsToRemoveList.Items.Clear();
+            SetFriendsToAdd();
         }
 
         public string GetUserLoginFromListBox(ListBox box)

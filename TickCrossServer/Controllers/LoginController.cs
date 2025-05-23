@@ -53,12 +53,34 @@ namespace TickCrossServer.Controllers
             public UserStat Stat { get; set; }
         };
 
+        private static readonly object _loginLock = new();
 
         [HttpGet("IsUserLogged")]
         public bool IsUserLogged(int userId)
         {
-            return DBService.IsUserLogged(userId);
+            lock (_loginLock)
+            {
+                return DBService.IsUserLogged(userId);
+
+               /* if (res) return true; 
+                DBService.SetUserLoginStatus(userId, UserStat.Online);
+
+                return false;*/
+            }
         }
 
+        [HttpGet("IsUserLoggedAtLoginPage")]
+        public bool IsUserLoggedInLoginPage(int userId)
+        {
+            lock (_loginLock)
+            {
+                bool res = DBService.IsUserLogged(userId);
+
+                if (res) return true;
+                DBService.SetUserLoginStatus(userId, UserStat.Online);
+
+                return false;
+            }
+        }
     }
 }
