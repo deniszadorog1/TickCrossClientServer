@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Microsoft.IdentityModel.Tokens;
+using System.Windows;
 using System.Windows.Controls;
 using TickCrossClient.Services;
 using TickCrossLib.Models.NonePlayable;
@@ -92,8 +93,6 @@ namespace TickCrossClient.Pages.GameReqs
 
             if (panel is null) return null;
 
-            if (panel is null) return null;
-
             for (int i = 0; i < panel.Children.Count; i++)
             {
                 if (panel.Children[i] is TextBlock block)
@@ -123,7 +122,7 @@ namespace TickCrossClient.Pages.GameReqs
         {
             ((MainWindow)Window.GetWindow(_frame)).SetContentToMainFrame(new MainPage(_frame, _user));
         }
-        //----------------------------------------------------------------------------------------------------------------
+
         private async void AcceptGameBut_Click(object sender, RoutedEventArgs e)
         {
             //Check is enemy is online or in game!!
@@ -221,10 +220,12 @@ namespace TickCrossClient.Pages.GameReqs
             SetListBoxes();
         }
 
-        private async Task<bool> IsGameReqExists(string recieverLogin, string senderRequest)
+        private async Task<bool> IsGameReqExists(string recieverLogin, string senderRequest) //+-
         {
-            TickCrossLib.Models.GameRequest req = await ApiService.GetGameRequest(senderRequest, recieverLogin);
-            return req is null ? false : true;
+            return (await ApiService.GetGameRequest(senderRequest, recieverLogin)) is not null;
+
+/*            TickCrossLib.Models.GameRequest req = await ApiService.GetGameRequest(senderRequest, recieverLogin);
+            return req is null ? false : true;*/
         }
 
         private Size _bigMainPanelSize = new Size
@@ -234,8 +235,11 @@ namespace TickCrossClient.Pages.GameReqs
             JsonService.GetNumByName("GameRequestFirstStepWidth"),
             JsonService.GetNumByName("GameRequestFirstStepHeight"));
 
-        public void ChangeCardSize(Size size)
+        public void ChangeCardSize(Size size) //+-
         {
+            SetParams(_firstStep.Width < size.Width || _firstStep.Height < size.Height);
+
+            return;
             if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
             {
                 SetParams(false);

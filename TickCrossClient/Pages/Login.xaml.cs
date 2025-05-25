@@ -68,9 +68,10 @@ namespace TickCrossClient.Pages
             new Size(JsonService.GetNumByName("LoginPageFirstStepWidth"),
                 JsonService.GetNumByName("LoginPageFirstStepHeight"));
 
-        public void ChangeCardSize(Size size)
+        public void ChangeCardSize(Size size) //+-
         {
-            if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
+            SetCardParams(_firstStep.Width > size.Width && _firstStep.Height > size.Height);
+/*            if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
             {
                 SetMainBorderSize(_basicMainPanelSize);
                 SetTextBoxSize();
@@ -83,7 +84,19 @@ namespace TickCrossClient.Pages
                 SetTextBoxSize();
                 SetBoxNameSize(_bigTextBoxFontSize);
                 KchauImage.Visibility = Visibility.Visible;
-            }
+            }*/
+        }
+
+        public void SetCardParams(bool isBasic)
+        {
+            Size mainPanelSize = isBasic ? _basicMainPanelSize : _bigMainPanelSize;
+            int textSize = isBasic ? _baseTextBoxFontSize : _bigTextBoxFontSize;
+            Visibility vis = isBasic ? Visibility.Hidden : Visibility.Visible;
+
+            SetMainBorderSize(mainPanelSize);
+            SetTextBoxSize();
+            SetBoxNameSize(textSize);
+            KchauImage.Visibility = vis;
         }
 
         private int _baseTextBoxFontSize =

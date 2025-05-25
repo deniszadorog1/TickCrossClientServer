@@ -71,12 +71,14 @@ namespace TickCrossClient.Pages.FriendPages
             SetFriendsToAdd();
         }
 
-        public string GetUserLoginFromListBox(ListBox box)
+        public string GetUserLoginFromListBox(ListBox box) //+-
         {
-            TextBlock block = (TextBlock)box.SelectedItem;
+            return ((TextBlock)box.SelectedItem) is null ? string.Empty : ((TextBlock)box.SelectedItem).Text;
+
+/*            TextBlock block = (TextBlock)box.SelectedItem;
             if (block is null) return string.Empty;
 
-            return block.Text;
+            return block.Text;*/
         }
 
         private Size _basicMainPanelSize =
@@ -91,8 +93,10 @@ namespace TickCrossClient.Pages.FriendPages
             new Size(JsonService.GetNumByName("FriendPageFirstStepWidth"),
                 JsonService.GetNumByName("FriendPageFirstStepHeight"));
 
-        public void OptionsParamsSize(Size size)
+        public void OptionsParamsSize(Size size) //+-
         {
+            SetBordersSize(_firstStep.Width < size.Width && _firstStep.Height < size.Height);
+            return;
             // isBig
             if (_firstStep.Width > size.Width || _firstStep.Height > size.Height)
             {

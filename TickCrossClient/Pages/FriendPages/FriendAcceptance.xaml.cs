@@ -149,14 +149,17 @@ namespace TickCrossClient.Pages.FriendPages
             JsonService.GetNumByName("FriendAcceptFirstStepWidth"),
             JsonService.GetNumByName("FriendAcceptFirstStepHeight"));
 
-        public void ChangeCardSize(Size size)
+        public void ChangeCardSize(Size size) //+-
         {
+            SetParams(_firstStep.Width < size.Width && _firstStep.Height < size.Height);
+
+/*            return;
             if (_firstStep.Width > size.Width && _firstStep.Height > size.Height)
             {
                 SetParams(false);
                 return;
             }
-            SetParams(true);
+            SetParams(true);*/
         }
 
         private Size _basicBorderSize = new Size(

@@ -225,10 +225,10 @@ namespace TickCrossClient.Pages
         {
             //_tempGameReq = req;
             ApiService.AddTempGameInDB(_game.Id);
-
+            const double inter = 0.1;
             _moveTimer = new DispatcherTimer
             {
-                Interval = TimeSpan.FromSeconds(JsonService.GetNumByName("TimerInterval"))
+                Interval = TimeSpan.FromSeconds(inter/*JsonService.GetNumByName("TimerInterval")*/)
             };
             _moveTimer.Tick += async (sender, e) =>
             {
@@ -308,11 +308,10 @@ namespace TickCrossClient.Pages
             SetGameEndStatForPlayers();
         }
 
-        public async Task<bool> IsGameIsClosed()
+        public async Task<bool> IsGameIsClosed() //+-
         {
             bool? isCanceled = await ApiService.IsGameBeenCanceled(_game.Id);
-            if (isCanceled is null) return false;
-            return (bool)isCanceled;
+            return isCanceled is null ? false : (bool)isCanceled;
         }
 
         public async void CheckTempGameStatus()
@@ -390,13 +389,10 @@ namespace TickCrossClient.Pages
                     SetMoveToPlayer(((int, int))cord);
                 }*/
 
-        public async Task<GameEnded?> CheckGameStatus()
+        public async Task<GameEnded?> CheckGameStatus() //+-
         {
             string status = await ApiService.GetTempGameStatus(_game.Id);
-            if (status is null) return null;
-
-            GameEnded? gameStat = GetStatusByString(status);
-            return gameStat;
+            return status is null ? null : GetStatusByString(status);
         }
 
         public async void SetMoveToPlayer((int, int) moveCord)

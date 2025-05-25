@@ -12,12 +12,14 @@ namespace TickCrossLib.Services
         private static void SetStringParams(string fileName)
         {
             DirectoryInfo baseDirectoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
-            string parentPath = baseDirectoryInfo.Parent.Parent.Parent.FullName;
-            //string monopolyDllPath = Path.Combine(parentPath, "TickCrossClient");
-            string jsonFilePath = Path.Combine(parentPath, fileName);
+            string parentPath = baseDirectoryInfo.Parent.Parent.Parent.Parent.FullName;
+            string clientDllPath = Path.Combine(parentPath, "TickCrossClient");
+            string jsonFilePath = Path.Combine(clientDllPath, fileName);
 
             string json = File.ReadAllText(jsonFilePath);
             _dict = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+            //'B:\GitHub\TickCrossClientServer\TickCrossServer\params.json'.
         }
 
         public static int GetNumByName(string name)
